@@ -1,0 +1,6 @@
+E:\C#\Sekretariat\Tests\ClassSorting\bin\Debug\ClassSorting.exe
+E:\C#\Sekretariat\Tests\ClassSorting\bin\Debug\ClassSorting.pdb
+E:\C#\Sekretariat\Tests\ClassSorting\obj\Debug\ClassSorting.csprojAssemblyReference.cache
+E:\C#\Sekretariat\Tests\ClassSorting\obj\Debug\ClassSorting.csproj.CoreCompileInputs.cache
+E:\C#\Sekretariat\Tests\ClassSorting\obj\Debug\ClassSorting.exe
+E:\C#\Sekretariat\Tests\ClassSorting\obj\Debug\ClassSorting.pdb
