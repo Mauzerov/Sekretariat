@@ -9,31 +9,28 @@ namespace Desktop.DataClass.Other
 {
     public class FQL<T> : IEnumerable<T> where T : IFieldComparable
     {
-        private readonly IEnumerable<T> data;
+        private readonly IEnumerable<T> _data;
 
+        public List<T> ToList()
+        {
+            return _data.ToList();
+        }
         public FQL(IEnumerable<T> array)
         {
-            data = array;
+            _data = array;
         }
         public IEnumerator<T> GetEnumerator()
         {
-            return data.GetEnumerator();
+            return _data.GetEnumerator();
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
-        public FQL<T> Filter(ICollection<T> array, ICollection<Where> wheres)
+        public FQL<T> Filter(IEnumerable<T> array, IEnumerable<Where> wheres)
         {
-            bool Good(T element)
-            {
-                foreach (var where in wheres)
-                    if (!element[where.Key].CompareTo(where.Value).Operand(where.Op))
-                        return false;
-                return true;
-            }
-
+            bool Good(T element) => wheres.All(where => element[where.Key].CompareTo(where.Value).Operand(where.Op));
             return new FQL<T>(array.Where(Good));
         }
 

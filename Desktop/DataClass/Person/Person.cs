@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using Desktop.DataClass.Include;
 
 namespace Desktop.DataClass.Person
@@ -21,20 +23,17 @@ namespace Desktop.DataClass.Person
             Photo = args[index++];
             Gender = (Gender) args[index++];
         }
-
+        
+        #region IFieldComparable Implementation
         public int CompareTo(IFieldComparable other, string field)
         {
             return this[field].CompareTo(other[field]);
         }
-
         public IComparable this[string name]
         {
             get
             {
-                var fields = this.GetType()
-                    .GetFields();
-
-                foreach (var field in fields)
+                foreach (var field in GetPublicFields())
                 {
                     if (field.Name != name) continue;
 
@@ -45,5 +44,10 @@ namespace Desktop.DataClass.Person
                 throw new ArgumentException("Can't find field");
             }
         }
+
+        public FieldInfo[] GetPublicFields() => GetType().GetFields().Where(e => e.IsPublic).ToArray();
+        public string[] GetPublicFieldsNames() => GetPublicFields().Select(t => t.Name).ToArray();
+
+        #endregion
     }
 }

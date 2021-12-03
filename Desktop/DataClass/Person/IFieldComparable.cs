@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace Desktop.DataClass.Person
 {
@@ -6,5 +7,8 @@ namespace Desktop.DataClass.Person
     {
         int CompareTo (IFieldComparable other, string field);
         IComparable this[string name] { get; }
+
+        FieldInfo[] GetPublicFields();
+        string[] GetPublicFieldsNames();
     }
 }
