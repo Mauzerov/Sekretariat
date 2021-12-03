@@ -3,7 +3,7 @@ using Desktop.DataClass.Include;
 
 namespace Desktop.DataClass.Person
 {
-    public abstract class Person
+    public abstract class Person : IFieldComparable
     {
         public string Name, Surname, OldSurname, ParentsNames;
         public DateTime BirthDate;
@@ -20,6 +20,30 @@ namespace Desktop.DataClass.Person
             BirthDate = (DateTime) args[index++];
             Photo = args[index++];
             Gender = (Gender) args[index++];
+        }
+
+        public int CompareTo(IFieldComparable other, string field)
+        {
+            return this[field].CompareTo(other[field]);
+        }
+
+        public IComparable this[string name]
+        {
+            get
+            {
+                var fields = this.GetType()
+                    .GetFields();
+
+                foreach (var field in fields)
+                {
+                    if (field.Name != name) continue;
+
+                    if (field.GetValue(this) is IComparable fieldValue)
+                        return fieldValue;
+                    throw new NotSupportedException("Can't convert field to IComparable");
+                }
+                throw new ArgumentException("Can't find field");
+            }
         }
     }
 }

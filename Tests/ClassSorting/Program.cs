@@ -1,10 +1,53 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace ClassSorting
 {
+    internal static class Where
+    {
+        public static int CompareTo(this int value, Where where)
+        {
+            
+        }
+    }
+    internal class FQL<T> : IEnumerable<T> where T : IFieldComparable
+    /* FQL - Functional Query Language */
+    {
+        class Where
+        {
+            public string Key;
+            public IComparable<T> Value;
+            
+        }
+
+        private readonly IEnumerable<T> data;
+
+        public FQL(IEnumerable<T> array)
+        {
+            data = array;
+        }
+        public IEnumerator<T> GetEnumerator()
+        {
+            return data.GetEnumerator();
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public FQL<T> Filter(IEnumerable<string> array, IEnumerable<Where> wheres)
+        {
+            bool Good(T element)
+            {
+                foreach (var where in wheres)
+                    if (!(element[where.Key].CompareTo(where.Value) == where.Other))
+                        return false;
+                return true;
+            }
+        }
+    }
+
     internal interface IFieldComparable
     {
         int CompareTo (IFieldComparable other, string field);
