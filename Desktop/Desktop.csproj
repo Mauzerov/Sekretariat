@@ -50,6 +50,19 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="Properties\Annotations.cs" />
+        <Compile Include="View\Table\Command.cs" />
+        <Compile Include="View\Table\ObservableObject.cs" />
+        <Compile Include="View\Table\TableViewer.cs" />
+        <Compile Include="View\Table\Viewer\EmployeeTable.xaml.cs">
+          <DependentUpon>EmployeeTable.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\Table\Viewer\StudentTable.xaml.cs">
+          <DependentUpon>StudentTable.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\Table\Viewer\TeacherTable.xaml.cs">
+          <DependentUpon>TeacherTable.xaml</DependentUpon>
+        </Compile>
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -74,6 +87,12 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="Styles\Table\TabSelector.xaml" />
+        <Page Include="Styles\Table\TabSelectorScrollBar.xaml" />
+        <Page Include="Styles\Table\TabSelectorScrollBarThumb.xaml" />
+        <Page Include="View\Table\Viewer\EmployeeTable.xaml" />
+        <Page Include="View\Table\Viewer\StudentTable.xaml" />
+        <Page Include="View\Table\Viewer\TeacherTable.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs">
@@ -95,9 +114,7 @@
     <ItemGroup>
       <Folder Include="Include" />
       <Folder Include="Scripts" />
-      <Folder Include="Styles" />
-      <Folder Include="View\TableHeader" />
-      <Folder Include="View\TableViewer" />
+      <Folder Include="View\Table\Header" />
       <Folder Include="View\TabSelector" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

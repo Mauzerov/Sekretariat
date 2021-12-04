@@ -4,32 +4,80 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desktop"
+        xmlns:viewModel="clr-namespace:Desktop.View.Viewer"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="350" Width="525"
+        Height="500" Width="825"
+        Background="#4A4453"
 >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Table/TabSelectorScrollBar.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Styles/Table/TabSelectorScrollBarThumb.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.DataContext>
+        <viewModel:TableViewer/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="120"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
-        <StackPanel Background="MediumVioletRed">
+        <StackPanel Background="#2E253E">
             <Label
+                Content="Sekretariat"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 FontSize="17"
-                Foreground="WhiteSmoke"
+                Foreground="#F9EAFF"
                 FontWeight="Bold"
-            >
-                Sekretariat
-            </Label>
+                Padding="0,10,0,0"
+            />
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0" Background="Yellow"></StackPanel>
-        <StackPanel Grid.Column="1" Grid.RowSpan="2" Grid.Row="0" Background="Blue"></StackPanel>
+        <ScrollViewer Grid.Row="1" Grid.Column="0">
+            <StackPanel Background="#5C526E">
+                <RadioButton
+                    Command="{Binding StudentCommand}"
+                    IsChecked="True"
+                    Content="Student"
+                    Height="50"
+                    Foreground="#F9EAFF"
+                    FontSize="14"
+                    Style="{StaticResource TabSelectorStyle}"
+                />
+                <RadioButton
+                    Command="{Binding TeacherCommand}"
+                    Content="Teacher"
+                    Height="50"
+                    Foreground="#F9EAFF"
+                    FontSize="14"
+                    Style="{StaticResource TabSelectorStyle}"
+                />
+                <RadioButton
+                    Command="{Binding EmployeeCommand}"
+                    Content="Employee"
+                    Height="50"
+                    Foreground="#F9EAFF"
+                    FontSize="14"
+                    Style="{StaticResource TabSelectorStyle}"
+                />
+            </StackPanel>
+        </ScrollViewer>
+        
+        <ContentControl
+            Grid.Column="1" Grid.RowSpan="2"
+            Grid.Row="0" Margin="10"
+            Content="{Binding CurrentView}"
+            >
+            
+        </ContentControl>
     </Grid>
 </Window>
