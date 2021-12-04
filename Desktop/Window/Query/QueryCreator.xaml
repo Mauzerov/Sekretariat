@@ -1,0 +1,12 @@
+﻿<Window x:Class="Desktop.Window.Query.QueryCreator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Desktop.Window.Query"
+        mc:Ignorable="d"
+        Title="QueryCreator" Height="450" Width="800">
+    <Grid Name="Grid">
+        
+    </Grid>
+</Window>

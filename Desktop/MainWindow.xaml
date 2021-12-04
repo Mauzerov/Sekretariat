@@ -21,63 +21,89 @@
     <Window.DataContext>
         <viewModel:TableViewer/>
     </Window.DataContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        
-        <StackPanel Background="#2E253E">
-            <Label
-                Content="Sekretariat"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                FontSize="17"
-                Foreground="#F9EAFF"
-                FontWeight="Bold"
-                Padding="0,10,0,0"
-            />
-        </StackPanel>
-        <ScrollViewer Grid.Row="1" Grid.Column="0">
-            <StackPanel Background="#5C526E">
-                <RadioButton
-                    Command="{Binding StudentCommand}"
-                    IsChecked="True"
-                    Content="Student"
-                    Height="50"
+    
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="Refresh"/>
+                <MenuItem Header="Save Data"/>
+                <MenuItem Header="Set Data"/>
+                <MenuItem Header="Add Fields"/>
+                <MenuItem Header="Restore Data"/>
+                <MenuItem Header="Set Temporary Data"/>
+                <MenuItem Header="Download Data"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="Copy" Command="Copy"/>
+                <MenuItem Header="Cut" Command="Cut"/>
+                <MenuItem Header="Paste" Command="Paste"/>
+            </MenuItem>
+            <MenuItem Header="_Report">
+                <MenuItem Header="Save as XML"/>
+                <MenuItem Header="Save as CSV"/>
+                <MenuItem Header="Save as Excel"/>
+            </MenuItem>
+            <MenuItem Header="_Query">
+                <MenuItem Header="New" Click="MenuItem_OnClick"/>
+                <MenuItem Header="Load"/>
+            </MenuItem>
+            <MenuItem Header="_Help" Command="Help"/>
+        </Menu>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Background="#2E253E">
+                <Label
+                    Content="Secretary"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="18"
                     Foreground="#F9EAFF"
-                    FontSize="14"
-                    Style="{StaticResource TabSelectorStyle}"
-                />
-                <RadioButton
-                    Command="{Binding TeacherCommand}"
-                    Content="Teacher"
-                    Height="50"
-                    Foreground="#F9EAFF"
-                    FontSize="14"
-                    Style="{StaticResource TabSelectorStyle}"
-                />
-                <RadioButton
-                    Command="{Binding EmployeeCommand}"
-                    Content="Employee"
-                    Height="50"
-                    Foreground="#F9EAFF"
-                    FontSize="14"
-                    Style="{StaticResource TabSelectorStyle}"
+                    FontWeight="Bold"
+                    Padding="0,10,0,0"
                 />
             </StackPanel>
-        </ScrollViewer>
-        
-        <ContentControl
-            Grid.Column="1" Grid.RowSpan="2"
-            Grid.Row="0" Margin="10"
-            Content="{Binding CurrentView}"
-            >
+            <ScrollViewer Grid.Row="1" Grid.Column="0">
+                <StackPanel Background="#5C526E">
+                    <RadioButton
+                        Command="{Binding StudentCommand}"
+                        IsChecked="True"
+                        Content="Student"
+                        Height="50"
+                        Foreground="#F9EAFF"
+                        FontSize="14"
+                        Style="{StaticResource TabSelectorStyle}"
+                    />
+                    <RadioButton
+                        Command="{Binding TeacherCommand}"
+                        Content="Teacher"
+                        Height="50"
+                        Foreground="#F9EAFF"
+                        FontSize="14"
+                        Style="{StaticResource TabSelectorStyle}"
+                    />
+                    <RadioButton
+                        Command="{Binding EmployeeCommand}"
+                        Content="Employee"
+                        Height="50"
+                        Foreground="#F9EAFF"
+                        FontSize="14"
+                        Style="{StaticResource TabSelectorStyle}"
+                    />
+                </StackPanel>
+            </ScrollViewer>
             
-        </ContentControl>
-    </Grid>
+            <ContentControl
+                Grid.Column="1" Grid.RowSpan="2"
+                Grid.Row="0" Margin="10"
+                Content="{Binding CurrentView}"/>
+        </Grid>
+    </DockPanel>
 </Window>

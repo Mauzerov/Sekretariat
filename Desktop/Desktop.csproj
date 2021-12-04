@@ -52,6 +52,8 @@
         </ApplicationDefinition>
         <Compile Include="Properties\Annotations.cs" />
         <Compile Include="View\Table\Command.cs" />
+        <Compile Include="View\Table\Header\SortableButton.cs" />
+        <Compile Include="View\Table\Header\SortableHeader.cs" />
         <Compile Include="View\Table\ObservableObject.cs" />
         <Compile Include="View\Table\TableViewer.cs" />
         <Compile Include="View\Table\Viewer\EmployeeTable.xaml.cs">
@@ -62,6 +64,9 @@
         </Compile>
         <Compile Include="View\Table\Viewer\TeacherTable.xaml.cs">
           <DependentUpon>TeacherTable.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Window\Query\QueryCreator.xaml.cs">
+          <DependentUpon>QueryCreator.xaml</DependentUpon>
         </Compile>
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
@@ -93,6 +98,7 @@
         <Page Include="View\Table\Viewer\EmployeeTable.xaml" />
         <Page Include="View\Table\Viewer\StudentTable.xaml" />
         <Page Include="View\Table\Viewer\TeacherTable.xaml" />
+        <Page Include="Window\Query\QueryCreator.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs">
@@ -114,8 +120,6 @@
     <ItemGroup>
       <Folder Include="Include" />
       <Folder Include="Scripts" />
-      <Folder Include="View\Table\Header" />
-      <Folder Include="View\TabSelector" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
