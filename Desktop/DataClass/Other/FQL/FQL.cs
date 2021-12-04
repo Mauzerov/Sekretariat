@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Desktop.DataClass.Person;
+using Desktop.DataClass.Persons;
 using Desktop.DataClass.Other;
 
 namespace Desktop.DataClass.Other

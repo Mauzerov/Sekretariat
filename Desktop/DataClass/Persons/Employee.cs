@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 
-namespace Desktop.DataClass.Person
+namespace Desktop.DataClass.Persons
 {
     public class Employee : Person
     {

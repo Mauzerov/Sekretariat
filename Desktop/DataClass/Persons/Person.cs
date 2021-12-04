@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Desktop.DataClass.Include;
 
-namespace Desktop.DataClass.Person
+namespace Desktop.DataClass.Persons
 {
     public abstract class Person : IFieldComparable
     {
@@ -33,7 +33,7 @@ namespace Desktop.DataClass.Person
         {
             get
             {
-                foreach (var field in GetPublicFields())
+                foreach (var field in GetPublicFields(this.GetType()))
                 {
                     if (field.Name != name) continue;
 
@@ -45,8 +45,8 @@ namespace Desktop.DataClass.Person
             }
         }
 
-        public FieldInfo[] GetPublicFields() => GetType().GetFields().Where(e => e.IsPublic).ToArray();
-        public string[] GetPublicFieldsNames() => GetPublicFields().Select(t => t.Name).ToArray();
+        public static FieldInfo[] GetPublicFields(Type type) => type.GetFields().Where(e => e.IsPublic).ToArray();
+        public static string[] GetPublicFieldsNames(Type type) => GetPublicFields(type).Select(t => t.Name).ToArray();
 
         #endregion
     }

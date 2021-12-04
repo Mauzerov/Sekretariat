@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using Desktop.DataClass.Include;
 
-namespace Desktop.DataClass.Person
+namespace Desktop.DataClass.Persons
 {
     public class Teacher : Person
     {

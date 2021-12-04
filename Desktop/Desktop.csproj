@@ -50,19 +50,21 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="DataClass\Other\SchoolData.cs" />
         <Compile Include="Properties\Annotations.cs" />
-        <Compile Include="View\Table\Command.cs" />
+        <Compile Include="View\Command.cs" />
+        <Compile Include="View\ObservableObject.cs" />
+        <Compile Include="View\TableViewer.cs" />
         <Compile Include="View\Table\Header\SortableButton.cs" />
         <Compile Include="View\Table\Header\SortableHeader.cs" />
-        <Compile Include="View\Table\ObservableObject.cs" />
-        <Compile Include="View\Table\TableViewer.cs" />
-        <Compile Include="View\Table\Viewer\EmployeeTable.xaml.cs">
+        <Compile Include="View\Table\ResultTable.cs" />
+        <Compile Include="View\Viewer\EmployeeTable.xaml.cs">
           <DependentUpon>EmployeeTable.xaml</DependentUpon>
         </Compile>
-        <Compile Include="View\Table\Viewer\StudentTable.xaml.cs">
+        <Compile Include="View\Viewer\StudentTable.xaml.cs">
           <DependentUpon>StudentTable.xaml</DependentUpon>
         </Compile>
-        <Compile Include="View\Table\Viewer\TeacherTable.xaml.cs">
+        <Compile Include="View\Viewer\TeacherTable.xaml.cs">
           <DependentUpon>TeacherTable.xaml</DependentUpon>
         </Compile>
         <Compile Include="Window\Query\QueryCreator.xaml.cs">
@@ -83,11 +85,11 @@
         <Compile Include="DataClass\Other\FQL\Extensions.cs" />
         <Compile Include="DataClass\Other\FQL\FQL.cs" />
         <Compile Include="DataClass\Other\FQL\Where.cs" />
-        <Compile Include="DataClass\Person\Employee.cs" />
-        <Compile Include="DataClass\Person\IFieldComparable.cs" />
-        <Compile Include="DataClass\Person\Person.cs" />
-        <Compile Include="DataClass\Person\Student.cs" />
-        <Compile Include="DataClass\Person\Teacher.cs" />
+        <Compile Include="DataClass\Persons\Employee.cs" />
+        <Compile Include="DataClass\Persons\IFieldComparable.cs" />
+        <Compile Include="DataClass\Persons\Person.cs" />
+        <Compile Include="DataClass\Persons\Student.cs" />
+        <Compile Include="DataClass\Persons\Teacher.cs" />
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
@@ -95,9 +97,9 @@
         <Page Include="Styles\Table\TabSelector.xaml" />
         <Page Include="Styles\Table\TabSelectorScrollBar.xaml" />
         <Page Include="Styles\Table\TabSelectorScrollBarThumb.xaml" />
-        <Page Include="View\Table\Viewer\EmployeeTable.xaml" />
-        <Page Include="View\Table\Viewer\StudentTable.xaml" />
-        <Page Include="View\Table\Viewer\TeacherTable.xaml" />
+        <Page Include="View\Viewer\EmployeeTable.xaml" />
+        <Page Include="View\Viewer\StudentTable.xaml" />
+        <Page Include="View\Viewer\TeacherTable.xaml" />
         <Page Include="Window\Query\QueryCreator.xaml" />
     </ItemGroup>
     <ItemGroup>

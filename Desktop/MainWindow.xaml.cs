@@ -1,5 +1,6 @@
 ﻿using System.Windows;
-using Desktop.DataClass.Person;
+using Desktop.DataClass.Other;
+using Desktop.DataClass.Persons;
 using Desktop.Window.Query;
 
 namespace Desktop
@@ -9,6 +10,7 @@ namespace Desktop
     /// </summary>
     public partial class MainWindow
     {
+        private SchoolData schoolData = new SchoolData();
         public MainWindow()
         {
             InitializeComponent();
@@ -16,8 +18,11 @@ namespace Desktop
 
         private void MenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var win = new QueryCreator(typeof(Student), new[] {"Name", "Surname", "Birth Day"});
-            win.Show();
+            var win = new QueryCreator(schoolData)
+            {
+                Owner = this
+            };
+            win.ShowDialog();
         }
     }
 }

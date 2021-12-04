@@ -7,6 +7,25 @@
         mc:Ignorable="d"
         Title="QueryCreator" Height="450" Width="800">
     <Grid Name="Grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
         
+        <TextBlock Grid.ColumnSpan="4" Name="OutputQuery" Text="SELECT ALL FROM None WHERE TRUE"/>
+        
+        <ComboBox Grid.Column="0" Grid.Row="1" Name="TableList">
+            <ComboBoxItem Content="None" IsSelected="True"></ComboBoxItem>
+        </ComboBox>
+        <ListBox SelectionMode="Multiple" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Name="ColumnList"/>
+       <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"/> 
     </Grid>
 </Window>
