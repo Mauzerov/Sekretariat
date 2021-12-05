@@ -50,8 +50,11 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
-        <Compile Include="DataClass\Other\FQL\SelectQuery.cs" />
         <Compile Include="DataClass\Other\SchoolData.cs" />
+        <Compile Include="FQL\Extensions.cs" />
+        <Compile Include="FQL\FQL.cs" />
+        <Compile Include="FQL\SelectQuery.cs" />
+        <Compile Include="FQL\Where.cs" />
         <Compile Include="Properties\Annotations.cs" />
         <Compile Include="View\Command.cs" />
         <Compile Include="View\ObservableObject.cs" />
@@ -83,9 +86,6 @@
         <Compile Include="DataClass\Include\Gender.cs" />
         <Compile Include="DataClass\Include\SchoolGroup.cs" />
         <Compile Include="DataClass\Include\Subject.cs" />
-        <Compile Include="DataClass\Other\FQL\Extensions.cs" />
-        <Compile Include="DataClass\Other\FQL\FQL.cs" />
-        <Compile Include="DataClass\Other\FQL\Where.cs" />
         <Compile Include="DataClass\Persons\Employee.cs" />
         <Compile Include="DataClass\Persons\IFieldComparable.cs" />
         <Compile Include="DataClass\Persons\Person.cs" />
