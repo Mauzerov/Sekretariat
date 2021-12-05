@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 
 namespace Desktop.DataClass.Other.FQL
 {
@@ -46,6 +49,53 @@ namespace Desktop.DataClass.Other.FQL
                 
                 return $"SELECT {returnFields} FROM {_table} \nWHERE {returnWheres}";
             }
+        }
+
+
+        public static SelectQuery Decompile(string query)
+        {
+            string[] returnColumns;
+            Where[] returnWheres;
+            query = query.TrimInside();
+            var fromLocation = query.IndexOf("FROM", StringComparison.Ordinal);
+            var whereLocation = query.IndexOf("WHERE", StringComparison.Ordinal);
+
+            var columns = query.Substring(7, fromLocation - 8);
+            if (columns == "ALL")
+                returnColumns = new string[] { };
+            else
+            {
+                returnColumns = columns.Split(',');
+                for (var i = 0; i < returnColumns.Length; ++i)
+                    returnColumns[i] = returnColumns[i].Trim();
+            }
+
+            var wheres = query.Substring(whereLocation + 6, query.Length - whereLocation - 6);
+            // TODO : Add A Where Generator And Check IF Where Converter Works
+            if (wheres != "TRUE")
+            {
+                wheres = wheres.Replace(" AND ", "\n");
+                var stringWheres = wheres.Split('\n');
+                var stringWheresAmount = stringWheres.Length;
+                returnWheres = new Where[stringWheresAmount];
+                for (var i = 0; i < stringWheresAmount; ++i)
+                {
+                    var elements = stringWheres[i].Split(' ');
+
+                    var where = new Where
+                    {
+                        Key = elements[0],
+                        Op = Where.OperandFromString(elements[1]),
+                        Value = elements[2]
+                    };
+
+                    returnWheres[i] = where;
+                }
+            }
+            else
+                returnWheres = new Where[] { };
+            
+            return new SelectQuery("None", returnColumns, returnWheres);
         }
     }
 }

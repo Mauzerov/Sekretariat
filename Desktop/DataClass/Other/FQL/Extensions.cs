@@ -18,5 +18,10 @@ namespace Desktop.DataClass.Other.FQL
 
             throw new ArgumentException("Extensions: Unable To Compare!");
         }
+
+        public static string TrimInside(this string s)
+        {
+            return s.Replace("\n", " ").Replace("\t", " ").Replace("  ", "");
+        }
     }
 }

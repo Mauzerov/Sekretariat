@@ -85,5 +85,10 @@ namespace Desktop.Window.Query
                 });
             }
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            SelectQuery.Decompile(OutputQuery.Text.TrimInside());
+        }
     }
 }

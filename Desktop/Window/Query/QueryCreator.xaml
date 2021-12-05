@@ -26,6 +26,8 @@
             <ComboBoxItem Content="None" IsSelected="True"></ComboBoxItem>
         </ComboBox>
         <ListBox SelectionMode="Multiple" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Name="ColumnList"/>
-       <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"/> 
+       <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"/>
+        
+        <Button Grid.Row="3" Grid.Column="2" Click="ButtonBase_OnClick"></Button>
     </Grid>
 </Window>

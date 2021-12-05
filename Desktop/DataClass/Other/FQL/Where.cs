@@ -31,5 +31,24 @@ namespace Desktop.DataClass.Other.FQL
 
         public string Human() => $"{HumanOp()} \"{Value.ToString()}\"";
         public static string Human(Where where) => where.Human();
+
+        public static Operand OperandFromString(string s)
+        {
+            switch (s)
+            {
+                case "=":
+                    return Operand.Eq;
+                case "<=":
+                    return Operand.Eq | Operand.Less;
+                case ">=":
+                    return Operand.Eq | Operand.Greater;
+                case "<":
+                    return Operand.Less;
+                case ">":
+                    return Operand.Greater;
+                default:
+                    throw new ArgumentException("Wrong Operand String");
+            }
+        }
     }
 }
