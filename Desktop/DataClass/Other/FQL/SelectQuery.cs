@@ -20,6 +20,11 @@ namespace Desktop.DataClass.Other.FQL
             _wheres = wheres ?? new Where [] { };
         }
 
+        public IEnumerable<string> Fields => _fields;
+        public IEnumerable<Where> Wheres => _wheres;
+
+        public string Table => _table;
+
         private static string WhereToString(Where where)
         {
             return $"{where.Key} {where.HumanOp()} {where.Value}";
@@ -59,10 +64,13 @@ namespace Desktop.DataClass.Other.FQL
             query = query.TrimInside();
             var fromLocation = query.IndexOf("FROM", StringComparison.Ordinal);
             var whereLocation = query.IndexOf("WHERE", StringComparison.Ordinal);
+            var tableLocation = fromLocation + 5;
 
+            var table = query.Substring(tableLocation, whereLocation - tableLocation);
+            
             var columns = query.Substring(7, fromLocation - 8);
             if (columns == "ALL")
-                returnColumns = new string[] { };
+                returnColumns = SchoolData.GetMemberPublicFieldsNames(table).ToArray();
             else
             {
                 returnColumns = columns.Split(',');
@@ -95,7 +103,7 @@ namespace Desktop.DataClass.Other.FQL
             else
                 returnWheres = new Where[] { };
             
-            return new SelectQuery("None", returnColumns, returnWheres);
+            return new SelectQuery(table, returnColumns, returnWheres);
         }
     }
 }

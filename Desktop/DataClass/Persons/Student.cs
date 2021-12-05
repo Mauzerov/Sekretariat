@@ -10,6 +10,10 @@ namespace Desktop.DataClass.Persons
         public string Class;
         public SchoolGroup Group;
 
+        public Student()
+        {
+        }
+
         public Student(params object[] args) : base(args)
         {
             Class = (string)args[index++];

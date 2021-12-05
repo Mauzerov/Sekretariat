@@ -8,7 +8,8 @@ namespace Desktop.DataClass.Persons
     {
         public string JobTime, Info;
         public DateTime StartDate;
-
+        
+        public Employee() {}
         public Employee(params object[] args) : base(args)
         {
             JobTime = (string) args[index++];

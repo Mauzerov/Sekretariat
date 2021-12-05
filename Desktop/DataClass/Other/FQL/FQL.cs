@@ -15,6 +15,11 @@ namespace Desktop.DataClass.Other.FQL
         {
             return _data.ToList();
         }
+
+        public FQL()
+        {
+            _data = new T[] { };
+        }
         public FQL(IEnumerable<T> array)
         {
             _data = array;
@@ -26,6 +31,18 @@ namespace Desktop.DataClass.Other.FQL
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public IEnumerable<IEnumerable<IComparable>> Select(IEnumerable<T> array, SelectQuery query, string field = null, bool reversed = false)
+        {
+            var fql = new FQL<T>(array);
+            fql = fql.Filter(fql._data, query.Wheres);
+            if (field != null)
+            {
+                fql = fql.OrderBy(fql._data, field, reversed);
+            }
+
+            return fql._data.Select(e => e.GetFieldsAsList(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(query.Table):query.Fields));
         }
 
         public FQL<T> Filter(IEnumerable<T> array, IEnumerable<Where> wheres)

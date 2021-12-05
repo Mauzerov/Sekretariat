@@ -11,7 +11,11 @@ namespace Desktop.DataClass.Persons
         public Subject Subjects;
         public Class Classes;
         public DateTime StartDate;
-        
+
+        public Teacher()
+        {
+            
+        }
         public Teacher(params object[] args) : base(args)
         {
             Class = (string)args[index++];

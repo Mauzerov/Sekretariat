@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Desktop.DataClass.Include;
@@ -13,6 +15,11 @@ namespace Desktop.DataClass.Persons
         public object Photo;
         public Gender Gender;
         protected int index = 0;
+
+        protected Person()
+        {
+            
+        }
         protected Person(params object[] args)
         {
             Name = (string) args[index++];
@@ -39,10 +46,16 @@ namespace Desktop.DataClass.Persons
 
                     if (field.GetValue(this) is IComparable fieldValue)
                         return fieldValue;
-                    throw new NotSupportedException("Can't convert field to IComparable");
+                    return "NULL";
                 }
                 throw new ArgumentException("Can't find field");
             }
+        }
+
+        public IEnumerable<IComparable> GetFieldsAsList(IEnumerable<string> fields)
+        {
+            IEnumerable<IComparable> some = new List<string>();
+            return fields.Aggregate(some, (current, field) => current.Append(this[field]));
         }
 
         public static FieldInfo[] GetPublicFields(Type type) => type.GetFields().Where(e => e.IsPublic).ToArray();

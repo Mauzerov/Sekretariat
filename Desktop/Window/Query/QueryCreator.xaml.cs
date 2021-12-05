@@ -15,6 +15,10 @@ namespace Desktop.Window.Query
     {
         private SchoolData schoolData;
         private string tableSelected = "None";
+
+        public SchoolData SchoolData => schoolData;
+        public string TableSelected => tableSelected;
+
         public QueryCreator(SchoolData tables)
         {
             schoolData = tables;
