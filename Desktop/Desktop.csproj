@@ -50,6 +50,7 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="DataClass\Other\FQL\SelectQuery.cs" />
         <Compile Include="DataClass\Other\SchoolData.cs" />
         <Compile Include="Properties\Annotations.cs" />
         <Compile Include="View\Command.cs" />

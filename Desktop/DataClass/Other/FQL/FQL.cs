@@ -5,7 +5,7 @@ using System.Linq;
 using Desktop.DataClass.Persons;
 using Desktop.DataClass.Other;
 
-namespace Desktop.DataClass.Other
+namespace Desktop.DataClass.Other.FQL
 {
     public class FQL<T> : IEnumerable<T> where T : IFieldComparable
     {

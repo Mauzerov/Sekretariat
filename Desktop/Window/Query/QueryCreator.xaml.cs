@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Desktop.DataClass.Include;
+using Desktop.DataClass.Other.FQL;
 using Desktop.DataClass.Other;
 using Desktop.DataClass.Persons;
 using Desktop.View.Table.Header;
@@ -49,7 +50,8 @@ namespace Desktop.Window.Query
             else
                 fields = "ALL";
 
-            OutputQuery.Text = $"SELECT {fields} FROM {tableSelected}\nWHERE {"True"}";
+            var query = new SelectQuery(tableSelected, ColumnList.SelectedItems.Cast<ListBoxItem>().Select(item => item.Tag).Cast<string>());
+            OutputQuery.Text = query.String;
         }
 
         private void UpdateTableFields()
