@@ -17,6 +17,7 @@ namespace Desktop.View.Table
         {
             Fields = fields;
             Result = data;
+            Generate();
         }
 
         public void Generate()
