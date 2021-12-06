@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Input;
 using Desktop.DataClass.Include;
 
 namespace Desktop.DataClass.Persons
@@ -11,26 +12,23 @@ namespace Desktop.DataClass.Persons
     {
         public string Name, Surname, OldSurname, ParentsNames;
         public DateTime BirthDate;
-        public string Id;
+        public string IdNumber;
         public object Photo;
         public Gender Gender;
-        protected int index = 0;
 
-        protected Person()
+        public Dictionary<string, IComparable> AsDict()
         {
-            
+            var dict = new Dictionary<string, IComparable>
+            {
+                ["UUID"] = System.Guid.NewGuid().ToString()
+            };
+            foreach (var field in GetPublicFieldsNames(GetType()))
+            {
+                dict[field] = this[field];
+            }
+            return dict;
         }
-        protected Person(params object[] args)
-        {
-            Name = (string) args[index++];
-            Surname = (string) args[index++];
-            OldSurname = (string) args[index++];
-            ParentsNames = (string) args[index++];
-            BirthDate = (DateTime) args[index++];
-            Photo = args[index++];
-            Gender = (Gender) args[index++];
-        }
-        
+
         #region IFieldComparable Implementation
         public int CompareTo(IFieldComparable other, string field)
         {
@@ -51,13 +49,7 @@ namespace Desktop.DataClass.Persons
                 throw new ArgumentException("Can't find field");
             }
         }
-
-        public IEnumerable<IComparable> GetFieldsAsList(IEnumerable<string> fields)
-        {
-            IEnumerable<IComparable> some = new List<string>();
-            return fields.Aggregate(some, (current, field) => current.Append(this[field]));
-        }
-
+        
         public static FieldInfo[] GetPublicFields(Type type) => type.GetFields().Where(e => e.IsPublic).ToArray();
         public static string[] GetPublicFieldsNames(Type type) => GetPublicFields(type).Select(t => t.Name).ToArray();
 

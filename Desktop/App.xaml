@@ -11,9 +11,9 @@
              <ResourceDictionary.MergedDictionaries>
                  <ResourceDictionary Source="Styles/Table/TabSelector.xaml"></ResourceDictionary>
              </ResourceDictionary.MergedDictionaries>
-             <DataTemplate DataType="{x:Type viewer:TableViewer}">
-                <view:StudentTable/>
-             </DataTemplate>
+             <!-- <DataTemplate DataType="{x:Type viewer:TableViewer}"> -->
+             <!--    <view:StudentTable/> -->
+             <!-- </DataTemplate> -->
          </ResourceDictionary>
     </Application.Resources>
 </Application>

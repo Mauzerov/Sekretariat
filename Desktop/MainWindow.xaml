@@ -59,51 +59,51 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             
-            <StackPanel Background="#2E253E">
-                <Label
-                    Content="Secretary"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    FontSize="18"
-                    Foreground="#F9EAFF"
-                    FontWeight="Bold"
-                    Padding="0,10,0,0"
-                />
-            </StackPanel>
-            <ScrollViewer Grid.Row="1" Grid.Column="0">
-                <StackPanel Background="#5C526E">
-                    <RadioButton
-                        Command="{Binding StudentCommand}"
-                        IsChecked="True"
-                        Content="Student"
-                        Height="50"
-                        Foreground="#F9EAFF"
-                        FontSize="14"
-                        Style="{StaticResource TabSelectorStyle}"
-                    />
-                    <RadioButton
-                        Command="{Binding TeacherCommand}"
-                        Content="Teacher"
-                        Height="50"
-                        Foreground="#F9EAFF"
-                        FontSize="14"
-                        Style="{StaticResource TabSelectorStyle}"
-                    />
-                    <RadioButton
-                        Command="{Binding EmployeeCommand}"
-                        Content="Employee"
-                        Height="50"
-                        Foreground="#F9EAFF"
-                        FontSize="14"
-                        Style="{StaticResource TabSelectorStyle}"
-                    />
-                </StackPanel>
-            </ScrollViewer>
+            <!-- <StackPanel Background="#2E253E"> -->
+            <!--     <Label -->
+            <!--         Content="Secretary" -->
+            <!--         VerticalAlignment="Center" -->
+            <!--         HorizontalAlignment="Center" -->
+            <!--         FontSize="18" -->
+            <!--         Foreground="#F9EAFF" -->
+            <!--         FontWeight="Bold" -->
+            <!--         Padding="0,10,0,0" -->
+            <!--     /> -->
+            <!-- </StackPanel> -->
+            <!-- <ScrollViewer Grid.Row="1" Grid.Column="0"> -->
+            <!--     <StackPanel Background="#5C526E"> -->
+            <!--         <RadioButton -->
+            <!--             Command="{Binding StudentCommand}" -->
+            <!--             IsChecked="True" -->
+            <!--             Content="Student" -->
+            <!--             Height="50" -->
+            <!--             Foreground="#F9EAFF" -->
+            <!--             FontSize="14" -->
+            <!--             Style="{StaticResource TabSelectorStyle}" -->
+            <!--         /> -->
+            <!--         <RadioButton -->
+            <!--             Command="{Binding TeacherCommand}" -->
+            <!--             Content="Teacher" -->
+            <!--             Height="50" -->
+            <!--             Foreground="#F9EAFF" -->
+            <!--             FontSize="14" -->
+            <!--             Style="{StaticResource TabSelectorStyle}" -->
+            <!--         /> -->
+            <!--         <RadioButton -->
+            <!--             Command="{Binding EmployeeCommand}" -->
+            <!--             Content="Employee" -->
+            <!--             Height="50" -->
+            <!--             Foreground="#F9EAFF" -->
+            <!--             FontSize="14" -->
+            <!--             Style="{StaticResource TabSelectorStyle}" -->
+            <!--         /> -->
+            <!--     </StackPanel> -->
+            <!-- </ScrollViewer> -->
             
             <ContentControl Name="ContentControl"
-                Grid.Column="1" Grid.RowSpan="2"
-                Grid.Row="0" Margin="10"
-                Content="{Binding CurrentView}"/>
+                Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
+                Grid.Row="0" Margin="10"/>
+                <!--Content="{Binding CurrentView}"/>-->
         </Grid>
     </DockPanel>
 </Window>

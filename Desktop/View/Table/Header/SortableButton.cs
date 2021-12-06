@@ -3,6 +3,13 @@ using System.Windows.Controls.Primitives;
 
 namespace Desktop.View.Table.Header
 {
+    internal static class SortableButtonExtensions
+    {
+        public static string ToString(this SortableButton.ButtonState state, bool my)
+        {
+            return state == SortableButton.ButtonState.None ? "" : state.ToString();
+        }
+    }
     public class SortableButton : Button
     {
         private SortableHeader _header;
@@ -12,13 +19,19 @@ namespace Desktop.View.Table.Header
         }
         
         private ButtonState _state = ButtonState.None;
+        public string ColumnTitle = "UUID";
+
         public ButtonState State
         {
             get => _state;
             set
             {
                 _state = value;
-                Content = State.ToString();
+                string field;
+                if ((field = State.ToString(true)) != "")
+                    Content = ColumnTitle + " " + field;
+                else
+                    Content = ColumnTitle;
             }
         }
 

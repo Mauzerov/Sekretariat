@@ -64,17 +64,17 @@ namespace Desktop
                 case "Students":
                     ContentControl.Content =
                         new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-                            new FQL<Student>().Select(win.SchoolData.Students, query));
+                            new FQL(win.SchoolData.Students).Select(query));
                     break;
                 case "Teachers":
                     ContentControl.Content =
                         new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-                            new FQL<Teacher>().Select(win.SchoolData.Teachers, query));
+                            new FQL(win.SchoolData.Teachers).Select(query));
                     break;
                 case "Employees":
                     ContentControl.Content =
                         new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-                            new FQL<Employee>().Select(win.SchoolData.Employees, query));
+                            new FQL(win.SchoolData.Employees).Select(query));
                     break;
             }
             

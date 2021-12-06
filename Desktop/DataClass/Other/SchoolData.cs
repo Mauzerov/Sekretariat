@@ -6,14 +6,25 @@ using System.Linq;
 using System.Reflection;
 using Desktop.DataClass.Persons;
 
+
+using TableRow = System.Collections.Generic.Dictionary<string, System.IComparable>;
 namespace Desktop.DataClass.Other
 {
+    public static class SchoolDataExtensions
+    {
+        public static void Add(this List<TableRow> table, Person value)
+        {
+            table.Add(value.AsDict());
+        }
+    }
+
     public class SchoolData
     {
-        public List<Student> Students = new List<Student>();
-        public List<Teacher> Teachers = new List<Teacher>();
-        public List<Employee> Employees = new List<Employee>();
-
+        public List<TableRow> Students = new List<TableRow>();
+        public List<TableRow> Teachers = new List<TableRow>();
+        public List<TableRow> Employees = new List<TableRow>();
+        
+        
         private string[] Tables = null;
         public IEnumerable<string> GetTables() => Tables;
 
