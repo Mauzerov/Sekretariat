@@ -11,7 +11,7 @@ namespace Desktop.DataClass.Persons
     public abstract class Person : IFieldComparable
     {
         public string Name, Surname, OldSurname, ParentsNames;
-        public DateTime BirthDate;
+        public DateTime BirthDate = DateTime.MinValue;
         public string IdNumber;
         public object Photo;
         public Gender Gender;

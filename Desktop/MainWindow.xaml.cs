@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using Desktop.DataClass.Include;
 using Desktop.DataClass.Other;
 using Desktop.DataClass.Other.FQL;
 using Desktop.DataClass.Persons;
@@ -32,6 +33,7 @@ namespace Desktop
                 Surname = "Gryn",
                 BirthDate = new DateTime(2002, 2, 23),
                 Class = "3pr",
+                Group = SchoolGroup.English | SchoolGroup.Italian
             });
             schoolData.Students.Add(new Student
             {

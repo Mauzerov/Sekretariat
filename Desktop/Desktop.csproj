@@ -56,21 +56,9 @@
         <Compile Include="FQL\SelectQuery.cs" />
         <Compile Include="FQL\Where.cs" />
         <Compile Include="Properties\Annotations.cs" />
-        <Compile Include="View\Command.cs" />
-        <Compile Include="View\ObservableObject.cs" />
-        <Compile Include="View\TableViewer.cs" />
         <Compile Include="View\Table\Header\SortableButton.cs" />
         <Compile Include="View\Table\Header\SortableHeader.cs" />
         <Compile Include="View\Table\ResultTable.cs" />
-        <Compile Include="View\Viewer\EmployeeTable.xaml.cs">
-          <DependentUpon>EmployeeTable.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\Viewer\StudentTable.xaml.cs">
-          <DependentUpon>StudentTable.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="View\Viewer\TeacherTable.xaml.cs">
-          <DependentUpon>TeacherTable.xaml</DependentUpon>
-        </Compile>
         <Compile Include="Window\Query\QueryCreator.xaml.cs">
           <DependentUpon>QueryCreator.xaml</DependentUpon>
         </Compile>
@@ -95,12 +83,8 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Page Include="Styles\Table\TabSelector.xaml" />
         <Page Include="Styles\Table\TabSelectorScrollBar.xaml" />
         <Page Include="Styles\Table\TabSelectorScrollBarThumb.xaml" />
-        <Page Include="View\Viewer\EmployeeTable.xaml" />
-        <Page Include="View\Viewer\StudentTable.xaml" />
-        <Page Include="View\Viewer\TeacherTable.xaml" />
         <Page Include="Window\Query\QueryCreator.xaml" />
     </ItemGroup>
     <ItemGroup>

@@ -71,7 +71,7 @@ namespace Desktop.View.Table
             RowDefinitions.Add(new RowDefinition());
         }
         
-        public void Generate()
+        private void Generate()
         {
             ClearDataRows();
             var index = 0;
@@ -87,9 +87,13 @@ namespace Desktop.View.Table
 
                     var element = new TextBox()
                     {
-                        Text = cell.Value.ToString(),
                         IsReadOnly = true
                     };
+                    if (cell.Value is DateTime dateTime)
+                        element.Text = dateTime.ToString("dd MMMM yyyy");
+                    else
+                        element.Text = cell.Value.ToString();
+
                     Children.Add(element);
                     SetColumn(element, column++);
                     SetRow(element, index);

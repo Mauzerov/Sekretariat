@@ -4,23 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desktop"
-        xmlns:viewModel="clr-namespace:Desktop.View.Viewer"
         mc:Ignorable="d"
         Title="MainWindow"
         Height="500" Width="825"
-        Background="#4A4453"
+        Background="#767589"
 >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/Table/TabSelectorScrollBar.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="Styles/Table/TabSelectorScrollBarThumb.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Styles/Table/TabSelectorScrollBar.xaml"/>
+                <ResourceDictionary Source="Styles/Table/TabSelectorScrollBarThumb.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Window.DataContext>
-        <viewModel:TableViewer/>
-    </Window.DataContext>
     
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -58,52 +54,14 @@
                 <ColumnDefinition Width="120"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+
             
-            <!-- <StackPanel Background="#2E253E"> -->
-            <!--     <Label -->
-            <!--         Content="Secretary" -->
-            <!--         VerticalAlignment="Center" -->
-            <!--         HorizontalAlignment="Center" -->
-            <!--         FontSize="18" -->
-            <!--         Foreground="#F9EAFF" -->
-            <!--         FontWeight="Bold" -->
-            <!--         Padding="0,10,0,0" -->
-            <!--     /> -->
-            <!-- </StackPanel> -->
-            <!-- <ScrollViewer Grid.Row="1" Grid.Column="0"> -->
-            <!--     <StackPanel Background="#5C526E"> -->
-            <!--         <RadioButton -->
-            <!--             Command="{Binding StudentCommand}" -->
-            <!--             IsChecked="True" -->
-            <!--             Content="Student" -->
-            <!--             Height="50" -->
-            <!--             Foreground="#F9EAFF" -->
-            <!--             FontSize="14" -->
-            <!--             Style="{StaticResource TabSelectorStyle}" -->
-            <!--         /> -->
-            <!--         <RadioButton -->
-            <!--             Command="{Binding TeacherCommand}" -->
-            <!--             Content="Teacher" -->
-            <!--             Height="50" -->
-            <!--             Foreground="#F9EAFF" -->
-            <!--             FontSize="14" -->
-            <!--             Style="{StaticResource TabSelectorStyle}" -->
-            <!--         /> -->
-            <!--         <RadioButton -->
-            <!--             Command="{Binding EmployeeCommand}" -->
-            <!--             Content="Employee" -->
-            <!--             Height="50" -->
-            <!--             Foreground="#F9EAFF" -->
-            <!--             FontSize="14" -->
-            <!--             Style="{StaticResource TabSelectorStyle}" -->
-            <!--         /> -->
-            <!--     </StackPanel> -->
-            <!-- </ScrollViewer> -->
+            <ScrollViewer Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="0"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <ContentControl Name="ContentControl" Margin="10"/>
+            </ScrollViewer>
             
-            <ContentControl Name="ContentControl"
-                Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
-                Grid.Row="0" Margin="10"/>
-                <!--Content="{Binding CurrentView}"/>-->
         </Grid>
     </DockPanel>
 </Window>
