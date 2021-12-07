@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Desktop.DataClass.Persons;
 using Desktop.DataClass.Other;
 
@@ -60,30 +61,58 @@ namespace Desktop.DataClass.Other.FQL
             }
             return new FQL(array);
         }
+        
+        public FQL Filter(IEnumerable<Where> wheres)
+        {
+            var returnDict = new List<TableRow>();
 
-        // public FQL<T> Filter(IEnumerable<T> array, IEnumerable<Where> wheres)
-        // {
-        //     bool Good(T element) => wheres.All(where => element[where.Key].CompareTo(where.Value).Operand(where.Op));
-        //     return new FQL<T>(array.Where(Good));
-        // }
-        //
-        // public FQL<T> OrderBy(IEnumerable<T> _array, string field, bool reversed)
-        // {
-        //     var array = _array.ToArray();
-        //     var n = array.Length;
-        //     for (var i = 1; i < n; ++i)
-        //     {
-        //         var now = array[i];
-        //         var j = i - 1;
-        //
-        //         while (j >= 0 && reversed ^ (array[j].CompareTo(now, field) > 0))
-        //         {
-        //             array[j + 1] = array[j];
-        //             j--;
-        //         }
-        //         array[j + 1] = now;
-        //     }
-        //     return new FQL<T>(array);
-        // }
+            foreach (var row in Result)
+            {
+                bool add = true;
+                foreach (var where in wheres)
+                {
+                    var field = row[where.Key];
+                    
+                    if (field is string stringField && (where.Op == Where.Operand.Eq || where.Op == Where.Operand.Neq))
+                    {
+                        var regex = new Regex(where.Value.ToString()
+                            .Replace("%", ".*")
+                            .Replace(" ", "\\s+"));
+                        var match = regex.IsMatch(stringField);
+                        if ((!match && where.Op == Where.Operand.Eq) || (match && where.Op == Where.Operand.Neq))
+                        {
+                            add = false;
+                            break;
+                        }
+                    }
+                    else if (field is int intField)
+                    {
+                        if (!intField.Operand(where.Op, int.Parse(where.Value.ToString())))
+                        {
+                            add = false;
+                            break;
+                        }
+                    }
+                    else if (field is DateTime dateTimeField)
+                    {
+                        var compare = DateTime.Parse(where.Value.ToString());
+
+                        if (!dateTimeField.ToBinary().Operand(where.Op, compare.ToBinary()))
+                        {
+                            add = false;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+                if (add)
+                    returnDict.Add(row);
+            }
+
+            return new FQL(returnDict);
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace Desktop
             };
             win.ShowDialog();
 
-            SelectQuery query = SelectQuery.Decompile(win.OutputQuery.Text.TrimInside());
+            var query = SelectQuery.Decompile(win.OutputQuery.Text.TrimInside());
 
             switch (win.TableSelected)
             {
