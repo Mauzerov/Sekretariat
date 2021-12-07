@@ -7,7 +7,7 @@ namespace Desktop.DataClass.Other.FQL
         [Flags]
         public enum Operand
         {
-            Eq, Less, Greater
+            Eq, Less, Greater, Neq
         }
         public string Key;
         public IComparable Value;
@@ -16,6 +16,8 @@ namespace Desktop.DataClass.Other.FQL
         public static string HumanOp(Where where) => where.HumanOp();
         public string HumanOp()
         {
+            if (Op == Operand.Neq)
+                return "<>";
             if (Op == Operand.Eq)
                 return "=";
             if (Op == (Operand.Eq | Operand.Less))
@@ -36,6 +38,8 @@ namespace Desktop.DataClass.Other.FQL
         {
             switch (s)
             {
+                case "<>":
+                    return Operand.Neq;
                 case "=":
                     return Operand.Eq;
                 case "<=":
