@@ -5,6 +5,7 @@ using Desktop.DataClass.Include;
 using Desktop.DataClass.Other;
 using Desktop.DataClass.Other.FQL;
 using Desktop.DataClass.Persons;
+using Desktop.Scripts.XML;
 using Desktop.View.Table;
 using Desktop.Window.Query;
 
@@ -49,6 +50,8 @@ namespace Desktop
                 BirthDate = new DateTime(2004, 5, 23),
                 Class = "1ai",
             });
+
+            schoolData.Students.AddRange(FromXml.Create("Students","temp.xml"));
         }
 
         private void MenuItem_OnClick(object sender, RoutedEventArgs e)

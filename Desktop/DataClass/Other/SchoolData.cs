@@ -52,6 +52,20 @@ namespace Desktop.DataClass.Other
         private string[] GetPublicFieldsNames() => GetPublicFields().Select(t => t.Name).ToArray();
         private FieldInfo[] GetPublicFields() => GetType().GetFields().Where(e => e.IsPublic).ToArray();
 
+        public static Type GetFieldType(string tableSelected, string field)
+        {
+            switch (tableSelected)
+            {
+                case "Students":
+                    return Person.GetPublicFields(typeof(Student)).Where(e => e.Name == field).ToArray()[0].GetType();
+                case "Teachers":
+                    return Person.GetPublicFields(typeof(Teacher)).Where(e => e.Name == field).ToArray()[0].GetType();
+                case "Employees":
+                    return Person.GetPublicFields(typeof(Employee)).Where(e => e.Name == field).ToArray()[0].GetType();
+                default:
+                    return typeof(object);
+            }
+        }
         public static IEnumerable<string> GetMemberPublicFieldsNames(string tableSelected)
         {
             /* I don't want to think about this           */

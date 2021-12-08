@@ -84,20 +84,23 @@ namespace Desktop.View.Table
                 {
                     if (cell.Key == "UUID")
                         continue;
-                    if (cell is Dateatime date) 
+
+                    UIElement element;
+                    if (cell.Value is DateTime date)
                     {
-                        var element = new DateTimePicker()
+                        element = new DatePicker()
                         {
-                        Value = date,
-                        IsReadOnly = true
+                            SelectedDate = date,
+                            IsEnabled = false
                         };
+                    }
                     else
                     {
-                        var element = new TextBox()
+                        element = new TextBox()
                         {
-                        IsReadOnly = true
+                        IsReadOnly = true,
+                        Text = cell.Value.ToString()
                         };
-                        element.Text = cell.Value.ToString();
                     }
                     Children.Add(element);
                     SetColumn(element, column++);

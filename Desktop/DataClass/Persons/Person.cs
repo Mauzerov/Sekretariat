@@ -20,7 +20,7 @@ namespace Desktop.DataClass.Persons
         {
             var dict = new Dictionary<string, IComparable>
             {
-                ["UUID"] = System.Guid.NewGuid().ToString()
+                ["UUID"] = System.Guid.NewGuid()
             };
             foreach (var field in GetPublicFieldsNames(GetType()))
             {
@@ -49,7 +49,6 @@ namespace Desktop.DataClass.Persons
                 throw new ArgumentException("Can't find field");
             }
         }
-        
         public static FieldInfo[] GetPublicFields(Type type) => type.GetFields().Where(e => e.IsPublic).ToArray();
         public static string[] GetPublicFieldsNames(Type type) => GetPublicFields(type).Select(t => t.Name).ToArray();
 
