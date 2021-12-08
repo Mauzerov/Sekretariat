@@ -84,16 +84,21 @@ namespace Desktop.View.Table
                 {
                     if (cell.Key == "UUID")
                         continue;
-
-                    var element = new TextBox()
+                    if (cell is Dateatime date) 
                     {
+                        var element = new DateTimePicker()
+                        {
+                        Value = date,
                         IsReadOnly = true
-                    };
-                    if (cell.Value is DateTime dateTime)
-                        element.Text = dateTime.ToString("dd MMMM yyyy");
+                        };
                     else
+                    {
+                        var element = new TextBox()
+                        {
+                        IsReadOnly = true
+                        };
                         element.Text = cell.Value.ToString();
-
+                    }
                     Children.Add(element);
                     SetColumn(element, column++);
                     SetRow(element, index);
