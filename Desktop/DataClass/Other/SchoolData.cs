@@ -33,17 +33,16 @@ namespace Desktop.DataClass.Other
             Tables = GetPublicFieldsNames();
         }
         
-        public List<Teacher> this[string name]
+        public List<TableRow> this[string name]
         {
             get
             {
-                Debug.Assert(Tables.Contains(name), $"Unable To Find \'{name}\'Table");
                 foreach (var field in GetPublicFields())
                 {
-                    if (field.Name != name) continue;
+                    if (!field.Name.StartsWith(name)) continue;
 
-                    if (field.GetValue(this) is IList fieldValue)
-                        return fieldValue.Cast<Teacher>().ToList();
+                    if (field.GetValue(this) is List<TableRow> fieldValue)
+                        return fieldValue;
                     throw new NotSupportedException("Can't convert field to List<Person>");
                 }
                 throw new ArgumentException("Can't find field");
@@ -57,10 +56,13 @@ namespace Desktop.DataClass.Other
             switch (tableSelected)
             {
                 case "Students":
+                case "Student":
                     return Person.GetPublicFields(typeof(Student)).Where(e => e.Name == field).ToArray()[0].FieldType;
                 case "Teachers":
+                case "Teacher":
                     return Person.GetPublicFields(typeof(Teacher)).Where(e => e.Name == field).ToArray()[0].FieldType;
                 case "Employees":
+                case "Employee":
                     return Person.GetPublicFields(typeof(Employee)).Where(e => e.Name == field).ToArray()[0].FieldType;
                 default:
                     return typeof(object);
@@ -73,10 +75,13 @@ namespace Desktop.DataClass.Other
             switch (tableSelected)
             {
                 case "Students":
+                case "Student":
                     return Person.GetPublicFieldsNames(typeof(Student));
                 case "Teachers":
+                case "Teacher":
                     return Person.GetPublicFieldsNames(typeof(Teacher));
                 case "Employees":
+                case "Employee":
                     return Person.GetPublicFieldsNames(typeof(Employee));
                 default:
                     return new string[] { };

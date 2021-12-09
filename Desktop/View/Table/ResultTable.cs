@@ -94,6 +94,51 @@ namespace Desktop.View.Table
                             IsEnabled = false
                         };
                     }
+                    else if (cell.Value is Enum @enum)
+                    {
+                        List<object> GetSelected(Enum type)
+                        {
+                            return Enum.GetValues(type.GetType()).Cast<Enum>().Where(e => e.HasFlag(type)).Cast<object>().ToList();
+                        }
+                        
+                        if (@enum.GetType().GetCustomAttributes(typeof(FlagsAttribute), false).Length > 0)
+                        {
+                            element = new ListBox
+                            {
+                                IsManipulationEnabled = false,
+                                IsEnabled = false,
+                                SelectionMode = SelectionMode.Multiple,
+                            };
+                            // TODO: Fix Selected Items Display
+                            foreach (Enum e in Enum.GetValues(@enum.GetType()))
+                                ((ListBox) element).Items.Add(new ListBoxItem {Tag = e, Content = e, IsSelected = false});
+
+                            var s = GetSelected(@enum);
+                            Debug.Assert(s.Count > 0);
+                            foreach (ListBoxItem item in ((ListBox)element).Items)
+                            {
+                                if (s.Contains((Enum) item.Tag))
+                                    item.IsSelected = true;
+                            }
+                        }
+                        else
+                        {
+                            element = new ComboBox()
+                            {
+                                IsEnabled = false,
+                                IsManipulationEnabled = false,
+                            };
+                            foreach (Enum e in Enum.GetValues(@enum.GetType()))
+                                ((ComboBox) element).Items.Add(new ComboBoxItem() {Tag = e, Content = e, IsSelected = false});
+
+                            var s = GetSelected(@enum);
+                            foreach (ListBoxItem item in ((ComboBox)element).Items)
+                            {
+                                if (s.Contains((Enum) item.Tag))
+                                    item.IsSelected = true;
+                            }
+                        }
+                    }
                     else
                     {
                         element = new TextBox()

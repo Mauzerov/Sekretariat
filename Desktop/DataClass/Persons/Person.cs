@@ -64,12 +64,15 @@ namespace Desktop.DataClass.Persons
 
         public static Person MakeNew(string subClass)
         {
-            switch (subClass.Remove(subClass.Length - 1))
+            switch (subClass)
             {
+                case "Students":
                 case "Student":
                     return new Student();
+                case "Teachers":
                 case "Teacher":
                     return new Teacher();
+                case "Employees":
                 case "Employee":
                     return new Employee();
             }

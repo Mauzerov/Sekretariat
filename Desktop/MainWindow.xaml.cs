@@ -50,8 +50,7 @@ namespace Desktop
                 BirthDate = new DateTime(2004, 5, 23),
                 Class = "1ai",
             });
-
-            schoolData.Students.AddRange(FromXml.Create("Students","temp.xml"));
+            FromXml.Create(schoolData, "temp.xml");
         }
 
         private void MenuItem_OnClick(object sender, RoutedEventArgs e)
