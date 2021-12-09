@@ -57,11 +57,11 @@ namespace Desktop.DataClass.Other
             switch (tableSelected)
             {
                 case "Students":
-                    return Person.GetPublicFields(typeof(Student)).Where(e => e.Name == field).ToArray()[0].GetType();
+                    return Person.GetPublicFields(typeof(Student)).Where(e => e.Name == field).ToArray()[0].FieldType;
                 case "Teachers":
-                    return Person.GetPublicFields(typeof(Teacher)).Where(e => e.Name == field).ToArray()[0].GetType();
+                    return Person.GetPublicFields(typeof(Teacher)).Where(e => e.Name == field).ToArray()[0].FieldType;
                 case "Employees":
-                    return Person.GetPublicFields(typeof(Employee)).Where(e => e.Name == field).ToArray()[0].GetType();
+                    return Person.GetPublicFields(typeof(Employee)).Where(e => e.Name == field).ToArray()[0].FieldType;
                 default:
                     return typeof(object);
             }

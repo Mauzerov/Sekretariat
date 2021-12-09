@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Input;
@@ -48,6 +49,32 @@ namespace Desktop.DataClass.Persons
                 }
                 throw new ArgumentException("Can't find field");
             }
+            
+            set {
+                foreach (var field in GetPublicFields(this.GetType()))
+                {
+                    if (field.Name != name) continue;
+                    Debug.WriteLine($"Setter:: {field.Name}");
+                    field.SetValue(this, value);
+                    return;
+                }
+                throw new ArgumentException($"Can't set field: {name}");
+            }
+        }
+
+        public static Person MakeNew(string subClass)
+        {
+            switch (subClass.Remove(subClass.Length - 1))
+            {
+                case "Student":
+                    return new Student();
+                case "Teacher":
+                    return new Teacher();
+                case "Employee":
+                    return new Employee();
+            }
+
+            throw new ArgumentException("Wrong SubClass Name");
         }
         public static FieldInfo[] GetPublicFields(Type type) => type.GetFields().Where(e => e.IsPublic).ToArray();
         public static string[] GetPublicFieldsNames(Type type) => GetPublicFields(type).Select(t => t.Name).ToArray();

@@ -24,40 +24,25 @@ namespace Desktop.Scripts.XML
                     switch (reader.NodeType)
                     {
                         case XmlNodeType.Element when reader.AttributeCount != 0:
-                            var row = new TableRow
-                            {
-                                ["UUID"] = Guid.NewGuid()
-                            };
+                            var row = Person.MakeNew(table);
                             Debug.WriteLine("Here");
                             
                             foreach (var node in SchoolData.GetMemberPublicFieldsNames(table))
                             {
                                 var value = reader.GetAttribute(node);
-                                Debug.WriteLine(value);
-                                var type = SchoolData.GetFieldType(table, node);
-                                if (type == typeof(DateTime))
-                                {
-                                    if (value != null)
-                                        row[node] = DateTime.Parse(value);
-                                    else
-                                        row[node] = null;
-                                }
-                                if (type == typeof(string))
-                                {
-                                    if (value != null)
-                                        row[node] = value;
-                                    else
-                                        row[node] = "NULL";
-                                }
+                                if (value == null) continue;
 
-                                if (type == typeof(Enum))
-                                {
-                                    // Todo: Enum Conversion
-                                    (Enum) value;
-                                }
+                                var type = SchoolData.GetFieldType(table, node);
+                                Debug.WriteLine($"{value} of type: {type}");
+                                if (type == typeof(DateTime))
+                                    row[node] = DateTime.Parse(value);
+                                if (type == typeof(string))
+                                    row[node] = value;
+                                if (type.BaseType == typeof(Enum))
+                                    row[node] = (IComparable)Enum.Parse(type, value);
                             }
                             
-                            @return.Add(row);
+                            @return.Add(row.AsDict());
                             break;
                     }
 
