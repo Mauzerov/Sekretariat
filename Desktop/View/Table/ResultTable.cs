@@ -94,7 +94,7 @@ namespace Desktop.View.Table
                             IsEnabled = false
                         };
                     }
-                    else if (cell.Value is Enum @enum)
+                    /*else if (cell.Value is Enum @enum)
                     {
                         List<object> GetSelected(Enum type)
                         {
@@ -138,6 +138,10 @@ namespace Desktop.View.Table
                                     item.IsSelected = true;
                             }
                         }
+                    }*/
+                    else if (cell.Key == "Photo")
+                    {
+                        element = new ImageButton(cell.Value.ToString(), row);
                     }
                     else
                     {

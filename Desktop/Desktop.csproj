@@ -57,6 +57,7 @@
         <Compile Include="FQL\Where.cs" />
         <Compile Include="Properties\Annotations.cs" />
         <Compile Include="Scripts\XML\FromXml.cs" />
+        <Compile Include="View\ImageButton.cs" />
         <Compile Include="View\Table\Header\SortableButton.cs" />
         <Compile Include="View\Table\Header\SortableHeader.cs" />
         <Compile Include="View\Table\ResultTable.cs" />
@@ -108,6 +109,9 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Include" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="placeholder.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
