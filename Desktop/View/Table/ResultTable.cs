@@ -156,6 +156,7 @@ namespace Desktop.View.Table
                     else if (cell.Key == "Photo")
                     {
                         element = new ImageButton(cell.Value.ToString(), row);
+                        element.IsEnabled = false;
                     }
                     else
                     {
