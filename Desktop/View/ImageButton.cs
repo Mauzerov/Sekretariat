@@ -8,28 +8,18 @@ namespace Desktop.View
 {
     public class ImageButton : Button
     {
-        private string _fileSource = "/placeholder.png";
-
-        public string Source
-        {
-            get => _fileSource;
-            set
-            {
-                _fileSource = value;
-                UpdateImage();
-            }
-        }
+        public string Source { get; private set; } = "/placeholder.png";
 
         private void UpdateImage()
         {
-            ((Image) Content).Source = new BitmapImage(new Uri(_fileSource, UriKind.RelativeOrAbsolute));
+            ((Image) Content).Source = new BitmapImage(new Uri(Source, UriKind.RelativeOrAbsolute));
         }
         
         public ImageButton(string file, Dictionary<string, IComparable> dataRow)
         {
             if (file == "NULL")
-                file = _fileSource;
-            _fileSource = file;
+                file = Source;
+            Source = file;
             
             MinHeight = 100;
             
@@ -48,7 +38,7 @@ namespace Desktop.View
                 if ((bool) result)
                 {
                     dataRow["Photo"] = dialog.FileName;
-                    _fileSource = dialog.FileName;
+                    Source = dialog.FileName;
                     UpdateImage();
                 }
             };

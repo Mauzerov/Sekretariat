@@ -109,6 +109,9 @@ namespace Desktop.View.Table
                     }
                 }
                 _modification = !_modification;
+                ((Image) _modify.Content).Source = new BitmapImage(
+                    new Uri( _modification ? "/save.png" : "/edit.png"
+                        , UriKind.RelativeOrAbsolute));
             };
             
             Children.Add(_delete);
