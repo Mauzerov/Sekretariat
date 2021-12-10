@@ -118,5 +118,8 @@
       <Resource Include="edit.png" />
       <Resource Include="trash.png" />
     </ItemGroup>
+    <ItemGroup>
+      <Resource Include="save.png" />
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
