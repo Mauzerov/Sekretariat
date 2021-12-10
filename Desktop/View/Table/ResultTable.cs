@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Desktop.DataClass.Include;
+using Desktop.DataClass.Other;
 using Desktop.DataClass.Other.FQL;
 using Desktop.DataClass.Persons;
 using Desktop.View.Table.Header;
@@ -17,9 +18,11 @@ namespace Desktop.View.Table
         public FQL FqlData;
         public IEnumerable<string> Fields;
         private SortableHeader _header;
+        private SchoolData _schoolData;
         
-        public ResultTable(IEnumerable<string> fields, FQL data)
+        public ResultTable(IEnumerable<string> fields, FQL data, SchoolData schoolData)
         {
+            _schoolData = schoolData;
             Fields = fields;
             FqlData = data;
             GenerateHeader();
@@ -30,8 +33,12 @@ namespace Desktop.View.Table
         {
             Children.Clear();
             
-            var column = 0;
+            var column = 1;
             _header = new SortableHeader();
+            ColumnDefinitions.Add(new ColumnDefinition
+            {
+                MaxWidth = 100
+            });
             RowDefinitions.Add(new RowDefinition());
             
             foreach (var title in Fields)
@@ -71,7 +78,7 @@ namespace Desktop.View.Table
             RowDefinitions.Add(new RowDefinition());
         }
         
-        private void Generate()
+        public void Generate()
         {
             ClearDataRows();
             var index = 0;
@@ -80,6 +87,13 @@ namespace Desktop.View.Table
                 index++;
                 RowDefinitions.Add(new RowDefinition());
                 var column = 0;
+
+                var modRow = new ModifyCell(_schoolData, FqlData.Result, row, this);
+                
+                Children.Add(modRow);
+                SetColumn(modRow, column++);
+                SetRow(modRow, index);
+                
                 foreach (var cell in row)
                 {
                     if (cell.Key == "UUID")
@@ -147,13 +161,18 @@ namespace Desktop.View.Table
                     {
                         element = new TextBox()
                         {
-                        IsReadOnly = true,
-                        Text = cell.Value.ToString()
+                            IsReadOnly = true,
+                            Text = cell.Value.ToString(),
+                            TextWrapping = TextWrapping.Wrap,
+                            AcceptsReturn = true,
+                            AcceptsTab = true,
                         };
                     }
                     Children.Add(element);
-                    SetColumn(element, column++);
+                    modRow.Add(cell.Key, element);
+                    SetColumn(element, column);
                     SetRow(element, index);
+                    column++;
                 }
             }
 

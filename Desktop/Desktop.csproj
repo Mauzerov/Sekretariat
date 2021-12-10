@@ -60,6 +60,7 @@
         <Compile Include="View\ImageButton.cs" />
         <Compile Include="View\Table\Header\SortableButton.cs" />
         <Compile Include="View\Table\Header\SortableHeader.cs" />
+        <Compile Include="View\Table\ModifiyCell.cs" />
         <Compile Include="View\Table\ResultTable.cs" />
         <Compile Include="View\Table\ResultTableRow.cs" />
         <Compile Include="Window\Query\QueryCreator.xaml.cs">
@@ -112,6 +113,10 @@
     </ItemGroup>
     <ItemGroup>
       <Resource Include="placeholder.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="edit.png" />
+      <Resource Include="trash.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,20 +6,38 @@ using Microsoft.Win32;
 
 namespace Desktop.View
 {
-    class ImageButton : Button
+    public class ImageButton : Button
     {
+        private string _fileSource = "/placeholder.png";
+
+        public string Source
+        {
+            get => _fileSource;
+            set
+            {
+                _fileSource = value;
+                UpdateImage();
+            }
+        }
+
+        private void UpdateImage()
+        {
+            ((Image) Content).Source = new BitmapImage(new Uri(_fileSource, UriKind.RelativeOrAbsolute));
+        }
+        
         public ImageButton(string file, Dictionary<string, IComparable> dataRow)
         {
             if (file == "NULL")
-                file = "/placeholder.png";
-
+                file = _fileSource;
+            _fileSource = file;
+            
             MinHeight = 100;
             
             Content = new Image()
             {
-                Source = new BitmapImage(new Uri(file, UriKind.RelativeOrAbsolute)),
                 MaxHeight = 150,
             };
+            UpdateImage();
 
             Click += (sender, args) =>
             {
@@ -30,7 +48,8 @@ namespace Desktop.View
                 if ((bool) result)
                 {
                     dataRow["Photo"] = dialog.FileName;
-                    ((Image) Content).Source = new BitmapImage(new Uri(dialog.FileName, UriKind.RelativeOrAbsolute));
+                    _fileSource = dialog.FileName;
+                    UpdateImage();
                 }
             };
         }
