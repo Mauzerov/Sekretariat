@@ -4,8 +4,11 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Desktop.DataClass.Other.FQL;
 using Desktop.DataClass.Other;
+using Desktop.View;
+using Label = System.Windows.Controls.Label;
 
 namespace Desktop.Window.Query
 {
@@ -99,21 +102,20 @@ namespace Desktop.Window.Query
             
             var whereRow = new StackPanel
             {
-                Orientation = Orientation.Vertical,
-                Background = Brushes.DarkRed,
-                Height = 10,
-                Width = 200
+                Orientation = Orientation.Horizontal,
             };
+            var field = (string) ((ComboBoxItem) FieldsInput.SelectedItem).Content;
+            
             WhereRowOutput.RowDefinitions.Add(new RowDefinition());
             WhereRowOutput.Children.Add(whereRow);
             Grid.SetRow(whereRow, wheres.Count);
             
             var where = new Where
             {
-                Key = (string) ((ComboBoxItem) FieldsInput.SelectedItem).Content,
+                Key = field,
                 Op = Where.OperandFromString(((ComboBoxItem) OperatorsInput.SelectedItem).Content as string),
             };
-
+            
             var child = InputParent.Children[0];
             IComparable value;
             switch (child)
@@ -130,6 +132,29 @@ namespace Desktop.Window.Query
             }
             where.Value = value;
             wheres.Add(where);
+
+            var removeBtn = new Button
+            {
+                Content = new Image
+                {
+                    Source = new BitmapImage(new Uri("/trash.png", UriKind.RelativeOrAbsolute))
+                },
+                MaxHeight = 30
+            };
+            removeBtn.Click += (o, args) =>
+            {
+                WhereRowOutput.Children.Remove(whereRow);
+                wheres.Remove(where);
+                UpdateOutputQuery();
+            };
+            whereRow.Children.Add(removeBtn);
+            
+            whereRow.Children.Add(
+                new Label()
+                {
+                    Content = where.Human()
+                }
+            );
             
             UpdateOutputQuery();
         }

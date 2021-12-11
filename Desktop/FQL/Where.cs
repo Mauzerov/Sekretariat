@@ -31,7 +31,7 @@ namespace Desktop.DataClass.Other.FQL
             throw new ArgumentException("Out Of Operands!");
         }
 
-        public string Human() => $"{HumanOp()} \"{Value.ToString()}\"";
+        public string Human() => $"{Key} {HumanOp()} \"{Value.ToString()}\"";
         public static string Human(Where where) => where.Human();
 
         public static Operand OperandFromString(string s)

@@ -65,7 +65,7 @@ namespace Desktop
             FromXml.Create(schoolData, "temp.xml");
         }
 
-        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
+        private void NewQueryButtonClick(object sender, RoutedEventArgs e)
         {
             var win = new QueryCreator(schoolData)
             {
@@ -74,25 +74,30 @@ namespace Desktop
             win.ShowDialog();
 
             var query = SelectQuery.Decompile(win.OutputQuery.Text.TrimInside());
-
-            switch (win.TableSelected)
-            {
-                case "Students":
-                    ContentControl.Content =
-                        new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-                            new FQL(win.SchoolData.Students).Filter(query.Wheres).Select(query), schoolData);
-                    break;
-                case "Teachers":
-                    ContentControl.Content =
-                        new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-                            new FQL(win.SchoolData.Teachers).Filter(query.Wheres).Select(query), schoolData);
-                    break;
-                case "Employees":
-                    ContentControl.Content =
-                        new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-                            new FQL(win.SchoolData.Employees).Filter(query.Wheres).Select(query), schoolData);
-                    break;
-            }
+            
+            if (win.TableSelected == "None")
+                return;
+            ContentControl.Content =
+                new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
+                    new FQL(win.SchoolData[win.TableSelected]).Filter(query.Wheres).Select(query), schoolData);
+            // switch (win.TableSelected)
+            // {
+            //     case "Students":
+            //         ContentControl.Content =
+            //             new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
+            //                 new FQL(win.SchoolData[win.TableSelected]).Filter(query.Wheres).Select(query), schoolData);
+            //         break;
+            //     case "Teachers":
+            //         ContentControl.Content =
+            //             new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
+            //                 new FQL(win.SchoolData.Teachers).Filter(query.Wheres).Select(query), schoolData);
+            //         break;
+            //     case "Employees":
+            //         ContentControl.Content =
+            //             new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
+            //                 new FQL(win.SchoolData.Employees).Filter(query.Wheres).Select(query), schoolData);
+            //         break;
+            // }
             
         }
     }
