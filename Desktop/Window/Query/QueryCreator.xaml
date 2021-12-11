@@ -26,8 +26,40 @@
             <ComboBoxItem Content="None" IsSelected="True"></ComboBoxItem>
         </ComboBox>
         <ListBox SelectionMode="Multiple" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Name="ColumnList"/>
-       <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"/>
-        
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"/>
+        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0" Name="FieldsInput" SelectionChanged="CreateValidInputType">
+                    
+                </ComboBox>
+                <ComboBox Grid.Column="1" Name="OperatorsInput">
+                    <ComboBoxItem>=</ComboBoxItem>
+                    <ComboBoxItem>&gt;=</ComboBoxItem>
+                    <ComboBoxItem>&lt;=</ComboBoxItem>
+                    <ComboBoxItem>&lt;&gt;</ComboBoxItem>
+                    <ComboBoxItem>&lt;</ComboBoxItem>
+                    <ComboBoxItem>&gt;</ComboBoxItem>
+                </ComboBox>
+                <StackPanel Name="InputParent" Grid.Column="2"/>
+                <Button Grid.Column="3" Click="AddWhereCondition" Background="Transparent" BorderThickness="0">
+                    <Image Source="add.png"></Image>
+                </Button>  
+            </Grid>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
+                <Grid Name="WhereRowOutput" VerticalAlignment="Top"/>
+            </ScrollViewer>
+            
+        </Grid>
         <Button Grid.Row="3" Grid.Column="2" Click="ButtonBase_OnClick"></Button>
     </Grid>
 </Window>

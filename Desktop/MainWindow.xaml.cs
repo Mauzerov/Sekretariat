@@ -50,6 +50,18 @@ namespace Desktop
                 BirthDate = new DateTime(2004, 5, 23),
                 Class = "1ai",
             });
+            schoolData.Students.Add(new Student
+            {
+                Name = "No classer",
+                Surname = "classito",
+                BirthDate = new DateTime(2304, 2, 13),
+            });
+            schoolData.Students.Add(new Student
+            {
+                Name = "Noname",
+                Surname = "NoClass",
+                BirthDate = new DateTime(2049, 2, 27),
+            });
             FromXml.Create(schoolData, "temp.xml");
         }
 
@@ -68,17 +80,17 @@ namespace Desktop
                 case "Students":
                     ContentControl.Content =
                         new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-                            new FQL(win.SchoolData.Students).Select(query), schoolData);
+                            new FQL(win.SchoolData.Students).Filter(query.Wheres).Select(query), schoolData);
                     break;
                 case "Teachers":
                     ContentControl.Content =
                         new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-                            new FQL(win.SchoolData.Teachers).Select(query), schoolData);
+                            new FQL(win.SchoolData.Teachers).Filter(query.Wheres).Select(query), schoolData);
                     break;
                 case "Employees":
                     ContentControl.Content =
                         new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-                            new FQL(win.SchoolData.Employees).Select(query), schoolData);
+                            new FQL(win.SchoolData.Employees).Filter(query.Wheres).Select(query), schoolData);
                     break;
             }
             

@@ -85,14 +85,14 @@ namespace Desktop.DataClass.Other.FQL
                             break;
                         }
                     }
-                    else if (field is int intField)
-                    {
-                        if (!intField.Operand(where.Op, int.Parse(where.Value.ToString())))
-                        {
-                            add = false;
-                            break;
-                        }
-                    }
+                    // else if (field is int intField)
+                    // {
+                    //     if (!intField.Operand(where.Op, int.Parse(where.Value.ToString())))
+                    //     {
+                    //         add = false;
+                    //         break;
+                    //     }
+                    // }
                     else if (field is DateTime dateTimeField)
                     {
                         var compare = DateTime.Parse(where.Value.ToString());

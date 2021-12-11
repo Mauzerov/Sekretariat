@@ -163,7 +163,7 @@ namespace Desktop.View.Table
                         element = new TextBox()
                         {
                             IsReadOnly = true,
-                            Text = cell.Value.ToString(),
+                            Text = cell.Value.ToString().Replace(", ", ",\n"),
                             TextWrapping = TextWrapping.Wrap,
                             AcceptsReturn = true,
                             AcceptsTab = true,
