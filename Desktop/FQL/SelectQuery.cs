@@ -1,29 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Windows;
+using Desktop.DataClass.Other;
 
-namespace Desktop.DataClass.Other.FQL
+namespace Desktop.FQL
 {
     public class SelectQuery
     {
-        private readonly string _table;
-        private readonly IEnumerable<string> _fields;
-        private readonly IEnumerable<Where> _wheres;
-
-
         public SelectQuery(string table, IEnumerable<string> fields = null, IEnumerable<Where> wheres = null)
         {
-            _table = table;
-            _fields = fields ?? new string [] { };
-            _wheres = wheres ?? new Where [] { };
+            Table = table;
+            Fields = fields ?? new string [] { };
+            Wheres = wheres ?? new Where [] { };
         }
 
-        public IEnumerable<string> Fields => _fields;
-        public IEnumerable<Where> Wheres => _wheres;
+        public IEnumerable<string> Fields { get; }
 
-        public string Table => _table;
+        public IEnumerable<Where> Wheres { get; }
+
+        public string Table { get; }
 
         private static string WhereToString(Where where)
         {
@@ -31,33 +26,40 @@ namespace Desktop.DataClass.Other.FQL
         }
 
         public string String {
+            // Compile Fields Into FQL (SQL) Query String
             get
             {
                 var returnFields = "";
                 var returnWheres= "";
 
-                if (!_fields.Any())
+                if (!Fields.Any())
                     returnFields = "ALL";
                 else
                 {
-                    returnFields = _fields.Aggregate(returnFields, (current, field) => current + (field + ", "));
+                    returnFields = Fields.Aggregate(returnFields, (current, field) => current + (field + ", "));
                     returnFields = returnFields.Substring(0, returnFields.Length - 2);
                 }
                 
-                if (!_wheres.Any())
+                if (!Wheres.Any())
                     returnWheres = "TRUE";
                 else
                 {
-                    returnWheres = _wheres.Aggregate(returnWheres, (current, where) => current + WhereToString(where) + " AND ");
+                    returnWheres = Wheres.Aggregate(returnWheres, (current, where) => current + WhereToString(where) + " AND ");
                     returnWheres = returnWheres.Substring(0, returnWheres.Length - 5);
                 }
                 
-                return $"SELECT {returnFields} FROM {_table} \nWHERE {returnWheres}";
+                return $"SELECT {returnFields} FROM {Table} \nWHERE {returnWheres}";
             }
         }
 
 
         public static SelectQuery Decompile(string query)
+        // Decompiles String Query To
+        // - Wheres List
+        // - Fields List
+        // - Selected Table
+        //
+        // Just From One String 
         {
             string[] returnColumns;
             Where[] returnWheres;
@@ -79,7 +81,7 @@ namespace Desktop.DataClass.Other.FQL
             }
 
             var wheres = query.Substring(whereLocation + 6, query.Length - whereLocation - 6);
-            // TODO : Add A Where Generator And Check IF Where Converter Works
+            
             if (wheres != "TRUE")
             {
                 wheres = wheres.Replace(" AND ", "\n");

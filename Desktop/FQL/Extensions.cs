@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Desktop.DataClass.Other.FQL
+namespace Desktop.FQL
 {
     public static class Extensions
     {

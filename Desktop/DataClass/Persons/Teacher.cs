@@ -8,7 +8,7 @@ namespace Desktop.DataClass.Persons
     public partial class Teacher : Person
     {
         public string Class;
-        public Subject Subjects;
+        public string Subjects;
         public Class Classes;
         public DateTime StartDate;
     }

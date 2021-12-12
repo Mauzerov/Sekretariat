@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using Desktop.DataClass.Other.FQL;
+using Desktop.FQL;
 using Desktop.DataClass.Other;
 using Label = System.Windows.Controls.Label;
 

@@ -10,11 +10,8 @@ namespace Desktop.DataClass.Include
         public int Lenght => Classes.Count;
         public int this[string c] => Classes[c];
 
-        public Class(Dictionary<string, int> classes)
-        {
-            Classes = classes;
-        }
-
+        public Class(Dictionary<string, int> classes) =>  Classes = classes;
+        
         public override string ToString()
         {
             if (Classes.Count == 0)

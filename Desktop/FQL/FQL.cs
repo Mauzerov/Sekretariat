@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Desktop.DataClass.Persons;
-using Desktop.DataClass.Other;
 
 using TableRow = System.Collections.Generic.Dictionary<string, System.IComparable>;
-namespace Desktop.DataClass.Other.FQL
+namespace Desktop.FQL
 {
     public class FQL
     {
@@ -68,7 +65,7 @@ namespace Desktop.DataClass.Other.FQL
 
             foreach (var row in Result)
             {
-                bool add = true;
+                var add = true;
                 foreach (var where in wheres)
                 {
                     var field = row[where.Key];
@@ -77,7 +74,9 @@ namespace Desktop.DataClass.Other.FQL
                     {
                         var regex = new Regex(where.Value.ToString()
                             .Replace("%", ".*")
-                            .Replace(" ", "\\s+"));
+                            .Replace(" ", "\\s+"),
+                            RegexOptions.IgnoreCase
+                        );
                         var match = regex.IsMatch(stringField);
                         if ((!match && where.Op == Where.Operand.Eq) || (match && where.Op == Where.Operand.Neq))
                         {
@@ -85,14 +84,6 @@ namespace Desktop.DataClass.Other.FQL
                             break;
                         }
                     }
-                    // else if (field is int intField)
-                    // {
-                    //     if (!intField.Operand(where.Op, int.Parse(where.Value.ToString())))
-                    //     {
-                    //         add = false;
-                    //         break;
-                    //     }
-                    // }
                     else if (field is DateTime dateTimeField)
                     {
                         var compare = DateTime.Parse(where.Value.ToString());

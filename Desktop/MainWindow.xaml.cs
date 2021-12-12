@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows;
 using Desktop.DataClass.Include;
 using Desktop.DataClass.Other;
-using Desktop.DataClass.Other.FQL;
+using Desktop.FQL;
 using Desktop.DataClass.Persons;
 using Desktop.Scripts.XML;
 using Desktop.View.Table;
@@ -80,7 +80,7 @@ namespace Desktop
                 // When None of the fields are selected pass whole 'table' fields
                 new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
                     // Pass A Filtered Selected Fields as a result
-                    new FQL(win.SchoolData[win.TableSelected]).Filter(query.Wheres).Select(query), schoolData);
+                    new FQL.FQL(win.SchoolData[win.TableSelected]).Filter(query.Wheres).Select(query), schoolData);
         }
         #endregion
     }

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Dynamic;
-using System.Runtime.Remoting.Messaging;
 using System.Xml;
-using Desktop.DataClass.Include;
 using Desktop.DataClass.Other;
 using Desktop.DataClass.Persons;
 using TableRow = System.Collections.Generic.Dictionary<string, System.IComparable>;
@@ -13,13 +7,13 @@ namespace Desktop.Scripts.XML
 {
     public static class FromXml
     {
-        public static void /*List<TableRow>*/ Create(SchoolData schoolData, string source)
+        public static void Create(SchoolData schoolData, string source)
         {
-            //var @return = new List<TableRow>();
             using (var reader = new XmlTextReader(source))
             {
                 while (reader.Read())
                 {
+                    // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
                     switch (reader.NodeType)
                     {
                         case XmlNodeType.Element when reader.AttributeCount != 0:
@@ -32,7 +26,6 @@ namespace Desktop.Scripts.XML
                                 if (value == null) continue;
 
                                 var type = SchoolData.GetFieldType(table, node);
-                                //Debug.WriteLine($"{value} of type: {type}");
                                 if (type == typeof(DateTime))
                                     row[node] = DateTime.Parse(value);
                                 if (type == typeof(string))
@@ -47,7 +40,6 @@ namespace Desktop.Scripts.XML
 
                 }
             }
-            //return @return;
         }
     }
 }

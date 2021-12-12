@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Desktop.DataClass.Other.FQL
+namespace Desktop.FQL
 {
     public class Where
     {
@@ -22,8 +22,8 @@ namespace Desktop.DataClass.Other.FQL
                 return "=";
             if (Op == (Operand.Eq | Operand.Less))
                 return "<=";
-            if (Op == (Operand.Eq | Operand.Greater)) return ">=";
-
+            if (Op == (Operand.Eq | Operand.Greater))
+                return ">=";
             if (Op == Operand.Greater)
                 return "<";
             if (Op == Operand.Less)
@@ -31,7 +31,7 @@ namespace Desktop.DataClass.Other.FQL
             throw new ArgumentException("Out Of Operands!");
         }
 
-        public string Human() => $"{Key} {HumanOp()} \"{Value.ToString()}\"";
+        public string Human() => $"{Key} {HumanOp()} \"{Value}\"";
         public static string Human(Where where) => where.Human();
 
         public static Operand OperandFromString(string s)

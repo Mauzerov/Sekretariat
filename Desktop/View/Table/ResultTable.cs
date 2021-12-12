@@ -4,20 +4,18 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Desktop.DataClass.Other;
-using Desktop.DataClass.Other.FQL;
 using Desktop.View.Table.Header;
-
 using TableRow = System.Collections.Generic.Dictionary<string, System.IComparable>;
 namespace Desktop.View.Table
 {
     public class ResultTable : Grid
     {
-        private FQL _fqlData;
+        private FQL.FQL _fqlData;
         private IEnumerable<string> _fields;
         private SortableHeader _header;
         private SchoolData _schoolData;
         
-        public ResultTable(IEnumerable<string> fields, FQL data, SchoolData schoolData)
+        public ResultTable(IEnumerable<string> fields, FQL.FQL data, SchoolData schoolData)
         {
             VerticalAlignment = VerticalAlignment.Top;
             _schoolData = schoolData;
