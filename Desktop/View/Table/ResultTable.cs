@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Desktop.DataClass.Include;
 using Desktop.DataClass.Other;
 using Desktop.DataClass.Other.FQL;
-using Desktop.DataClass.Persons;
 using Desktop.View.Table.Header;
 
 using TableRow = System.Collections.Generic.Dictionary<string, System.IComparable>;
@@ -15,90 +12,86 @@ namespace Desktop.View.Table
 {
     public class ResultTable : Grid
     {
-        public FQL FqlData;
-        public IEnumerable<string> Fields;
+        private FQL _fqlData;
+        private IEnumerable<string> _fields;
         private SortableHeader _header;
         private SchoolData _schoolData;
         
         public ResultTable(IEnumerable<string> fields, FQL data, SchoolData schoolData)
         {
+            VerticalAlignment = VerticalAlignment.Top;
             _schoolData = schoolData;
-            Fields = fields;
-            FqlData = data;
+            _fields = fields;
+            _fqlData = data;
             GenerateHeader();
             Generate();
         }
-
+        
         private void GenerateHeader()
+        // Generate Sortable Buttons For Each Column
         {
             Children.Clear();
             
             var column = 1;
             _header = new SortableHeader();
-            ColumnDefinitions.Add(new ColumnDefinition
-            {
-                MaxWidth = 100
-            });
-            RowDefinitions.Add(new RowDefinition());
+            ColumnDefinitions.Add(new ColumnDefinition { MaxWidth = 100 }); // Modify Button & Delete Button MAx Width
+            RowDefinitions.Add(new RowDefinition()); // Row For Sortable Buttons
             
-            foreach (var title in Fields)
+            foreach (var title in _fields)
             {
                 ColumnDefinitions.Add(new ColumnDefinition());
                 var label = new SortableButton(_header)
                 {
-                    ColumnTitle = title,
+                    ColumnTitle = title, // Static Value used To Change Button Content After Click
                     Content = title,
                 };
-                label.Click += (sender, args) =>
+                label.Click += (sender, args) => // Sort Result & Chane Name To Indicate Sortable Direction
                 {
                     if (label.State == SortableButton.ButtonState.None)
-                        FqlData = FqlData.OrderBy("UUID");
+                        _fqlData = _fqlData.OrderBy("UUID");
                     else
                     {
                         bool IsReversed(SortableButton.ButtonState state) => state == SortableButton.ButtonState.Desc;
-                        FqlData = FqlData.OrderBy(label.ColumnTitle, IsReversed(label.State));
+                        _fqlData = _fqlData.OrderBy(label.ColumnTitle, IsReversed(label.State));
                     }
-                    Generate();
+                    Generate(); // ReGenerate Result Rows
                 };
-                Children.Add(label);
-                SetColumn(label, column++);
+                Children.Add(label); // Add Sortable Button To Top Row
+                SetColumn(label, column++); // Set Correct Row
             }
         }
 
         private void ClearDataRows()
         {
+            // Remove Every Element Except SortableButton Header 
             var tmp = Children.Cast<UIElement>().Where(item => !(item is SortableButton)).ToList();
 
-            foreach (var t in tmp)
-            {
-                Children.Remove(t);
-            }
+            foreach (var t in tmp) { Children.Remove(t); }
             
-            RowDefinitions.Clear();
-            RowDefinitions.Add(new RowDefinition());
+            RowDefinitions.Clear(); // Remove All Rows
+            RowDefinitions.Add(new RowDefinition()); // Add Back Sortable Header Row 
         }
         
         public void Generate()
         {
             ClearDataRows();
             var index = 0;
-            foreach (var row in FqlData.Result)
+            foreach (var row in _fqlData.Result)
             {
                 index++;
                 RowDefinitions.Add(new RowDefinition());
-                var column = 0;
-
-                var modRow = new ModifyCell(_schoolData, FqlData.Result, row, this);
+                
+                // Create Deletion Button & Modify Button!
+                var modRow = new ModifyCell(_schoolData, _fqlData.Result, row, this);
                 
                 Children.Add(modRow);
-                SetColumn(modRow, column++);
+                SetColumn(modRow, 0);
                 SetRow(modRow, index);
                 
-                foreach (var cell in row)
+                var column = 1;
+                // Generate Ech Cell Independently Based On Its Type
+                foreach (var cell in row.Where(cell => cell.Key != "UUID"))
                 {
-                    if (cell.Key == "UUID")
-                        continue;
-
                     UIElement element;
                     if (cell.Value is DateTime date)
                     {
@@ -108,51 +101,6 @@ namespace Desktop.View.Table
                             IsEnabled = false
                         };
                     }
-                    /*else if (cell.Value is Enum @enum)
-                    {
-                        List<object> GetSelected(Enum type)
-                        {
-                            return Enum.GetValues(type.GetType()).Cast<Enum>().Where(e => e.HasFlag(type)).Cast<object>().ToList();
-                        }
-                        
-                        if (@enum.GetType().GetCustomAttributes(typeof(FlagsAttribute), false).Length > 0)
-                        {
-                            element = new ListBox
-                            {
-                                IsManipulationEnabled = false,
-                                IsEnabled = false,
-                                SelectionMode = SelectionMode.Multiple,
-                            };
-                            // TODO: Fix Selected Items Display
-                            foreach (Enum e in Enum.GetValues(@enum.GetType()))
-                                ((ListBox) element).Items.Add(new ListBoxItem {Tag = e, Content = e, IsSelected = false});
-
-                            var s = GetSelected(@enum);
-                            Debug.Assert(s.Count > 0);
-                            foreach (ListBoxItem item in ((ListBox)element).Items)
-                            {
-                                if (s.Contains((Enum) item.Tag))
-                                    item.IsSelected = true;
-                            }
-                        }
-                        else
-                        {
-                            element = new ComboBox()
-                            {
-                                IsEnabled = false,
-                                IsManipulationEnabled = false,
-                            };
-                            foreach (Enum e in Enum.GetValues(@enum.GetType()))
-                                ((ComboBox) element).Items.Add(new ComboBoxItem() {Tag = e, Content = e, IsSelected = false});
-
-                            var s = GetSelected(@enum);
-                            foreach (ListBoxItem item in ((ComboBox)element).Items)
-                            {
-                                if (s.Contains((Enum) item.Tag))
-                                    item.IsSelected = true;
-                            }
-                        }
-                    }*/
                     else if (cell.Key == "Photo")
                     {
                         element = new ImageButton(cell.Value.ToString(), row);
@@ -176,8 +124,6 @@ namespace Desktop.View.Table
                     column++;
                 }
             }
-
-            VerticalAlignment = VerticalAlignment.Top;
         }
     }
 }

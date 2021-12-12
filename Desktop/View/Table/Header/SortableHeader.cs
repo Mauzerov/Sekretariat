@@ -1,36 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Desktop.View.Table.Header
 {
     public class SortableHeader
     {
-        private List<SortableButton> _buttons = new List<SortableButton>();
+        private List<SortableButton> Buttons { get; } = new List<SortableButton>();
 
-        public List<SortableButton> Buttons => _buttons;
+        // Add Button To Button List
+        public void Add(SortableButton button) => Buttons.Add(button);
 
-        public SortableHeader Add(SortableButton button)
+        public void Update(SortableButton button)
         {
-            _buttons.Add(button);
-            return this;
-        }
-
-        public SortableHeader Clear()
-        {
-            _buttons.Clear();
-            return this;
-        }
-
-        public SortableHeader Update(SortableButton button)
-        {
-            foreach (var b in Buttons)
+            // Reset States Of Buttons != To pressed button
+            foreach (var b in Buttons.Where(b => !Equals(button, b)))
             {
-                if (Equals(button, b))
-                    continue;
                 b.State = SortableButton.ButtonState.None;
             }
-            return this;
         }
     }
 }

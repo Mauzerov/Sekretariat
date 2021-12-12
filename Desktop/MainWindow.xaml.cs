@@ -64,41 +64,24 @@ namespace Desktop
             });
             FromXml.Create(schoolData, "temp.xml");
         }
-
+        #region Menu Buttons Click Events
         private void NewQueryButtonClick(object sender, RoutedEventArgs e)
         {
-            var win = new QueryCreator(schoolData)
-            {
-                Owner = this
-            };
+            // Open Query Creator Window
+            var win = new QueryCreator(schoolData) {Owner = this};
             win.ShowDialog();
-
+            // Decompile Selected Query
             var query = SelectQuery.Decompile(win.OutputQuery.Text.TrimInside());
             
             if (win.TableSelected == "None")
                 return;
+            // Generate Result Table
             ContentControl.Content =
+                // When None of the fields are selected pass whole 'table' fields
                 new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
+                    // Pass A Filtered Selected Fields as a result
                     new FQL(win.SchoolData[win.TableSelected]).Filter(query.Wheres).Select(query), schoolData);
-            // switch (win.TableSelected)
-            // {
-            //     case "Students":
-            //         ContentControl.Content =
-            //             new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-            //                 new FQL(win.SchoolData[win.TableSelected]).Filter(query.Wheres).Select(query), schoolData);
-            //         break;
-            //     case "Teachers":
-            //         ContentControl.Content =
-            //             new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-            //                 new FQL(win.SchoolData.Teachers).Filter(query.Wheres).Select(query), schoolData);
-            //         break;
-            //     case "Employees":
-            //         ContentControl.Content =
-            //             new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(win.TableSelected):query.Fields, 
-            //                 new FQL(win.SchoolData.Employees).Filter(query.Wheres).Select(query), schoolData);
-            //         break;
-            // }
-            
         }
+        #endregion
     }
 }

@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Desktop.DataClass.Other.FQL;
 using Desktop.DataClass.Other;
-using Desktop.View;
 using Label = System.Windows.Controls.Label;
 
 namespace Desktop.Window.Query
@@ -30,16 +28,12 @@ namespace Desktop.Window.Query
             TableList.SelectionChanged += (sender, args) =>
             {
                 TableSelected = ((ComboBoxItem) args.AddedItems[0]).Content as string;
-                {
-                    ClearWheres();
-                    UpdateTableFields();
-                    UpdateOutputQuery();
-                }
-            };
-            ColumnList.SelectionChanged += (sender, args) =>
-            {
+                
+                ClearWheres();
+                UpdateTableFields();
                 UpdateOutputQuery();
             };
+            ColumnList.SelectionChanged += (sender, args) => UpdateOutputQuery();
         }
         
         private void UpdateOutputQuery()
@@ -80,12 +74,7 @@ namespace Desktop.Window.Query
         private void InitializeTableList()
         {
             foreach (var table in SchoolData.GetTables())
-            {
-                TableList.Items.Add(new ComboBoxItem
-                {
-                    Content = table
-                });
-            }
+                TableList.Items.Add(new ComboBoxItem { Content = table });
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

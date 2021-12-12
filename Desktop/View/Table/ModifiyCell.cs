@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -12,8 +13,6 @@ namespace Desktop.View.Table
 
     public class ModifyCell : Grid
     {
-        private Button _delete;
-        private Button _modify;
         private Dictionary<string, UIElement> _elements = new Dictionary<string, UIElement>();
         private bool _modification = false;
         
@@ -23,42 +22,35 @@ namespace Desktop.View.Table
             ColumnDefinitions.Add(new ColumnDefinition());
             HorizontalAlignment = HorizontalAlignment.Stretch;
             MaxWidth = 100;
-            _delete = new Button
+            var delete = new Button
             {
-                Content = new Image
-                {
-                    Source = new BitmapImage(new Uri("/trash.png", UriKind.RelativeOrAbsolute)),
-                }
+                Content = new Image {Source = new BitmapImage(new Uri("/trash.png", UriKind.RelativeOrAbsolute))}
             };
-            _modify = new Button
+            var modify = new Button
             {
-                Content = new Image
-                {
-                    Source = new BitmapImage(new Uri("/edit.png", UriKind.RelativeOrAbsolute)),
-                }
+                Content = new Image {Source = new BitmapImage(new Uri("/edit.png", UriKind.RelativeOrAbsolute)),}
             };
 
-            _delete.Click += (sender, args) =>
+            delete.Click += (sender, args) =>
             {
                 foreach (var table in data.GetTables())
                 {
-                    foreach (var dataRow in data[table])
+                    // Remove Result Row From Data Table
+                    foreach (var dataRow in data[table].Where(dataRow => Equals(dataRow["UUID"], row["UUID"])))
                     {
-                        if (Equals(dataRow["UUID"], row["UUID"]))
-                        {
-                            data[table].Remove(dataRow);
-                            break;
-                        }
+                        data[table].Remove(dataRow);
+                        break;
                     }
                 }
                 resultData.Remove(row);
                 wholeResult.Generate();
             };
             
-            _modify.Click += (sender, args) =>
+            modify.Click += (sender, args) =>
             {
                 if (!_modification)
                 {
+                    // Enable Inputs
                     foreach (var element in _elements)
                     {
                         element.Value.IsEnabled = true;
@@ -68,6 +60,7 @@ namespace Desktop.View.Table
                 }
                 else
                 {
+                    // Disable Inputs 
                     foreach (var element in _elements)
                     {
                         if (element.Value is TextBoxBase textBoxBase)
@@ -75,49 +68,49 @@ namespace Desktop.View.Table
                         else
                             element.Value.IsEnabled = false;
                     }
-
+                    // Update Values For Each Table
                     foreach (var table in data.GetTables())
                     {
-                        foreach (var dataRow in data[table])
+                        // Get Rows Where UUID Is Equal To Clicked Button  
+                        foreach (var dataRow in data[table].Where(dataRow => Equals(dataRow["UUID"], row["UUID"])))
                         {
-                            if (Equals(dataRow["UUID"], row["UUID"]))
+                            // For Each Element In Row Result Of Correct ID
+                            foreach (var element in _elements)
                             {
-                                foreach (var element in _elements)
+                                // Update Data Values
+                                switch (element.Value)
                                 {
-                                    if (element.Value is ImageButton imgBtn)
-                                    {
+                                    case ImageButton imgBtn:
                                         dataRow[element.Key] = (IComparable) imgBtn.Source;
-                                    }
-                                    else if (element.Value is TextBox textBox)
-                                    {
+                                        break;
+                                    case TextBox textBox:
                                         dataRow[element.Key] = (IComparable) textBox.Text;
-                                    }
-                                    else if (element.Value is ContentControl control)
-                                    {
+                                        break;
+                                    case ContentControl control:
                                         dataRow[element.Key] = (IComparable)control.Content;
-                                    }
+                                        break;
                                 }
-
-                                foreach (var dataRowRow in dataRow)
-                                {
-                                    if (row.ContainsKey(dataRowRow.Key))
-                                        row[dataRowRow.Key] = dataRowRow.Value;
-                                }
-                                break;
                             }
+
+                            foreach (var dataRowRow in
+                                dataRow.Where(dataRowRow => row.ContainsKey(dataRowRow.Key)))
+                            {
+                                row[dataRowRow.Key] = dataRowRow.Value;
+                            }
+                            break;
                         }
                     }
                 }
                 _modification = !_modification;
-                ((Image) _modify.Content).Source = new BitmapImage(
+                ((Image) modify.Content).Source = new BitmapImage(
                     new Uri( _modification ? "/save.png" : "/edit.png"
                         , UriKind.RelativeOrAbsolute));
             };
             
-            Children.Add(_delete);
-            SetColumn(_delete, 0);
-            Children.Add(_modify);
-            SetColumn(_modify, 1);
+            Children.Add(delete);
+            SetColumn(delete, 0);
+            Children.Add(modify);
+            SetColumn(modify, 1);
         }
 
         public void Add(string field, UIElement element)

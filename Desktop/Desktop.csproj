@@ -62,7 +62,6 @@
         <Compile Include="View\Table\Header\SortableHeader.cs" />
         <Compile Include="View\Table\ModifiyCell.cs" />
         <Compile Include="View\Table\ResultTable.cs" />
-        <Compile Include="View\Table\ResultTableRow.cs" />
         <Compile Include="Window\Query\QueryCreator.xaml.cs">
           <DependentUpon>QueryCreator.xaml</DependentUpon>
         </Compile>

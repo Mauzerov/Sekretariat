@@ -15,31 +15,27 @@ namespace Desktop.View
             ((Image) Content).Source = new BitmapImage(new Uri(Source, UriKind.RelativeOrAbsolute));
         }
         
-        public ImageButton(string file, Dictionary<string, IComparable> dataRow)
+        public ImageButton(string file, IDictionary<string, IComparable> dataRow)
         {
-            if (file == "NULL")
-                file = Source;
-            Source = file;
+            Source = file != "NULL" ? file : Source;
             
             MinHeight = 100;
             
-            Content = new Image()
-            {
-                MaxHeight = 150,
-            };
+            Content = new Image { MaxHeight = 150, };
             UpdateImage();
 
             Click += (sender, args) =>
             {
                 var dialog = new OpenFileDialog();
-                var result = dialog.ShowDialog();
-                if (result == null)
-                    return;
-                if ((bool) result)
+                switch (dialog.ShowDialog())
                 {
-                    dataRow["Photo"] = dialog.FileName;
-                    Source = dialog.FileName;
-                    UpdateImage();
+                    case null:
+                        return;
+                    case true:
+                        dataRow["Photo"] = dialog.FileName;
+                        Source = dialog.FileName;
+                        UpdateImage();
+                        break;
                 }
             };
         }

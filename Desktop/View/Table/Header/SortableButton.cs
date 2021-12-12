@@ -1,18 +1,14 @@
 ﻿using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 
 namespace Desktop.View.Table.Header
 {
     internal static class SortableButtonExtensions
     {
-        public static string ToString(this SortableButton.ButtonState state, bool my)
-        {
-            return state == SortableButton.ButtonState.None ? "" : state.ToString();
-        }
+        public static string ToString(this SortableButton.ButtonState state, object _)
+            => state == SortableButton.ButtonState.None ? "" : state.ToString();
     }
     public class SortableButton : Button
     {
-        private SortableHeader _header;
         public enum ButtonState : short
         {
             None = 0, Asc = 1, Desc = 2
@@ -35,12 +31,11 @@ namespace Desktop.View.Table.Header
             }
         }
 
-        public SortableButton(SortableHeader header) : base()
+        public SortableButton(SortableHeader header)
         {
-            _header = header;
             header.Add(this);
             Click += (sender, args) => State = (ButtonState)((1 + (short)State) % 3);
-            Click += (sender, args) => _header.Update(this);
+            Click += (sender, args) => header.Update(this);
         }
     }
 }

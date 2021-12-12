@@ -3,10 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Desktop.Window.Query"
         mc:Ignorable="d"
         Title="QueryCreator" Height="450" Width="800">
-    <Grid Name="Grid">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="50"/>
@@ -20,28 +19,34 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         
+        <!-- Output Query TextBlock -->
         <TextBlock Grid.ColumnSpan="4" Name="OutputQuery" Text="SELECT ALL FROM None WHERE TRUE"/>
         
+        <!-- Query Selected Table -->
         <ComboBox Grid.Column="0" Grid.Row="1" Name="TableList">
             <ComboBoxItem Content="None" IsSelected="True"></ComboBoxItem>
         </ComboBox>
+        <!-- Query Selected Fields -->
         <ListBox SelectionMode="Multiple" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Name="ColumnList"/>
+        <!-- A Gap -->
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"/>
+        <!-- Right Panel -->
         <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition MaxHeight="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            <!-- Where Selects Row -->
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="80"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="40"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" Name="FieldsInput" SelectionChanged="CreateValidInputType">
-                    
-                </ComboBox>
+                <!-- Where Field Select -->
+                <ComboBox Grid.Column="0" Name="FieldsInput" SelectionChanged="CreateValidInputType"/>
+                <!-- Where Operator Select -->
                 <ComboBox Grid.Column="1" Name="OperatorsInput">
                     <ComboBoxItem>=</ComboBoxItem>
                     <ComboBoxItem>&gt;=</ComboBoxItem>
@@ -50,15 +55,17 @@
                     <ComboBoxItem>&lt;</ComboBoxItem>
                     <ComboBoxItem>&gt;</ComboBoxItem>
                 </ComboBox>
+                <!-- Compare To Input Place Holder  -->
                 <StackPanel Name="InputParent" Grid.Column="2"/>
+                <!-- Add Button  -->
                 <Button Grid.Column="3" Click="AddWhereCondition" Background="Transparent" BorderThickness="0">
                     <Image Source="add.png"></Image>
                 </Button>  
             </Grid>
+            <!-- Scrollable Where Output Grid -->
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
                 <Grid Name="WhereRowOutput" VerticalAlignment="Top"/>
             </ScrollViewer>
-            
         </Grid>
         <Button Grid.Row="3" Grid.Column="2" Click="ButtonBase_OnClick"></Button>
     </Grid>
