@@ -56,12 +56,17 @@
         <Compile Include="FQL\SelectQuery.cs" />
         <Compile Include="FQL\Where.cs" />
         <Compile Include="Properties\Annotations.cs" />
+        <Compile Include="Scripts\CSV\FromCSV.cs" />
+        <Compile Include="Scripts\EXCEL\FromExcel.cs" />
         <Compile Include="Scripts\XML\FromXml.cs" />
         <Compile Include="View\ImageButton.cs" />
         <Compile Include="View\Table\Header\SortableButton.cs" />
         <Compile Include="View\Table\Header\SortableHeader.cs" />
         <Compile Include="View\Table\ModifiyCell.cs" />
         <Compile Include="View\Table\ResultTable.cs" />
+        <Compile Include="Window\NeverAskAgainDialog.xaml.cs">
+          <DependentUpon>NeverAskAgainDialog.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Window\Query\QueryCreator.xaml.cs">
           <DependentUpon>QueryCreator.xaml</DependentUpon>
         </Compile>
@@ -87,6 +92,7 @@
         </Compile>
         <Page Include="Styles\Table\TabSelectorScrollBar.xaml" />
         <Page Include="Styles\Table\TabSelectorScrollBarThumb.xaml" />
+        <Page Include="Window\NeverAskAgainDialog.xaml" />
         <Page Include="Window\Query\QueryCreator.xaml" />
     </ItemGroup>
     <ItemGroup>
@@ -108,8 +114,6 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Include" />
-      <Folder Include="Scripts\CSV" />
-      <Folder Include="Scripts\EXCEL" />
     </ItemGroup>
     <ItemGroup>
       <Resource Include="placeholder.png" />

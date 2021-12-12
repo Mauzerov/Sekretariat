@@ -14,7 +14,8 @@ namespace Desktop.View.Table
         private IEnumerable<string> _fields;
         private SortableHeader _header;
         private SchoolData _schoolData;
-        
+        public bool AskBeforeDelete { get; set; } = true;
+
         public ResultTable(IEnumerable<string> fields, FQL.FQL data, SchoolData schoolData)
         {
             VerticalAlignment = VerticalAlignment.Top;

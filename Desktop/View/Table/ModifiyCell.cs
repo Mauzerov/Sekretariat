@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media.Imaging;
 using Desktop.DataClass.Other;
+using Desktop.Window;
 using TableRow = System.Collections.Generic.Dictionary<string, System.IComparable>;
 namespace Desktop.View.Table
 {
@@ -33,6 +34,18 @@ namespace Desktop.View.Table
 
             delete.Click += (sender, args) =>
             {
+                if (wholeResult.AskBeforeDelete)
+                {
+                    var dialog = new NeverAskAgainDialog(
+                        Application.Current.MainWindow,
+                        "Deletion",
+                        "Are You Sure You Want\nTo Delete This Record?",
+                        () => { wholeResult.AskBeforeDelete = false; });
+                    dialog.ShowDialog();
+                    if (dialog.Result != true)
+                        return;
+                }
+                
                 foreach (var table in data.GetTables())
                 {
                     // Remove Result Row From Data Table

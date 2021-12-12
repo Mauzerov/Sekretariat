@@ -18,14 +18,39 @@
         </ResourceDictionary>
     </Window.Resources>
     
+    <Window.CommandBindings>
+        <CommandBinding Command="Refresh" Executed="RefreshResults"/>
+        <CommandBinding Command="Open" Executed="LoadData"/>
+        <CommandBinding Command="Save" Executed="SaveData"/>
+        <CommandBinding Command="SaveAs" Executed="SaveAsData"/>
+        <CommandBinding Command="IncreaseZoom" Executed="AddData"/>
+        <CommandBinding Command="New" Executed="NewQueryButtonClick"/>
+        <CommandBinding Command="Rewind" Executed="OpenDatabase"/>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="O" Modifiers="Control" Command="Open"/>
+        <KeyBinding Key="R" Modifiers="Control" Command="Refresh"/>
+        <KeyBinding Key="Add" Modifiers="Control" Command="IncreaseZoom"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="Save"/>
+        <KeyBinding Key="S" Modifiers="Control+Shift" Command="SaveAs"/>
+        <KeyBinding Key="N" Modifiers="Control" Command="New"/>
+        <KeyBinding Key="R" Modifiers="Control+Shift" Command="New"/>
+    </Window.InputBindings>
+    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="Refresh"/>
-                <MenuItem Header="Save Data"/>
-                <MenuItem Header="Load Data"/>
-                <MenuItem Header="Add Fields"/>
-                <MenuItem Header="Download Data"/>
+                <MenuItem Header="Refresh" Command="Refresh" InputGestureText="Ctrl+R"/>
+                <MenuItem Header="Save Data" Command="Save" InputGestureText="Ctrl+S"/>
+                <MenuItem Header="Load Data" Command="Open" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="Refresh Database" Command="Rewind" InputGestureText="Ctrl+Shift+R"/>
+                <MenuItem Header="Add Fields" Command="IncreaseZoom" InputGestureText="Ctrl++"/>
+                <MenuItem Header="Insert Fields">
+                    <MenuItem Header="Student"/>
+                    <MenuItem Header="Teacher"/>
+                    <MenuItem Header="Employee"/>
+                </MenuItem>
+                <MenuItem Header="Download Data" Command="SaveAs" InputGestureText="Ctrl+Shift+S"/>
             </MenuItem>
             <MenuItem Header="_Edit">
                 <MenuItem Header="Copy" Command="Copy"/>
@@ -38,10 +63,10 @@
                 <MenuItem Header="Save as Excel"/>
             </MenuItem>
             <MenuItem Header="_Query">
-                <MenuItem Header="New" Click="NewQueryButtonClick"/>
+                <MenuItem Header="New" Click="NewQueryButtonClick" InputGestureText="Ctrl+N"/>
                 <MenuItem Header="Load"/>
             </MenuItem>
-            <MenuItem Header="_Help" Command="Help"/>
+            <MenuItem Header="_Help" Command="Help" InputGestureText="F1"/>
         </Menu>
         <Grid>
             <Grid.RowDefinitions>
