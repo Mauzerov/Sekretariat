@@ -57,7 +57,6 @@
         <Compile Include="FQL\Where.cs" />
         <Compile Include="Properties\Annotations.cs" />
         <Compile Include="Scripts\CSV\FromCSV.cs" />
-        <Compile Include="Scripts\EXCEL\FromExcel.cs" />
         <Compile Include="Scripts\XML\FromXml.cs" />
         <Compile Include="View\ImageButton.cs" />
         <Compile Include="View\Table\Header\SortableButton.cs" />

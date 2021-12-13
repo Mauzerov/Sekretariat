@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +16,7 @@ namespace Desktop.View.Table
         private SortableHeader _header;
         private SchoolData _schoolData;
         public bool AskBeforeDelete { get; set; } = true;
+        public FQL.FQL Result => _fqlData;
 
         public ResultTable(IEnumerable<string> fields, FQL.FQL data, SchoolData schoolData)
         {
@@ -102,7 +104,9 @@ namespace Desktop.View.Table
                     }
                     else if (cell.Key == "Photo")
                     {
-                        element = new ImageButton(cell.Value.ToString(), row);
+                        element = new ImageButton(
+                            File.Exists(cell.Value.ToString())?cell.Value.ToString(): "NULL"
+                            , row);
                         element.IsEnabled = false;
                     }
                     else

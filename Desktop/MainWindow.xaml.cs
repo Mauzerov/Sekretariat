@@ -7,7 +7,6 @@ using Desktop.DataClass.Other;
 using Desktop.FQL;
 using Desktop.DataClass.Persons;
 using Desktop.Scripts.CSV;
-using Desktop.Scripts.EXCEL;
 using Desktop.Scripts.XML;
 using Desktop.View.Table;
 using Desktop.Window.Query;
@@ -91,9 +90,6 @@ namespace Desktop
                         case "csv":
                             FromCsv.Create(ref schoolData, dialog.FileName, @override);
                             break;
-                        case "xlsx": case "xlsm": case "xlt": case "xls":
-                            FromExcel.Create(ref schoolData, dialog.FileName, @override);
-                            break;
                         default:
                             MessageBox.Show("Exception!", "Unhandled File Extension!");
                             break;
@@ -103,7 +99,7 @@ namespace Desktop
         }
         
         #region Menu Buttons Click Events
-        private void NewQueryButtonClick(object sender, object e)
+        private void NewQueryButtonClick(object o = null, object e = null)
         {
             // Open Query Creator Window
             var win = new QueryCreator(schoolData) {Owner = this};
@@ -113,10 +109,10 @@ namespace Desktop
             queryTable = win.TableSelected;
             if (win.TableSelected == "None")
                 return;
-            RefreshResults(null, null);
+            RefreshResults();
         }
         
-        private void RefreshResults(object sender, object e)
+        private void RefreshResults(object o = null, object e = null)
         {
             if (queryTable == "None")
                 return;
@@ -128,22 +124,25 @@ namespace Desktop
                         new FQL.FQL(schoolData[queryTable]).Filter(query.Wheres).Select(query), schoolData);
         }
 
-        private void LoadData(object sender, object e)
+        private void LoadData(object o = null, object e = null)
         {
             LoadData(true);
         }
-        private void AddData(object sender, object e)
+        private void AddData(object o = null, object e = null)
         {
             LoadData(false);
         }
-        private void SaveData(object sender, object e)
+        private void SaveData(object o = null, object e = null)
         {
             FromXml.SaveTo(schoolData, DatabaseDestination);
             MessageBox.Show($"Data Was Successfully Saved To:\n\t{Directory.GetCurrentDirectory()}\\{DatabaseDestination}", "Success!");
         }
-        private void SaveAsData(object sender, object e)
+        private void SaveAsData(object o = null, object e = null)
         {
-            var dialog = new SaveFileDialog();
+            var dialog = new SaveFileDialog
+            {
+                Filter = "XML-File | *.xml",
+            };
             if (dialog.ShowDialog() == true)
                 FromXml.SaveTo(schoolData, dialog.FileName);
         }
@@ -152,6 +151,23 @@ namespace Desktop
         {
             if (File.Exists(DatabaseDestination))
                 FromXml.Create(ref schoolData, DatabaseDestination, true);
+        }
+
+
+        private void ReportSaveAsXml(object o = null, object e = null)
+        {
+            var dialog = new SaveFileDialog
+            {
+                Filter = "XML-File | *.xml",
+            };
+            if (dialog.ShowDialog() != true)
+                return;
+            
+            if (queryTable == "None")
+                return;
+                
+            if (ContentControl.Content is ResultTable resultTable)
+                FromXml.SaveTo(resultTable.Result.Result, queryTable, dialog.FileName);
         }
         #endregion
     }

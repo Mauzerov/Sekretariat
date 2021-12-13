@@ -58,9 +58,8 @@
                 <MenuItem Header="Paste" Command="Paste"/>
             </MenuItem>
             <MenuItem Header="_Report">
-                <MenuItem Header="Save as XML"/>
+                <MenuItem Header="Save as XML" Click="ReportSaveAsXml"/>
                 <MenuItem Header="Save as CSV"/>
-                <MenuItem Header="Save as Excel"/>
             </MenuItem>
             <MenuItem Header="_Query">
                 <MenuItem Header="New" Click="NewQueryButtonClick" InputGestureText="Ctrl+N"/>
