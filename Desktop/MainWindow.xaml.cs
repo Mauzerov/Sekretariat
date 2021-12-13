@@ -169,6 +169,28 @@ namespace Desktop
             if (ContentControl.Content is ResultTable resultTable)
                 FromXml.SaveTo(resultTable.Result.Result, queryTable, dialog.FileName);
         }
+        
+        private void ReportSaveAsCsv(object o = null, object e = null)
+        {
+            var dialog = new SaveFileDialog
+            {
+                Filter = "CSV Files (*.csv)|*.csv|All Files | *.*"
+            };
+            if (dialog.ShowDialog() != true)
+                return;
+            
+            if (queryTable == "None")
+                return;
+                
+            if (ContentControl.Content is ResultTable resultTable)
+                FromCsv.SaveTo(resultTable.Result.Result, queryTable, dialog.FileName);
+        }
+
+        private void ReportLoad(object o = null, object e = null)
+        {
+            
+        }
+
         #endregion
     }
 }

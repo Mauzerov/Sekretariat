@@ -40,7 +40,6 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="Refresh" Command="Refresh" InputGestureText="Ctrl+R"/>
                 <MenuItem Header="Save Data" Command="Save" InputGestureText="Ctrl+S"/>
                 <MenuItem Header="Load Data" Command="Open" InputGestureText="Ctrl+O"/>
                 <MenuItem Header="Refresh Database" Command="Rewind" InputGestureText="Ctrl+Shift+R"/>
@@ -58,8 +57,10 @@
                 <MenuItem Header="Paste" Command="Paste"/>
             </MenuItem>
             <MenuItem Header="_Report">
+                <MenuItem Header="Refresh" Command="Refresh" InputGestureText="Ctrl+R"/>
                 <MenuItem Header="Save as XML" Click="ReportSaveAsXml"/>
-                <MenuItem Header="Save as CSV"/>
+                <MenuItem Header="Save as CSV" Click="ReportSaveAsCsv"/>
+                <MenuItem Header="Load" Click="ReportLoad"/>
             </MenuItem>
             <MenuItem Header="_Query">
                 <MenuItem Header="New" Click="NewQueryButtonClick" InputGestureText="Ctrl+N"/>
