@@ -9,6 +9,7 @@ using Desktop.DataClass.Persons;
 using Desktop.Scripts.CSV;
 using Desktop.Scripts.XML;
 using Desktop.View.Table;
+using Desktop.Window;
 using Desktop.Window.Query;
 using Microsoft.Win32;
 
@@ -191,6 +192,22 @@ namespace Desktop
             
         }
 
+
+        private void OpenStudentInput(object o = null, object e = null)
+        {
+            new InsertCreator(schoolData, typeof(Student))
+            { Owner = this }.ShowDialog();
+        }
+        private void OpenTeacherInput(object o = null, object e = null)
+        {
+            new InsertCreator(schoolData, typeof(Teacher))
+                { Owner = this }.ShowDialog();
+        }
+        private void OpenEmployeeInput(object o = null, object e = null)
+        {
+            new InsertCreator(schoolData, typeof(Employee))
+                { Owner = this }.ShowDialog();
+        }
         #endregion
     }
 }

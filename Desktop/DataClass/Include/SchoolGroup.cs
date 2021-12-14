@@ -3,7 +3,7 @@
 namespace Desktop.DataClass.Include
 {
     [Flags]
-    public enum SchoolGroup : int
+    public enum SchoolGroup : long
     {
         None = 0,
         English = 1 << 0,

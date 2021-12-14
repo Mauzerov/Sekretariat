@@ -1,0 +1,33 @@
+﻿<Window x:Class="Desktop.Window.InsertCreator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:inputs="clr-namespace:Desktop.View"
+        xmlns:local="clr-namespace:Desktop.Window"
+        mc:Ignorable="d"
+        Title="InsertCreator" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <ScrollViewer Grid.Column="0">
+            <StackPanel Name="Right">
+                <inputs:HintInput HintText="Name" x:Name="Name"/>
+                <inputs:HintInput HintText="Surname" x:Name="Surname"/>
+                <inputs:HintInput HintText="Old Surname" x:Name="OldSurname"/>
+                <inputs:HintInput HintText="Parent Names" x:Name="ParentsNames"/>
+                <Label>Birth Date</Label>
+                <DatePicker Name="BirthDate"/>
+                <inputs:HintInput HintText="Id Number" x:Name="IdNumber"/>
+                <StackPanel Name="GenderHolder"/>
+                
+            </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="1">
+            <ContentControl Name="ImageButtonHolder"/>
+        </ScrollViewer>
+    </Grid>
+</Window>

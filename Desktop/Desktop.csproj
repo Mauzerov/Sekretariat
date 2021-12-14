@@ -55,14 +55,21 @@
         <Compile Include="FQL\FQL.cs" />
         <Compile Include="FQL\SelectQuery.cs" />
         <Compile Include="FQL\Where.cs" />
+        <Compile Include="Include\StringExtensions.cs" />
         <Compile Include="Properties\Annotations.cs" />
         <Compile Include="Scripts\CSV\FromCSV.cs" />
         <Compile Include="Scripts\XML\FromXml.cs" />
+        <Compile Include="View\HintInput.xaml.cs">
+          <DependentUpon>HintInput.xaml</DependentUpon>
+        </Compile>
         <Compile Include="View\ImageButton.cs" />
         <Compile Include="View\Table\Header\SortableButton.cs" />
         <Compile Include="View\Table\Header\SortableHeader.cs" />
         <Compile Include="View\Table\ModifiyCell.cs" />
         <Compile Include="View\Table\ResultTable.cs" />
+        <Compile Include="Window\InsertCreator.xaml.cs">
+          <DependentUpon>InsertCreator.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Window\NeverAskAgainDialog.xaml.cs">
           <DependentUpon>NeverAskAgainDialog.xaml</DependentUpon>
         </Compile>
@@ -91,6 +98,8 @@
         </Compile>
         <Page Include="Styles\Table\TabSelectorScrollBar.xaml" />
         <Page Include="Styles\Table\TabSelectorScrollBarThumb.xaml" />
+        <Page Include="View\HintInput.xaml" />
+        <Page Include="Window\InsertCreator.xaml" />
         <Page Include="Window\NeverAskAgainDialog.xaml" />
         <Page Include="Window\Query\QueryCreator.xaml" />
     </ItemGroup>
@@ -110,9 +119,6 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Include" />
     </ItemGroup>
     <ItemGroup>
       <Resource Include="placeholder.png" />

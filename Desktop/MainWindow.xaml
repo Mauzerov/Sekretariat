@@ -45,9 +45,9 @@
                 <MenuItem Header="Refresh Database" Command="Rewind" InputGestureText="Ctrl+Shift+R"/>
                 <MenuItem Header="Add Fields" Command="IncreaseZoom" InputGestureText="Ctrl++"/>
                 <MenuItem Header="Insert Fields">
-                    <MenuItem Header="Student"/>
-                    <MenuItem Header="Teacher"/>
-                    <MenuItem Header="Employee"/>
+                    <MenuItem Header="Student" Click="OpenStudentInput"/>
+                    <MenuItem Header="Teacher" Click="OpenTeacherInput"/>
+                    <MenuItem Header="Employee" Click="OpenEmployeeInput"/>
                 </MenuItem>
                 <MenuItem Header="Download Data" Command="SaveAs" InputGestureText="Ctrl+Shift+S"/>
             </MenuItem>

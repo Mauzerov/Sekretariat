@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Desktop.Annotations;
 using Microsoft.Win32;
 
 namespace Desktop.View
@@ -15,13 +16,14 @@ namespace Desktop.View
             ((Image) Content).Source = new BitmapImage(new Uri(Source, UriKind.RelativeOrAbsolute));
         }
         
-        public ImageButton(string file, IDictionary<string, IComparable> dataRow)
+        public ImageButton(string file,[CanBeNull] IDictionary<string, IComparable> dataRow)
         {
             Source = file != "NULL" ? file : Source;
             
             MinHeight = 100;
+            MaxHeight = 100;
             
-            Content = new Image { MaxHeight = 150, };
+            Content = new Image { };
             UpdateImage();
 
             Click += (sender, args) =>
@@ -32,7 +34,8 @@ namespace Desktop.View
                     case null:
                         return;
                     case true:
-                        dataRow["Photo"] = dialog.FileName;
+                        if (dataRow != null)
+                            dataRow["Photo"] = dialog.FileName;
                         Source = dialog.FileName;
                         UpdateImage();
                         break;
