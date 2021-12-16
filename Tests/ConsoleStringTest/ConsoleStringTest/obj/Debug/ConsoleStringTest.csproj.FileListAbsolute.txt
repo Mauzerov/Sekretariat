@@ -1,0 +1,6 @@
+E:\C#\Sekretariat\Tests\ConsoleStringTest\ConsoleStringTest\bin\Debug\ConsoleStringTest.exe
+E:\C#\Sekretariat\Tests\ConsoleStringTest\ConsoleStringTest\bin\Debug\ConsoleStringTest.pdb
+E:\C#\Sekretariat\Tests\ConsoleStringTest\ConsoleStringTest\obj\Debug\ConsoleStringTest.csprojAssemblyReference.cache
+E:\C#\Sekretariat\Tests\ConsoleStringTest\ConsoleStringTest\obj\Debug\ConsoleStringTest.csproj.CoreCompileInputs.cache
+E:\C#\Sekretariat\Tests\ConsoleStringTest\ConsoleStringTest\obj\Debug\ConsoleStringTest.exe
+E:\C#\Sekretariat\Tests\ConsoleStringTest\ConsoleStringTest\obj\Debug\ConsoleStringTest.pdb
