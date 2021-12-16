@@ -67,6 +67,9 @@
         <Compile Include="View\Table\Header\SortableHeader.cs" />
         <Compile Include="View\Table\ModifiyCell.cs" />
         <Compile Include="View\Table\ResultTable.cs" />
+        <Compile Include="View\TeacherClassSelector.xaml.cs">
+          <DependentUpon>TeacherClassSelector.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Window\InsertCreator.xaml.cs">
           <DependentUpon>InsertCreator.xaml</DependentUpon>
         </Compile>
@@ -99,6 +102,7 @@
         <Page Include="Styles\Table\TabSelectorScrollBar.xaml" />
         <Page Include="Styles\Table\TabSelectorScrollBarThumb.xaml" />
         <Page Include="View\HintInput.xaml" />
+        <Page Include="View\TeacherClassSelector.xaml" />
         <Page Include="Window\InsertCreator.xaml" />
         <Page Include="Window\NeverAskAgainDialog.xaml" />
         <Page Include="Window\Query\QueryCreator.xaml" />
@@ -122,6 +126,7 @@
     </ItemGroup>
     <ItemGroup>
       <Resource Include="placeholder.png" />
+      <Resource Include="View\add.png" />
       <Resource Include="Window\Query\add.png" />
     </ItemGroup>
     <ItemGroup>

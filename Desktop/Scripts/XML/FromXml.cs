@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using Desktop.DataClass.Include;
 using Desktop.DataClass.Other;
 using Desktop.DataClass.Persons;
 using TableRow = System.Collections.Generic.Dictionary<string, System.IComparable>;
@@ -37,6 +38,8 @@ namespace Desktop.Scripts.XML
                                     row[node] = value;
                                 if (type.BaseType == typeof(Enum))
                                     row[node] = (IComparable)Enum.Parse(type, value);
+                                if (type == typeof(Class))
+                                    row[node] = Class.FromString(value);
                             }
 
                             if (@override)

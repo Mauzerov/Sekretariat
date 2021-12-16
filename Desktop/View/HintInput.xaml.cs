@@ -16,6 +16,8 @@ namespace Desktop.View
             }
         }
 
+        public string GetText() => Text != HintText?Text:"NULL";
+
         public HintInput()
         {
             InitializeComponent();

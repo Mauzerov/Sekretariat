@@ -12,22 +12,30 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
         
-        <ScrollViewer Grid.Column="0">
+        <ScrollViewer Grid.Row="0" Grid.Column="0">
             <StackPanel Name="Right">
-                <inputs:HintInput HintText="Name" x:Name="Name"/>
-                <inputs:HintInput HintText="Surname" x:Name="Surname"/>
-                <inputs:HintInput HintText="Old Surname" x:Name="OldSurname"/>
-                <inputs:HintInput HintText="Parent Names" x:Name="ParentsNames"/>
+                <inputs:HintInput HintText="Name" x:Name="Name_DataInput"/>
+                <inputs:HintInput HintText="Surname" x:Name="Surname_DataInput"/>
+                <inputs:HintInput HintText="Old Surname" x:Name="OldSurname_DataInput"/>
+                <inputs:HintInput HintText="Parent Names" x:Name="ParentsNames_DataInput"/>
                 <Label>Birth Date</Label>
-                <DatePicker Name="BirthDate"/>
-                <inputs:HintInput HintText="Id Number" x:Name="IdNumber"/>
-                <StackPanel Name="GenderHolder"/>
-                
+                <DatePicker Name="BirthDate_DataInput"/>
+                <inputs:HintInput HintText="Id Number" x:Name="IdNumber_DataInput"/>
+                <StackPanel x:Name="GenderHolder_DataInput">
+                    <Label>Gender</Label>
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
-        <ScrollViewer Grid.Column="1">
+        <ScrollViewer Grid.Row="0" Grid.Column="1">
             <ContentControl Name="ImageButtonHolder"/>
         </ScrollViewer>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button Click="AddPerson">Add Person</Button>
+        </StackPanel>
     </Grid>
 </Window>
