@@ -12,6 +12,10 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.mauzerov.mobile.databinding.ActivityMainBinding
+import java.util.*
+
+typealias TableRow = Dictionary<String, Comparable<Any>>
+typealias Table = List<Dictionary<String, Comparable<Any>>>
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
