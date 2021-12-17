@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Desktop.FQL;
 using Desktop.DataClass.Other;
+using Microsoft.Win32;
 using Label = System.Windows.Controls.Label;
 
 namespace Desktop.Window.Query
@@ -65,11 +68,13 @@ namespace Desktop.Window.Query
             
         }
 
-        private void ClearWheres()
+        private void ClearWheres(object o = null, object e = null)
         {
             wheres.Clear();
             WhereRowOutput.Children.Clear();
         }
+
+        private void Close(object o = null, object e = null) => base.Close();
 
         private void InitializeTableList()
         {
@@ -174,6 +179,23 @@ namespace Desktop.Window.Query
                             TextWrapping = TextWrapping.Wrap
                         });
                     break;
+            }
+        }
+        
+        private void Download(object o = null, object e = null)
+        {
+            var dialog = new SaveFileDialog
+            {
+                Filter = "FQL File | *.fql"
+            };
+            if (dialog.ShowDialog() != true)
+                return;
+            
+            using (var w = new StreamWriter(dialog.FileName))
+            {
+                Debug.WriteLine(OutputQuery.Text);
+                string s = OutputQuery.Text;
+                w.WriteLine(s.Replace('\n', '\0'));
             }
         }
     }

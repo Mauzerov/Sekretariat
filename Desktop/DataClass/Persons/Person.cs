@@ -51,7 +51,7 @@ namespace Desktop.DataClass.Persons
                 foreach (var field in GetPublicFields(this.GetType()))
                 {
                     if (field.Name != name) continue;
-                    Debug.WriteLine($"Setter:: {field.Name}");
+                    //Debug.WriteLine($"Setter:: {field.Name}");
                     field.SetValue(this, value);
                     return;
                 }

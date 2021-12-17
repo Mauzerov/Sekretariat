@@ -40,10 +40,9 @@ namespace Desktop.FQL
             return new FQL(newResult);
         }
 
-        public FQL OrderBy(string field, bool reversed = false)
+        public static List<TableRow> Sort(List<TableRow> array, string field, bool reversed = false)
         {
-            var array = Result;
-            var n = Result.Count;
+            var n = array.Count;
             for (var i = 1; i < n; ++i)
             {
                 var now = array[i];
@@ -56,7 +55,13 @@ namespace Desktop.FQL
                 }
                 array[j + 1] = now;
             }
-            return new FQL(array);
+
+            return array;
+        }
+
+        public FQL OrderBy(string field, bool reversed = false)
+        {
+            return new FQL(FQL.Sort(Result, field, reversed));
         }
         
         public FQL Filter(IEnumerable<Where> wheres)

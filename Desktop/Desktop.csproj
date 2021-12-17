@@ -53,6 +53,7 @@
         <Compile Include="DataClass\SchoolData.cs" />
         <Compile Include="FQL\Extensions.cs" />
         <Compile Include="FQL\FQL.cs" />
+        <Compile Include="FQL\Report.cs" />
         <Compile Include="FQL\SelectQuery.cs" />
         <Compile Include="FQL\Where.cs" />
         <Compile Include="Include\StringExtensions.cs" />

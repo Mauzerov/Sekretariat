@@ -11,6 +11,7 @@
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -20,7 +21,7 @@
         </Grid.RowDefinitions>
         
         <!-- Output Query TextBlock -->
-        <TextBlock Grid.ColumnSpan="4" Name="OutputQuery" Text="SELECT ALL FROM None WHERE TRUE"/>
+        <TextBlock Grid.ColumnSpan="4" Name="OutputQuery" Text="SELECT ALL FROM None WHERE TRUE" TextWrapping="Wrap"/>
         
         <!-- Query Selected Table -->
         <ComboBox Grid.Column="0" Grid.Row="1" Name="TableList">
@@ -31,7 +32,7 @@
         <!-- A Gap -->
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"/>
         <!-- Right Panel -->
-        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">
+        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition MaxHeight="30"/>
                 <RowDefinition/>
@@ -67,6 +68,8 @@
                 <Grid Name="WhereRowOutput" VerticalAlignment="Top"/>
             </ScrollViewer>
         </Grid>
-        <Button Grid.Row="3" Grid.Column="2" Click="ButtonBase_OnClick"></Button>
+        <Button Grid.Row="3" Grid.Column="2" Click="Download">Download</Button>
+        <Button Grid.Row="3" Grid.Column="3" Click="ClearWheres">Clear Conditions</Button>
+        <Button Grid.Row="3" Grid.Column="4" Click="Close">Execute Query</Button>
     </Grid>
 </Window>

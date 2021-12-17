@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Desktop.DataClass.Other;
 
@@ -48,7 +49,7 @@ namespace Desktop.FQL
                     returnWheres = returnWheres.Substring(0, returnWheres.Length - 5);
                 }
                 
-                return $"SELECT {returnFields} FROM {Table} \nWHERE {returnWheres}";
+                return $"SELECT {returnFields} FROM {Table} WHERE {returnWheres}";
             }
         }
 
@@ -68,8 +69,8 @@ namespace Desktop.FQL
             var whereLocation = query.IndexOf("WHERE", StringComparison.Ordinal);
             var tableLocation = fromLocation + 5;
 
-            var table = query.Substring(tableLocation, whereLocation - tableLocation);
-            
+            var table = query.Substring(tableLocation, whereLocation - tableLocation - 1);
+            Debug.WriteLine(table + '.');
             var columns = query.Substring(7, fromLocation - 8);
             if (columns == "ALL")
                 returnColumns = SchoolData.GetMemberPublicFieldsNames(table).ToArray();

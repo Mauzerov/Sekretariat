@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -53,6 +54,43 @@ namespace Desktop.Scripts.XML
             }
             if (@override)
                 schoolData = sd;
+        }
+
+        public static IEnumerable<TableRow> CreateResult(
+            string source,
+            out IEnumerable<string> fields)
+        {
+            var reader = new XmlDocument();
+            reader.Load(source);
+            var root = reader.ChildNodes[1];
+            IEnumerable<string> allAttributes = new List<string>();
+
+            var schoolData = new List<TableRow>();
+            string table = null;
+            foreach (XmlElement child in root.ChildNodes)
+            {
+                if (table == null)
+                {
+                    table = child.Name;
+                    allAttributes = child.Attributes.Cast<XmlAttribute>().Select(attr => attr.Name);
+                }
+                
+                if (table != child.Name)
+                    continue;
+
+                var row = new TableRow();
+                var collection = child.Attributes;
+                foreach (XmlAttribute attr in collection)
+                {
+                    row[attr.Name] = attr.Value;
+                }
+
+                if (!row.ContainsKey("UUID"))
+                    row["UUID"] = Guid.NewGuid();
+                schoolData.Add(row);
+            }
+            fields = allAttributes;
+            return schoolData;
         }
 
         private static void WriteElement(XmlWriter writer, string table, TableRow dataRow)

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Desktop.Annotations;
 using Desktop.DataClass.Other;
 using Desktop.View.Table.Header;
 using TableRow = System.Collections.Generic.Dictionary<string, System.IComparable>;
@@ -11,31 +12,37 @@ namespace Desktop.View.Table
 {
     public class ResultTable : Grid
     {
-        private FQL.FQL _fqlData;
         private IEnumerable<string> _fields;
         private SortableHeader _header;
         private SchoolData _schoolData;
         public bool AskBeforeDelete { get; set; } = true;
-        public FQL.FQL Result => _fqlData;
+        public List<TableRow> Result { get; private set; }
 
-        public ResultTable(IEnumerable<string> fields, FQL.FQL data, SchoolData schoolData)
+        public ResultTable(IEnumerable<string> fields, List<TableRow> data, [CanBeNull] SchoolData schoolData)
         {
             VerticalAlignment = VerticalAlignment.Top;
             _schoolData = schoolData;
             _fields = fields;
-            _fqlData = data;
+            Result = data;
             GenerateHeader();
             Generate();
         }
-        
+
+        public ResultTable(IEnumerable<string> fields, FQL.FQL data, [CanBeNull] SchoolData schoolData)
+            : this(fields, data.Result, schoolData)
+        {
+            
+        }
+
         private void GenerateHeader()
         // Generate Sortable Buttons For Each Column
         {
             Children.Clear();
             
-            var column = 1;
+            var column = Convert.ToInt32(_schoolData != null);
             _header = new SortableHeader();
-            ColumnDefinitions.Add(new ColumnDefinition { MaxWidth = 100 }); // Modify Button & Delete Button MAx Width
+            if (_schoolData != null)
+                ColumnDefinitions.Add(new ColumnDefinition { MaxWidth = 100 }); // Modify Button & Delete Button Max Width
             RowDefinitions.Add(new RowDefinition()); // Row For Sortable Buttons
             
             foreach (var title in _fields)
@@ -49,11 +56,11 @@ namespace Desktop.View.Table
                 label.Click += (sender, args) => // Sort Result & Chane Name To Indicate Sortable Direction
                 {
                     if (label.State == SortableButton.ButtonState.None)
-                        _fqlData = _fqlData.OrderBy("UUID");
+                        Result = FQL.FQL.Sort(Result, "UUID");
                     else
                     {
                         bool IsReversed(SortableButton.ButtonState state) => state == SortableButton.ButtonState.Desc;
-                        _fqlData = _fqlData.OrderBy(label.ColumnTitle, IsReversed(label.State));
+                        Result = FQL.FQL.Sort(Result, label.ColumnTitle, IsReversed(label.State));
                     }
                     Generate(); // ReGenerate Result Rows
                 };
@@ -77,19 +84,21 @@ namespace Desktop.View.Table
         {
             ClearDataRows();
             var index = 0;
-            foreach (var row in _fqlData.Result)
+            foreach (var row in Result)
             {
                 index++;
                 RowDefinitions.Add(new RowDefinition());
                 
                 // Create Deletion Button & Modify Button!
-                var modRow = new ModifyCell(_schoolData, _fqlData.Result, row, this);
-                
-                Children.Add(modRow);
-                SetColumn(modRow, 0);
-                SetRow(modRow, index);
-                
-                var column = 1;
+                var modRow = new ModifyCell(_schoolData, Result, row, this);
+                if (_schoolData != null)
+                {
+                    Children.Add(modRow);
+                    SetColumn(modRow, 0);
+                    SetRow(modRow, index);
+                }
+
+                var column = Convert.ToInt32(_schoolData != null);
                 // Generate Ech Cell Independently Based On Its Type
                 foreach (var cell in row.Where(cell => cell.Key != "UUID"))
                 {
@@ -121,7 +130,8 @@ namespace Desktop.View.Table
                         };
                     }
                     Children.Add(element);
-                    modRow.Add(cell.Key, element);
+                    if (_schoolData != null)
+                        modRow.Add(cell.Key, element);
                     SetColumn(element, column);
                     SetRow(element, index);
                     column++;

@@ -64,18 +64,18 @@
             </MenuItem>
             <MenuItem Header="_Query">
                 <MenuItem Header="New" Click="NewQueryButtonClick" InputGestureText="Ctrl+N"/>
-                <MenuItem Header="Load"/>
+                <MenuItem Header="Load" Click="QueryLoad"/>
             </MenuItem>
             <MenuItem Header="_Help" Command="Help" InputGestureText="F1"/>
         </Menu>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
             <ScrollViewer Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="0"

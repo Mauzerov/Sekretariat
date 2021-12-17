@@ -47,7 +47,23 @@ namespace Desktop.DataClass.Other
                 }
                 throw new ArgumentException("Can't find field");
             }
+            set
+            {
+                foreach (var field in GetPublicFields())
+                {
+                    if (!field.Name.StartsWith(name)) continue;
+
+                    if (field.GetValue(this) is List<TableRow> fieldValue)
+                    {
+                        field.SetValue(this, value);
+                        return;
+                    }
+                    //throw new NotSupportedException("Can't convert field to List<Person>");
+                }
+                throw new ArgumentException("Can't find field");
+            }
         }
+
         private string[] GetPublicFieldsNames() => GetPublicFields().Select(t => t.Name).ToArray();
         private FieldInfo[] GetPublicFields() => GetType().GetFields().Where(e => e.IsPublic).ToArray();
 

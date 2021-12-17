@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -88,9 +89,6 @@ namespace Desktop
                         case "xml":
                             FromXml.Create(ref schoolData, dialog.FileName, @override);
                             break;
-                        case "csv":
-                            FromCsv.Create(ref schoolData, dialog.FileName, @override);
-                            break;
                         default:
                             MessageBox.Show("Exception!", "Unhandled File Extension!");
                             break;
@@ -168,7 +166,7 @@ namespace Desktop
                 return;
                 
             if (ContentControl.Content is ResultTable resultTable)
-                FromXml.SaveTo(resultTable.Result.Result, queryTable, dialog.FileName);
+                FromXml.SaveTo(resultTable.Result, queryTable, dialog.FileName);
         }
         
         private void ReportSaveAsCsv(object o = null, object e = null)
@@ -184,15 +182,43 @@ namespace Desktop
                 return;
                 
             if (ContentControl.Content is ResultTable resultTable)
-                FromCsv.SaveTo(resultTable.Result.Result, queryTable, dialog.FileName);
+                FromCsv.SaveTo(resultTable.Result, queryTable, dialog.FileName);
         }
 
         private void ReportLoad(object o = null, object e = null)
         {
-            
+            var dialog = new OpenFileDialog
+            {
+                Filter = "CSV Files (*.csv)|*.csv|XML-File | *.xml|All Files | *.*"
+            };
+            if (dialog.ShowDialog() != true)
+                return;
+
+            var report = new Report(dialog.FileName);
+
+            ContentControl.Content = new ResultTable(report.Fields, report.Get(), null);
         }
 
+        private void QueryLoad(object o = null, object e = null)
+        {
+            var dialog = new OpenFileDialog
+            {
+                Filter = "FQL File | *.fql"
+            };
 
+            if (dialog.ShowDialog() != true)
+                return;
+            using (var r = new StreamReader(dialog.OpenFile()))
+            {
+                query = SelectQuery.Decompile(r.ReadToEnd().TrimEnd());
+                queryTable = query.Table;
+            }
+            ContentControl.Content =
+                // When None of the fields are selected pass whole 'table' fields
+                new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(queryTable):query.Fields, 
+                    // Pass A Filtered Selected Fields as a result
+                    new FQL.FQL(schoolData[queryTable]).Filter(query.Wheres).Select(query), schoolData);
+        }
         private void OpenStudentInput(object o = null, object e = null)
         {
             new InsertCreator(schoolData, typeof(Student))
