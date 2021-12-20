@@ -3,7 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/layout/activity_main.xml" value="0.18931159420289856" />
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/layout/app_bar_main.xml" value="0.3029891304347826" />
         <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/layout/content_main.xml" value="0.19293478260869565" />
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/layout/fragment_employee.xml" value="0.16041666666666668" />
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/layout/fragment_gallery.xml" value="0.19479166666666667" />
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/layout/fragment_home.xml" value="0.2640625" />
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/layout/fragment_person.xml" value="0.29483695652173914" />
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/layout/fragment_slideshow.xml" value="0.19479166666666667" />
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/layout/fragment_student.xml" value="0.29891304347826086" />
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/layout/fragment_teacher.xml" value="0.29891304347826086" />
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/layout/nav_header_main.xml" value="0.3029891304347826" />
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/menu/activity_main_drawer.xml" value="0.35104166666666664" />
+        <entry key="..\:/C#/Sekretariat/Mobile/app/src/main/res/menu/main.xml" value="0.35104166666666664" />
       </map>
     </option>
   </component>

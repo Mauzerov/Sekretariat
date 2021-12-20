@@ -12,14 +12,19 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.mauzerov.mobile.databinding.ActivityMainBinding
+import com.mauzerov.mobile.scripts.SchoolData
+import com.mauzerov.mobile.scripts.XmlReader
+import kotlinx.coroutines.runBlocking
 import java.util.*
 
-typealias TableRow = Dictionary<String, Comparable<Any>>
-typealias Table = List<Dictionary<String, Comparable<Any>>>
+typealias TableRow = MutableMap<String, Comparable<String>>
+typealias Table = MutableList<TableRow>
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+
+    var schoolData = SchoolData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +45,13 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_student, R.id.nav_teacher, R.id.nav_employee
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        XmlReader.fill("http://192.168.0.187/database.xml", schoolData)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

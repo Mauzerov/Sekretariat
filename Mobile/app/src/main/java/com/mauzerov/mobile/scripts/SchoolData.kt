@@ -1,8 +1,8 @@
 package com.mauzerov.mobile.scripts
 
 import java.util.*
-typealias TableRow = Dictionary<String, Comparable<Any>>
-typealias Table = MutableList<Dictionary<String, Comparable<Any>>>
+typealias TableRow = MutableMap<String, Comparable<String>>
+typealias Table = MutableList<TableRow>
 
 class SchoolData
 {
