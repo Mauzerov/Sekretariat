@@ -1,6 +1,7 @@
 package com.mauzerov.mobile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mauzerov.mobile.databinding.ActivityMainBinding
 import com.mauzerov.mobile.scripts.SchoolData
 import com.mauzerov.mobile.scripts.XmlReader
+import com.mauzerov.mobile.ui.SelectDialog
 import kotlinx.coroutines.runBlocking
 import java.util.*
 
@@ -34,10 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -45,13 +43,21 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_student, R.id.nav_teacher, R.id.nav_employee
+                R.id.nav_load, R.id.nav_student, R.id.nav_teacher, R.id.nav_employee
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        XmlReader.fill("http://192.168.0.187/database.xml", schoolData)
+        binding.appBarMain.fab.setOnClickListener {
+            val id = navController.currentDestination?.id
+            if (id == R.id.nav_load)
+                return@setOnClickListener
+
+            val dialog = SelectDialog(navController.currentDestination?.label.toString())
+            dialog.show(supportFragmentManager, "selectDialog")
+        }
+        //XmlReader.fill("http://192.168.0.187/database.xml", schoolData)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

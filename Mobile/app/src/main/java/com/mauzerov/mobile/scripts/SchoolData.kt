@@ -10,12 +10,12 @@ class SchoolData
     var Teachers : Table = mutableListOf()
     var Employees : Table = mutableListOf()
 
-    operator fun get(name: String) : Table {
+    operator fun get(name: String) : Table? {
             return when (name) {
                 "Student" , "Students" -> Students
                 "Teacher" , "Teachers" -> Teachers
                 "Employee" , "Employees" -> Employees
-                else -> throw NotImplementedError("Lack Of Tables Of Name: $name")
+                else -> null
             }
     }
 

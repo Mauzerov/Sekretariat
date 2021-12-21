@@ -2,7 +2,7 @@ package com.mauzerov.mobile.scripts
 
 class Sort {
     companion object {
-        fun dictionary(array: Table, field: String, reversed : Boolean) : Table {
+        fun dictionary(array: Table, field: String, reversed : Boolean = false) : Table {
             val n = array.size
             for (i in 1 until n)
             {
@@ -19,4 +19,8 @@ class Sort {
             return array
         }
     }
+}
+
+fun Table.sort(field: String, reversed: Boolean = false) {
+    Sort.dictionary(this, field, reversed);
 }

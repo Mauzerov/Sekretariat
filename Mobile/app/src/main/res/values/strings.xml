@@ -7,9 +7,12 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="menu_load">Load Data</string>
     <string name="menu_home">Students</string>
     <string name="menu_gallery">Teachers</string>
     <string name="menu_slideshow">Employees</string>
     <string name="data_missing_error">Data Not Found</string>
     <string name="load_data_button_error">Load Data</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
