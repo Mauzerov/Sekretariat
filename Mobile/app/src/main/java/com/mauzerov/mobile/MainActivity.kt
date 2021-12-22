@@ -1,8 +1,10 @@
 package com.mauzerov.mobile
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -14,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.mauzerov.mobile.databinding.ActivityMainBinding
 import com.mauzerov.mobile.scripts.SchoolData
+import com.mauzerov.mobile.scripts.Where
 import com.mauzerov.mobile.scripts.XmlReader
 import com.mauzerov.mobile.ui.SelectDialog
 import kotlinx.coroutines.runBlocking
@@ -27,10 +30,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     var schoolData = SchoolData()
+    var wheres: MutableMap<String, List<Where>> = mutableMapOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -51,13 +55,21 @@ class MainActivity : AppCompatActivity() {
 
         binding.appBarMain.fab.setOnClickListener {
             val id = navController.currentDestination?.id
-            if (id == R.id.nav_load)
+            val tableName = navController.currentDestination?.label.toString()
+            if (id == R.id.nav_load) {
+                makeErrorToast(R.string.toast_error_no_table)
                 return@setOnClickListener
+            }
 
-            val dialog = SelectDialog(navController.currentDestination?.label.toString())
+            if (schoolData[tableName]!!.size == 0){
+                makeErrorToast(R.string.toast_error_no_data)
+                return@setOnClickListener
+            }
+
+            val dialog = SelectDialog(tableName)
             dialog.show(supportFragmentManager, "selectDialog")
+            wheres[tableName] = dialog.wheres
         }
-        //XmlReader.fill("http://192.168.0.187/database.xml", schoolData)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -71,7 +83,11 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    fun makeErrorToast(id: Int) {
+        runOnUiThread { Toast.makeText(this, id, Toast.LENGTH_SHORT).show() }
+    }
+
     companion object {
-        var databaseLocation : String? = null;
+        var databaseLocation : String? = null
     }
 }

@@ -13,7 +13,7 @@ class Where {
     }
 
     fun Human(): String {
-        return "{$Key} {$Op} \"{$Value}\"";
+        return "$Key $Op \"$Value\"";
     }
 
 }

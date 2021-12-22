@@ -1,6 +1,5 @@
 package com.mauzerov.mobile.scripts
 
-import java.util.*
 typealias TableRow = MutableMap<String, Comparable<String>>
 typealias Table = MutableList<TableRow>
 
@@ -26,5 +25,9 @@ class SchoolData
             "Employee" , "Employees" -> Employees = value
             else -> throw NotImplementedError("Lack Of Tables Of Name: $name")
         }
+    }
+
+    fun tables() : List<String> {
+        return this::class.java.declaredFields.iterator().asSequence().map { f -> f.name }.toList()
     }
 }

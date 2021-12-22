@@ -57,7 +57,7 @@ namespace Desktop.Window
                         });
                     element = new DatePicker
                     {
-                        DisplayDate = DateTime.Now.Date,
+                        SelectedDate = DateTime.Now.Date,
                         Text = DateTime.Now.Date.ToString(CultureInfo.InvariantCulture),
                     };
                 }
@@ -192,6 +192,8 @@ namespace Desktop.Window
                             var enums = listBox.SelectedItems.Cast<UIElement>()
                                 .Select(ee => ((ListBoxItem) ee).Tag.ToString())
                                 .Aggregate("", (old, now) => old + now + ", ");
+                            if (enums == "")
+                                enums = SchoolGroup.None.ToString();
                             valueElement = (IComparable) Enum.Parse(typeof(SchoolGroup), enums);
                             break;
                         case ComboBox comboBox:

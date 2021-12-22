@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:inputs="clr-namespace:Desktop.View"
         xmlns:local="clr-namespace:Desktop.Window"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="InsertCreator" Height="450" Width="800">
     <Grid>
@@ -24,7 +25,7 @@
                 <inputs:HintInput HintText="Old Surname" x:Name="OldSurname_DataInput"/>
                 <inputs:HintInput HintText="Parent Names" x:Name="ParentsNames_DataInput"/>
                 <Label>Birth Date</Label>
-                <DatePicker Name="BirthDate_DataInput"/>
+                <DatePicker Name="BirthDate_DataInput" SelectedDate="{x:Static sys:DateTime.Now}"/>
                 <inputs:HintInput HintText="Id Number" x:Name="IdNumber_DataInput"/>
                 <StackPanel x:Name="GenderHolder_DataInput">
                     <Label>Gender</Label>

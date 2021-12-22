@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import com.mauzerov.mobile.MainActivity
 import com.mauzerov.mobile.R
 import com.mauzerov.mobile.databinding.FragmentLoadBinding
+import com.mauzerov.mobile.scripts.CsvReader
 import com.mauzerov.mobile.scripts.XmlReader
+import java.io.File
+import java.io.FilenameFilter
 
 
 class LoadFragment : Fragment() {
@@ -34,11 +37,29 @@ class LoadFragment : Fragment() {
 
         binding.loadButton.setOnClickListener {
             val database = (activity as MainActivity).schoolData
+            if (binding.destination.text == null)
+                return@setOnClickListener
             val location = binding.destination.text.toString()
 
             MainActivity.databaseLocation = location
 
-            XmlReader.fill(location, database)
+            when(File(location).extension.lowercase()) {
+                "xml" -> XmlReader.fill(location, database, {
+                    (activity as MainActivity).makeErrorToast(R.string.toast_error_no_database_existence)
+                },{
+                    (activity as MainActivity).makeErrorToast(R.string.toast_message_database_existence)
+                })
+
+                "csv" -> CsvReader.fill(location, database, {
+                    (activity as MainActivity).makeErrorToast(R.string.toast_error_no_database_existence)
+                },{
+                    (activity as MainActivity).makeErrorToast(R.string.toast_message_database_existence)
+                })
+
+                else -> (activity as MainActivity).makeErrorToast(R.string.toast_error_wrong_extension)
+            }
+
+
         }
 
         return root

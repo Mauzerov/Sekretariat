@@ -77,7 +77,10 @@ namespace Desktop
         
         private void LoadData(bool @override)
         {
-            var dialog = new OpenFileDialog();
+            var dialog = new OpenFileDialog
+            {
+                Filter = "XML-File | *.xml",
+            };
 
             switch (dialog.ShowDialog())
             {
@@ -189,7 +192,8 @@ namespace Desktop
         {
             var dialog = new OpenFileDialog
             {
-                Filter = "CSV Files (*.csv)|*.csv|XML-File | *.xml|All Files | *.*"
+                Filter = "CSV Files (*.csv)|*.csv|XML-File | *.xml|All Files | *.*",
+                FilterIndex = 1
             };
             if (dialog.ShowDialog() != true)
                 return;
@@ -208,16 +212,25 @@ namespace Desktop
 
             if (dialog.ShowDialog() != true)
                 return;
-            using (var r = new StreamReader(dialog.OpenFile()))
+
+            try
             {
-                query = SelectQuery.Decompile(r.ReadToEnd().TrimEnd());
-                queryTable = query.Table;
+                using (var r = new StreamReader(dialog.OpenFile()))
+                {
+                    query = SelectQuery.Decompile(r.ReadToEnd().TrimEnd());
+                    queryTable = query.Table;
+                }
+
+                ContentControl.Content =
+                    // When None of the fields are selected pass whole 'table' fields
+                    new ResultTable(
+                        !query.Fields.Any() ? SchoolData.GetMemberPublicFieldsNames(queryTable) : query.Fields,
+                        // Pass A Filtered Selected Fields as a result
+                        new FQL.FQL(schoolData[queryTable]).Filter(query.Wheres).Select(query), schoolData);
+            } catch (Exception err)
+            {
+                MessageBox.Show("Unable To Load Query", "Exception!");
             }
-            ContentControl.Content =
-                // When None of the fields are selected pass whole 'table' fields
-                new ResultTable(!query.Fields.Any()?SchoolData.GetMemberPublicFieldsNames(queryTable):query.Fields, 
-                    // Pass A Filtered Selected Fields as a result
-                    new FQL.FQL(schoolData[queryTable]).Filter(query.Wheres).Select(query), schoolData);
         }
         private void OpenStudentInput(object o = null, object e = null)
         {

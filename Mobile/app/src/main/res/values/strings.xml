@@ -13,6 +13,13 @@
     <string name="menu_slideshow">Employees</string>
     <string name="data_missing_error">Data Not Found</string>
     <string name="load_data_button_error">Load Data</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="value">value</string>
+    <string name="op">op</string>>
+
+    <string name="toast_error_no_table">Please Select A Table</string>
+    <string name="toast_error_no_data">Selected Table Result Is Empty</string>
+    <string name="toast_error_no_database">Database Not Selected</string>
+    <string name="toast_error_no_database_existence">No Data In Specified Location</string>
+    <string name="toast_message_database_existence">Data Successfully Gathered</string>
+    <string name="toast_error_wrong_extension">Sekretariat Only Supports .xml &amp; .csv Files</string>
 </resources>

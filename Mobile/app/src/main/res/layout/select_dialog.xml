@@ -1,6 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ScrollView
+        android:id="@+id/fields_layout_scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:id="@+id/fields_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minWidth="100dp"
+            android:orientation="vertical"
+            >
+        </LinearLayout>
+    </ScrollView>
+    <View
+        android:id="@+id/spacer"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toEndOf="@id/fields_layout_scroll"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="400dp"
+        android:layout_height="0dp"
+        android:minWidth="200dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/closeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spacer"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/operandInsert"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:hint="@string/op"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/whereFieldInsert"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:hint="@string/value"
+                android:inputType="text" />
+
+            <ImageButton
+                android:id="@+id/addButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/add" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/whereStatements"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/closeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spacer"
+        app:srcCompat="@drawable/ic_baseline_search_24"
+        android:contentDescription="search" />
 </androidx.constraintlayout.widget.ConstraintLayout>
