@@ -9,7 +9,7 @@ namespace Desktop.DataClass.Persons
 {
     public abstract class Person : IFieldComparable
     {
-        public string Name, Surname, OldSurname, ParentsNames;
+        public string Name, Surname, FamilyName, ParentsNames;
         public DateTime BirthDate = DateTime.MinValue.Date;
         public string IdNumber;
         public object Photo;

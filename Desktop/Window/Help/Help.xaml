@@ -1,0 +1,89 @@
+﻿<Window x:Class="Desktop.Window.Help.Help"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="Help" Height="300" Width="400">
+    <ScrollViewer Padding="10">
+        <StackPanel Orientation="Vertical">
+            <!-- Query Selector -->
+            <Label FontWeight="Bold">Query Selector:</Label>
+            <Label Margin="10, -5">
+                Select table then wanted Field
+            </Label>
+            <Label Margin="10, -5">
+                Select field to filter &amp; Operand &amp; insert Value
+            </Label>
+            <Label Margin="10, -5">
+                Press Big Plus Button to add a condition
+            </Label>
+            <Label Margin="10, 0">
+                Press Download to Download .fql File
+            </Label>
+            <Label Margin="10, 0">
+                Press Clear Conditions to Clear Conditions
+            </Label>
+            <Label Margin="10, 0">
+                Press Execute Query to Search with Selected 
+            </Label>
+            <Label Margin="10,-10,0, 0">
+                Conditions And Fields
+            </Label>
+            
+            <Label Height="10"/><!-- Gap -->
+            <Label FontStyle="Italic" Margin="10,0,0,-5">
+                Filter is basically a mixture of SQL LIKE and REGEX.
+            </Label>
+            <Label FontStyle="Italic" Margin="10,-5, 0, 0">
+                No Selected Fields will Result in All Fields being Selected
+            </Label>
+            <!-- Query Selector -->
+            <!-- Insert Window -->
+            <Label FontWeight="Bold">Insert Window:</Label>
+            <Label Margin="10, -5">
+                Insert Your Data Into Fields Input
+            </Label>
+            <Label Margin="10, -5">
+                Press Add Person To Add Person
+            </Label>
+            <!-- Insert Window -->
+            <!-- Menu File -->
+            <Label FontWeight="Bold">Menu File:</Label>
+            <Label Margin="10, -5">
+                Save Data → Saves Data To Static Destination
+            </Label>
+            <Label Margin="10, -5">
+                Load Data → Overrides Current Data
+            </Label>
+            <Label Margin="10, -5">
+                Add Fields → Adds Fields To Current Data
+            </Label>
+            <Label Margin="10, -5">
+                Download Data → Saves Current Data To Specified Location
+            </Label>
+            <!-- Menu File-->
+            <!-- Menu Report-->
+            <Label FontWeight="Bold">Menu Report:</Label>
+            <Label Margin="10, -5">
+                Refresh → Refreshes Current Query With Current Data
+            </Label>
+            <Label Margin="10, -5">
+                Save As.. → Saves Query Result
+            </Label>
+            <Label Margin="10, -5">
+                Load → Loads Saved Query Result
+            </Label>
+            <!-- Menu Report-->
+            <!-- Menu Query-->
+            <Label FontWeight="Bold">Menu Query:</Label>
+            <Label Margin="10, -5">
+                New → Opens New Query Window 
+            </Label>
+            <Label Margin="10, -5">
+                Load → Loads .fql File and Runs it
+            </Label>
+            <!-- Menu Query-->
+        </StackPanel>
+    </ScrollViewer>
+</Window>

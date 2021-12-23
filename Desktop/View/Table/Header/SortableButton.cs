@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using Desktop.Include;
 
 namespace Desktop.View.Table.Header
 {
@@ -28,6 +29,7 @@ namespace Desktop.View.Table.Header
                     Content = ColumnTitle + " " + field;
                 else
                     Content = ColumnTitle;
+                Content = (Content as string).AddSpacesBeforeCapitalized();
             }
         }
 

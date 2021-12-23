@@ -71,6 +71,9 @@
         <Compile Include="View\TeacherClassSelector.xaml.cs">
           <DependentUpon>TeacherClassSelector.xaml</DependentUpon>
         </Compile>
+        <Compile Include="Window\Help\Help.xaml.cs">
+          <DependentUpon>Help.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Window\InsertCreator.xaml.cs">
           <DependentUpon>InsertCreator.xaml</DependentUpon>
         </Compile>
@@ -104,6 +107,7 @@
         <Page Include="Styles\Table\TabSelectorScrollBarThumb.xaml" />
         <Page Include="View\HintInput.xaml" />
         <Page Include="View\TeacherClassSelector.xaml" />
+        <Page Include="Window\Help\Help.xaml" />
         <Page Include="Window\InsertCreator.xaml" />
         <Page Include="Window\NeverAskAgainDialog.xaml" />
         <Page Include="Window\Query\QueryCreator.xaml" />

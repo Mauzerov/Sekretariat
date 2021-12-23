@@ -11,6 +11,7 @@ using Desktop.Scripts.CSV;
 using Desktop.Scripts.XML;
 using Desktop.View.Table;
 using Desktop.Window;
+using Desktop.Window.Help;
 using Desktop.Window.Query;
 using Microsoft.Win32;
 
@@ -30,49 +31,6 @@ namespace Desktop
             InitializeComponent();
             
             OpenDatabase();
-            /*
-            schoolData.Students.Add(new Student
-            {
-                Name = "Jerry",
-                Surname = "Gryn",
-                BirthDate = new DateTime(2002, 5, 12),
-                Class = "3pr",
-            });
-            schoolData.Students.Add(new Student
-            {
-                Name = "Josh",
-                Surname = "Gryn",
-                BirthDate = new DateTime(2002, 2, 23),
-                Class = "3pr",
-                Group = SchoolGroup.English | SchoolGroup.Italian
-            });
-            schoolData.Students.Add(new Student
-            {
-                Name = "Andrew",
-                Surname = "Potato",
-                BirthDate = new DateTime(2003, 4, 12),
-                Class = "2pr",
-            });
-            schoolData.Students.Add(new Student
-            {
-                Name = "Spadino",
-                Surname = "Panacletti",
-                BirthDate = new DateTime(2004, 5, 23),
-                Class = "1ai",
-            });
-            schoolData.Students.Add(new Student
-            {
-                Name = "No classer",
-                Surname = "classito",
-                BirthDate = new DateTime(2304, 2, 13),
-            });
-            schoolData.Students.Add(new Student
-            {
-                Name = "Noname",
-                Surname = "NoClass",
-                BirthDate = new DateTime(2049, 2, 27),
-            });
-            FromXml.Create(ref schoolData, "temp.xml");*/
         }
         
         private void LoadData(bool @override)
@@ -246,6 +204,11 @@ namespace Desktop
         {
             new InsertCreator(schoolData, typeof(Employee))
                 { Owner = this }.ShowDialog();
+        }
+
+        private void OpenHelp(object o = null, object e = null)
+        {
+            new Help{}.ShowDialog();
         }
         #endregion
     }

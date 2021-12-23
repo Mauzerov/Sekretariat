@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Desktop.Annotations;
 using Desktop.DataClass.Other;
+using Desktop.Include;
 using Desktop.View.Table.Header;
 using TableRow = System.Collections.Generic.Dictionary<string, System.IComparable>;
 namespace Desktop.View.Table
@@ -51,7 +52,7 @@ namespace Desktop.View.Table
                 var label = new SortableButton(_header)
                 {
                     ColumnTitle = title, // Static Value used To Change Button Content After Click
-                    Content = title,
+                    Content = title.AddSpacesBeforeCapitalized(),
                 };
                 label.Click += (sender, args) => // Sort Result & Chane Name To Indicate Sortable Direction
                 {

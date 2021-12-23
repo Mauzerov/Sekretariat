@@ -26,6 +26,7 @@
         <CommandBinding Command="IncreaseZoom" Executed="AddData"/>
         <CommandBinding Command="New" Executed="NewQueryButtonClick"/>
         <CommandBinding Command="Rewind" Executed="OpenDatabase"/>
+        <CommandBinding Command="Help" Executed="OpenHelp"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Key="O" Modifiers="Control" Command="Open"/>
