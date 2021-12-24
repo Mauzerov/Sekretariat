@@ -59,7 +59,47 @@ class XmlReader {
 class CsvReader {
     companion object {
         fun fill(_source: String, destination: SchoolData, onError: () -> Unit = {}, onSuccess: () -> Unit = {}) {
+            if (_source == "")
+                return
 
+            for (table in destination.tables())
+                destination[table]!!.clear()
+
+            try {
+                val source = if (!Regex("https?://.*").matches(_source)) "http://$_source" else _source
+                Thread {
+                    try {
+                        val url = URL(source)
+
+                        val connection = url.openConnection() as HttpURLConnection
+                        connection.connectTimeout = 4 * 1000
+
+                        val reader = connection.inputStream.bufferedReader();
+                        val table = reader.readLine().trim()
+                        val columns = reader.readLine().trim().splitNotInCommas(',')
+
+                        do {
+                            val line = reader.readLine() ?: break;
+                            val values = line.splitNotInCommas(',')
+                            val row = mutableMapOf<String, Comparable<String>>()
+
+                            for ((column, value) in columns.zip(values)) {
+                                row[column.subSequence(1, column.length - 1).toString()] =
+                                    value.subSequence(1, value.length - 1).toString()
+                            }
+                            destination[table]!!.add(row)
+                        } while(true)
+
+                        onSuccess()
+                    }catch (e: Exception) {
+                        onError()
+                        android.util.Log.e("Exception", e.message?:"")
+                    }
+                }.start()
+            }catch (e: Exception) {
+                onError()
+                android.util.Log.e("Exception", e.message?:"")
+            }
         }
     }
 }

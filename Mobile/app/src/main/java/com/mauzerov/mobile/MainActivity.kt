@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -18,6 +19,7 @@ import com.mauzerov.mobile.databinding.ActivityMainBinding
 import com.mauzerov.mobile.scripts.SchoolData
 import com.mauzerov.mobile.scripts.Where
 import com.mauzerov.mobile.scripts.XmlReader
+import com.mauzerov.mobile.ui.HelpDialog
 import com.mauzerov.mobile.ui.SelectDialog
 import kotlinx.coroutines.runBlocking
 import java.util.*
@@ -76,6 +78,16 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.action_help -> {
+                HelpDialog().show(supportFragmentManager, "helpDialog")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

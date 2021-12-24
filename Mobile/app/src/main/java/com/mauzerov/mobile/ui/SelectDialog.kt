@@ -48,8 +48,9 @@ class SelectDialog(private val tableName: String) : DialogFragment() {
             where.Value = binding.whereFieldInsert.text.toString()
 
             val op = binding.operandInsert.text.toString()
-            if (!Where.Operands.contains(op))
-                return@setOnClickListener
+            if (!Where.Operands.contains(op)) {
+                (activity as MainActivity).makeErrorToast(R.string.toast_error_no_operand)
+            }
             where.Op = op
             wheres.add(where)
             WhereStatement(context, this, binding.whereStatements, where)

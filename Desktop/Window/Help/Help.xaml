@@ -33,10 +33,13 @@
             
             <Label Height="10"/><!-- Gap -->
             <Label FontStyle="Italic" Margin="10,0,0,-5">
-                Filter is basically a mixture of SQL LIKE and REGEX.
+                * Filter is basically a mixture of SQL LIKE and REGEX.
+            </Label>
+            <Label FontStyle="Italic" Margin="10,-5, 0, -5">
+                * No Selected Fields will Result in All Fields being Selected
             </Label>
             <Label FontStyle="Italic" Margin="10,-5, 0, 0">
-                No Selected Fields will Result in All Fields being Selected
+                * Selection Order Matters
             </Label>
             <!-- Query Selector -->
             <!-- Insert Window -->

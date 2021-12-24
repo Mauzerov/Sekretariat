@@ -69,16 +69,16 @@ namespace Desktop.DataClass.Other
 
         public static Type GetFieldType(string tableSelected, string field)
         {
-            switch (tableSelected)
+            switch (tableSelected.ToLower())
             {
-                case "Students":
-                case "Student":
+                case "students":
+                case "student":
                     return Person.GetPublicFields(typeof(Student)).Where(e => e.Name == field).ToArray()[0].FieldType;
-                case "Teachers":
-                case "Teacher":
+                case "teachers":
+                case "teacher":
                     return Person.GetPublicFields(typeof(Teacher)).Where(e => e.Name == field).ToArray()[0].FieldType;
-                case "Employees":
-                case "Employee":
+                case "employees":
+                case "employee":
                     return Person.GetPublicFields(typeof(Employee)).Where(e => e.Name == field).ToArray()[0].FieldType;
                 default:
                     return typeof(object);
@@ -88,16 +88,16 @@ namespace Desktop.DataClass.Other
         {
             /* I don't want to think about this           */
             /* C# Doesn't Allow Compile Time Type Casting */
-            switch (tableSelected)
+            switch (tableSelected.ToLower())
             {
-                case "Students":
-                case "Student":
+                case "students":
+                case "student":
                     return Person.GetPublicFieldsNames(typeof(Student));
-                case "Teachers":
-                case "Teacher":
+                case "teachers":
+                case "teacher":
                     return Person.GetPublicFieldsNames(typeof(Teacher));
-                case "Employees":
-                case "Employee":
+                case "employees":
+                case "employee":
                     return Person.GetPublicFieldsNames(typeof(Employee));
                 default:
                     return new string[] { };

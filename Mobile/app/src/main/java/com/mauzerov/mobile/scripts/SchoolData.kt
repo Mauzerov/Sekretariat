@@ -10,19 +10,19 @@ class SchoolData
     var Employees : Table = mutableListOf()
 
     operator fun get(name: String) : Table? {
-            return when (name) {
-                "Student" , "Students" -> Students
-                "Teacher" , "Teachers" -> Teachers
-                "Employee" , "Employees" -> Employees
+            return when (name.lowercase()) {
+                "student" , "students" -> Students
+                "teacher" , "teachers" -> Teachers
+                "employee" , "employees" -> Employees
                 else -> null
             }
     }
 
     operator fun set(name: String, value: Table) {
-        when (name) {
-            "Student" , "Students" -> Students = value
-            "Teacher" , "Teachers" -> Teachers = value
-            "Employee" , "Employees" -> Employees = value
+        when (name.lowercase()) {
+            "student" , "students" -> Students = value
+            "teacher" , "teachers" -> Teachers = value
+            "employee" , "employees" -> Employees = value
             else -> throw NotImplementedError("Lack Of Tables Of Name: $name")
         }
     }

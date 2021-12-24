@@ -7,9 +7,7 @@ class Where {
 
     companion object {
         var Operands = mutableListOf("=", "<>", "<", "<=", ">=", ">")
-        fun Human(where: Where): String {
-            return where.Human()
-        }
+        fun Human(where: Where): String = where.Human()
     }
 
     fun Human(): String {
