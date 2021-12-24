@@ -46,6 +46,7 @@ namespace Desktop.Scripts.CSV
             {
                 if (!data.Any())
                     return;
+                writer.WriteLine(table.ToLower());
                 var keys = data.ToList()[0].Keys;
                 
                 var @string = keys.Where(s => s != "UUID").Aggregate((workingSentence, next) => $"\"{next}\",{workingSentence}");
