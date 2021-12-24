@@ -20,6 +20,7 @@ namespace Desktop.Window
 
         private void SetYes(object o, object e)
         {
+            ShowAgain = Check.IsChecked == true;
             if (Check.IsChecked == true)
                 NeverAskAgainAction.Invoke();
             Result = true;
@@ -27,6 +28,7 @@ namespace Desktop.Window
         }
         private void SetNo(object o, object e)
         {
+            ShowAgain = Check.IsChecked == true;
             if (Check.IsChecked == true)
                 NeverAskAgainAction.Invoke();
             Result = false;
