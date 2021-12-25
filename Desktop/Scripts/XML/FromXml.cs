@@ -94,7 +94,7 @@ namespace Desktop.Scripts.XML
         private static void WriteElement(XmlWriter writer, string table, TableRow dataRow)
         {
             writer.WriteStartElement(table);
-            foreach (var el in dataRow.Where(e => e.Key !=  "UUID" && e.Key != "Photo"))
+            foreach (var el in dataRow.Where(e => e.Key !=  "UUID" && e.Key != "Zdjecie"))
             {
                 writer.WriteStartAttribute(el.Key);
                 writer.WriteValue(el.Value.ToString());

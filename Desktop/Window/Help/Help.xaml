@@ -10,81 +10,80 @@
             <!-- Query Selector -->
             <Label FontWeight="Bold">Query Selector:</Label>
             <Label Margin="10, -5">
-                Select table then wanted Field
+                Wybierz tabelę następnie chciane pola 
             </Label>
             <Label Margin="10, -5">
-                Select field to filter &amp; Operand &amp; insert Value
+                Wybierz polae do wyszukiwania &amp; operator &amp;
             </Label>
             <Label Margin="10, -5">
-                Press Big Plus Button to add a condition
+                Następnie wpisz wyszukiwaną wartość
+            </Label>
+            <Label Margin="10, -5">
+                Kliknij Duży Przycisk z Plusem aby dodać warunek
             </Label>
             <Label Margin="10, 0">
-                Press Download to Download .fql File
+                Klikni Pobirz aby pobrać plik .fql
             </Label>
             <Label Margin="10, 0">
-                Press Clear Conditions to Clear Conditions
+                Kliknij Usuń Warunki Aby Usunąć Warunki
             </Label>
             <Label Margin="10, 0">
-                Press Execute Query to Search with Selected 
+                Kliknij Wykonaj aby wyszukać
             </Label>
-            <Label Margin="10,-10,0, 0">
-                Conditions And Fields
-            </Label>
-            
             <Label Height="10"/><!-- Gap -->
             <Label FontStyle="Italic" Margin="10,0,0,-5">
-                * Filter is basically a mixture of SQL LIKE and REGEX.
+                * Wyszukiwanie działa jak połączenie SQL LIKE i REGEX.
             </Label>
             <Label FontStyle="Italic" Margin="10,-5, 0, -5">
-                * No Selected Fields will Result in All Fields being Selected
+                * Brak Wybranych Pól Spowoduje Wybranie Wszystkich
             </Label>
             <Label FontStyle="Italic" Margin="10,-5, 0, 0">
-                * Selection Order Matters
+                * Kolejność wybierania ma zanczenie
             </Label>
             <!-- Query Selector -->
             <!-- Insert Window -->
             <Label FontWeight="Bold">Insert Window:</Label>
             <Label Margin="10, -5">
-                Insert Your Data Into Fields Input
+                Wpisz Wartość to pól edycyjnych
             </Label>
             <Label Margin="10, -5">
-                Press Add Person To Add Person
+                Kliknij Dodaj Aby Dodać do wybranej tabeli
             </Label>
             <!-- Insert Window -->
             <!-- Menu File -->
             <Label FontWeight="Bold">Menu File:</Label>
             <Label Margin="10, -5">
-                Save Data → Saves Data To Static Destination
+                Save Data → Zapisuje Dane Do Statycznej Lokalizacji
             </Label>
             <Label Margin="10, -5">
-                Load Data → Overrides Current Data
+                Load Data → Nadpisuje Aktualne Dane
             </Label>
             <Label Margin="10, -5">
-                Add Fields → Adds Fields To Current Data
+                Add Fields → Dopisuje Do Aktualnych Danych
             </Label>
             <Label Margin="10, -5">
-                Download Data → Saves Current Data To Specified Location
+                Download Data → Zapisuje Dane Do Wybranej Lokalizacji
             </Label>
             <!-- Menu File-->
             <!-- Menu Report-->
             <Label FontWeight="Bold">Menu Report:</Label>
             <Label Margin="10, -5">
-                Refresh → Refreshes Current Query With Current Data
+                Refresh → Odświerza Wyniki Z Aktualnymi Danymi
             </Label>
             <Label Margin="10, -5">
-                Save As.. → Saves Query Result
+                Save As.. → Zapisuje Wynik
             </Label>
             <Label Margin="10, -5">
-                Load → Loads Saved Query Result
+                Load → Wczytuje Wynik Do Podglądu
             </Label>
             <!-- Menu Report-->
             <!-- Menu Query-->
             <Label FontWeight="Bold">Menu Query:</Label>
             <Label Margin="10, -5">
-                New → Opens New Query Window 
+                New → Otwiera nowe Okno Do Tworzenia Kwerend
             </Label>
             <Label Margin="10, -5">
-                Load → Loads .fql File and Runs it
+                Load → Wczytuje i wykonuje plik .fql
             </Label>
             <!-- Menu Query-->
         </StackPanel>

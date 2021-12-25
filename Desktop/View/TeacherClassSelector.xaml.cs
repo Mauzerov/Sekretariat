@@ -22,6 +22,8 @@ namespace Desktop.View
             if (
                 !ClassInput.Text.Contains(",") &&
                 !ClassInput.Text.Contains(":") &&
+                !ClassInput.Text.Contains("\"") &&
+                !ClassInput.Text.Contains("\'") &&
                 ClassInput.HintText != ClassInput.Text &&
                 ClassInput.Text != "" &&
                 int.TryParse(HoursInput.Text, out var number)
@@ -61,7 +63,7 @@ namespace Desktop.View
             }
             else
             {
-                MessageBox.Show("Input Data Is Not A Valid Type!", "Unable To Add!");
+                MessageBox.Show("Niepoporawna Warość!", "Nie Dodano!");
             }
         }
     }

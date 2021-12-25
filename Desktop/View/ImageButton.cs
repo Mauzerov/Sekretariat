@@ -35,7 +35,7 @@ namespace Desktop.View
                         return;
                     case true:
                         if (dataRow != null)
-                            dataRow["Photo"] = dialog.FileName;
+                            dataRow["Zdjecie"] = dialog.FileName;
                         Source = dialog.FileName;
                         UpdateImage();
                         break;

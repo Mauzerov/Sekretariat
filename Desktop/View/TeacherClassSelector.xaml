@@ -12,8 +12,8 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-        <local:HintInput Grid.Column="0" HintText="Class" x:Name="ClassInput"/>
-        <local:HintInput Grid.Column="1" HintText="Hours" x:Name="HoursInput"/>
+        <local:HintInput Grid.Column="0" HintText="Klasa" x:Name="ClassInput"/>
+        <local:HintInput Grid.Column="1" HintText="Godziny" x:Name="HoursInput"/>
         <Button Grid.Column="2" Click="AddElement">
             <Image Source="add.png"/>
         </Button>

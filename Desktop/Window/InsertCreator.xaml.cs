@@ -38,7 +38,7 @@ namespace Desktop.Window
                     Content = gender,
                     GroupName = "GenderGroup"
                 };
-                if (((Gender) gender) == Gender.Other)
+                if (((Gender) gender) == Gender.Inne)
                     btn.IsChecked = true;
                 GenderHolder_DataInput.Children.Add(btn);
             }
@@ -158,7 +158,7 @@ namespace Desktop.Window
                 var currentName = element.Name;
                 if (currentName.Replace("_DataInput", "").EndsWith("Holder"))
                 {
-                    if (!currentName.StartsWith("Gender")) continue;
+                    if (!currentName.StartsWith("Plec")) continue;
                     
                     if (element is StackPanel frameworkElement)
                     {
@@ -170,10 +170,10 @@ namespace Desktop.Window
                         if (uiElements.Any())
                             valueElement = (Gender) ((RadioButton) uiElements.ToList()[0]).Content;
                         else
-                            valueElement = Gender.Other;
+                            valueElement = Gender.Inne;
                     }
                     else
-                        valueElement = Gender.Other;
+                        valueElement = Gender.Inne;
                 }
                 else
                 {
@@ -193,7 +193,7 @@ namespace Desktop.Window
                                 .Select(ee => ((ListBoxItem) ee).Tag.ToString())
                                 .Aggregate("", (old, now) => old + now + ", ");
                             if (enums == "")
-                                enums = SchoolGroup.None.ToString();
+                                enums = SchoolGroup.Zadne.ToString();
                             valueElement = (IComparable) Enum.Parse(typeof(SchoolGroup), enums);
                             break;
                         case ComboBox comboBox:
@@ -209,7 +209,7 @@ namespace Desktop.Window
             
             SchoolData[_type.Name].Add(newPerson.AsDict());
             MessageBox.Show(
-                $"Successfully Created & Added New {_type.Name}!", "Success!");
+                $"Poprawnie Stworzono & Dodano Nowego {_type.Name}!", "Sukcess!");
         }
     }
 }

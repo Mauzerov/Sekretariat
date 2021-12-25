@@ -160,7 +160,7 @@ namespace Desktop.Window.Query
             
             switch (((ComboBoxItem)e.AddedItems[0]).Content as string)
             {
-                case "Photo":
+                case "Zdjecie":
                     break;
                 case "StartDate": case "BirthDate":
                     InputParent.Children.Add(

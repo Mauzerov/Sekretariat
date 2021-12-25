@@ -7,7 +7,7 @@ namespace Desktop.DataClass.Persons
 {
     public partial class Student : Person
     {
-        public string Class;
-        public SchoolGroup Group;
+        public string Klasa;
+        public SchoolGroup Grupa;
     }
 }

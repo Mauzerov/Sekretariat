@@ -2,6 +2,6 @@
 {
     public enum Gender
     {
-        Other = 0, Female, Male
+        Inne = 0, Kobieta, Mezczyzna
     }
 }

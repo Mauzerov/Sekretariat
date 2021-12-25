@@ -7,9 +7,9 @@ namespace Desktop.DataClass.Persons
 {
     public partial class Teacher : Person
     {
-        public string Class;
-        public string Subjects;
-        public Class Classes;
-        public DateTime StartDate;
+        public string Klasa;
+        public string Przedmioty;
+        public Class Klasy;
+        public DateTime DataRozpoczecia;
     }
 }

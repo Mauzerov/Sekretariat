@@ -6,7 +6,7 @@ namespace Desktop.DataClass.Persons
 {
     public partial class Employee : Person
     {
-        public string JobTime, Info;
-        public DateTime StartDate;
+        public string Etat, Opis;
+        public DateTime DataRozpoczecia;
     }
 }

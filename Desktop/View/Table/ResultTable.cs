@@ -112,7 +112,7 @@ namespace Desktop.View.Table
                             IsEnabled = false
                         };
                     }
-                    else if (cell.Key == "Photo")
+                    else if (cell.Key == "Zdjecie")
                     {
                         element = new ImageButton(
                             File.Exists(cell.Value.ToString())?cell.Value.ToString(): "NULL"

@@ -68,8 +68,8 @@
                 <Grid Name="WhereRowOutput" VerticalAlignment="Top"/>
             </ScrollViewer>
         </Grid>
-        <Button Grid.Row="3" Grid.Column="2" Click="Download">Download</Button>
-        <Button Grid.Row="3" Grid.Column="3" Click="ClearWheres">Clear Conditions</Button>
-        <Button Grid.Row="3" Grid.Column="4" Click="Close">Execute Query</Button>
+        <Button Grid.Row="3" Grid.Column="2" Click="Download">Pobierz</Button>
+        <Button Grid.Row="3" Grid.Column="3" Click="ClearWheres">Usuń Warunki</Button>
+        <Button Grid.Row="3" Grid.Column="4" Click="Close">Wykonaj</Button>
     </Grid>
 </Window>

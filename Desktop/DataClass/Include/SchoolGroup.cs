@@ -5,16 +5,16 @@ namespace Desktop.DataClass.Include
     [Flags]
     public enum SchoolGroup : long
     {
-        None = 0,
-        English = 1 << 0,
-        German = English << 1,
-        Italian = German << 1,
-        Russian = Italian << 1,
-        Chess = Russian << 1,
-        Pe = Chess << 1,
-        Math = Pe << 1,
-        Physics = Math << 1,
-        ComputerScience = Physics << 1,
-        Other = ComputerScience << 1
+        Zadne = 0,
+        Angielski = 1 << 0,
+        Niemiecki = Angielski << 1,
+        Wloski = Niemiecki << 1,
+        Rosyjski = Wloski << 1,
+        Szachy = Rosyjski << 1,
+        Wf = Szachy << 1,
+        Matematyka = Wf << 1,
+        Fizyka = Matematyka << 1,
+        Informatyka = Fizyka << 1,
+        Inne = Informatyka << 1
     }
 }

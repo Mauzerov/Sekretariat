@@ -9,11 +9,11 @@ namespace Desktop.DataClass.Persons
 {
     public abstract class Person : IFieldComparable
     {
-        public string Name, Surname, FamilyName, ParentsNames;
-        public DateTime BirthDate = DateTime.MinValue.Date;
-        public string IdNumber;
-        public object Photo;
-        public Gender Gender;
+        public string Imie, Nazwisko, NazwiskoPanienskie, ImionaRodzicow;
+        public DateTime DataUrodzenia = DateTime.MinValue.Date;
+        public string Pesel;
+        public object Zdjecie;
+        public Gender Plec;
 
         public Dictionary<string, IComparable> AsDict()
         // Inheritable -> Adds Inherited Fields As Well
