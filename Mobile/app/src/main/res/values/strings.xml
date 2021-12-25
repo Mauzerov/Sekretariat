@@ -1,32 +1,30 @@
 <resources>
     <string name="app_name">Sekretariat</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_help">Help</string>
+    <string name="action_help">Pomoc</string>
 
-    <string name="menu_load">Load Data</string>
-    <string name="menu_home">Students</string>
-    <string name="menu_gallery">Teachers</string>
-    <string name="menu_slideshow">Employees</string>
-    <string name="data_missing_error">Data Not Found</string>
-    <string name="load_data_button_error">Load Data</string>
+    <string name="menu_load">Wczytywanie</string>
+    <string name="menu_home">Uczniowie</string>
+    <string name="menu_gallery">Nauczyciele</string>
+    <string name="menu_slideshow">Pracownicy</string>
+    <string name="data_missing_error">Dane Nie Znalezione</string>
+    <string name="load_data_button_error">Załaduj Dane</string>
     <string name="value">value</string>
     <string name="op">op</string>>
-    <string name="dismiss">Dismiss</string>
+    <string name="dismiss">Odrzuć</string>
 
-    <string name="toast_error_no_table">Please Select A Table</string>
-    <string name="toast_error_no_data">Selected Table Result Is Empty</string>
-    <string name="toast_error_no_database">Database Not Selected</string>
-    <string name="toast_error_no_database_existence">No Valid Data In Specified Location</string>
-    <string name="toast_message_database_existence">Data Successfully Gathered</string>
-    <string name="toast_error_wrong_extension">Sekretariat Only Supports .xml &amp; .csv Files</string>
-    <string name="toast_error_no_operand">Invalid Operand</string>
+    <string name="toast_error_no_table">Wybierz Tabelę</string>
+    <string name="toast_error_no_data">SWybrana Tabela Jest Pusta</string>
+    <string name="toast_error_no_database">Nie Wybrano Danych</string>
+    <string name="toast_error_no_database_existence">Niepoprawny Format Danych</string>
+    <string name="toast_message_database_existence">Obczytano Dane Poprawnie</string>
+    <string name="toast_error_wrong_extension">Sekretariat Wspiera Tylko Pliki .xml &amp; .csv</string>
+    <string name="toast_error_no_operand">Niepoprawny Operator</string>
 
-    <string name="help_line1">Firstly Insert Data Location</string>
-    <string name="help_line2a">Press </string>
-    <string name="help_line2b">Icon To Filter Result</string>
-    <string name="help_line3a">Select Column Insert Operand</string>
+    <string name="help_line1">Najpierw wczytaj dane</string>
+    <string name="help_line2a">Kliknij </string>
+    <string name="help_line2b">Ikone Aby Wyszukiwać</string>
+    <string name="help_line3a">Wybierz kolumnę, wpisz operator</string>
     <string name="help_line3b">=, &lt;&gt;, &lt;, &gt;, &gt;=, &lt;=</string>
-    <string name="help_line4">Scroll Up To Refresh</string>
-    <string name="search">Search</string>
+    <string name="help_line4">Przewiń w górę, aby odświeżyć</string>
+    <string name="search">Wyszukaj</string>
 </resources>

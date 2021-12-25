@@ -30,13 +30,21 @@ namespace ConsoleStringTest
             ret.Add(text.Substring(lastIndex, text.Length - lastIndex));
             return ret.ToArray();
         }
+
+        public static void Print(int x, Func<int, int, int> func)
+        {
+            Console.WriteLine(func(x, x));
+        }
+
+        public static int Power(int x, int y)
+        {
+            return x * y;
+        }
+        
         public static void Main(string[] args)
         {
-            var e = "Commas Are, \"The, Fucin\', Best\", Thats For Sure, Kappa, Xd".SplitNotInCommas(", ");
-            foreach (var ee in e)
-            {
-                Console.WriteLine(ee);
-            }
+            Print(10, (int a, int b) => a + b);
+            Print(10, Power);
         }
     }
 }
