@@ -43,6 +43,11 @@ class SelectDialog(private val tableName: String) : DialogFragment() {
         }
 
         binding.addButton.setOnClickListener { it as ImageButton
+            if (group.checkedRadioButtonId == -1) {
+                (activity as MainActivity).makeErrorToast(R.string.toast_error_no_field_selected)
+                return@setOnClickListener
+            }
+
             val where = Where()
             where.Key = binding.root.findViewById<RadioButton>(group.checkedRadioButtonId).text.toString()
             where.Value = binding.whereFieldInsert.text.toString()
@@ -50,6 +55,7 @@ class SelectDialog(private val tableName: String) : DialogFragment() {
             val op = binding.operandInsert.text.toString()
             if (!Where.Operands.contains(op)) {
                 (activity as MainActivity).makeErrorToast(R.string.toast_error_no_operand)
+                return@setOnClickListener
             }
             where.Op = op
             wheres.add(where)

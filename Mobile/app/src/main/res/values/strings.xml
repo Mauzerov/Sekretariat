@@ -3,22 +3,25 @@
     <string name="action_help">Pomoc</string>
 
     <string name="menu_load">Wczytywanie</string>
-    <string name="menu_home">Uczniowie</string>
-    <string name="menu_gallery">Nauczyciele</string>
-    <string name="menu_slideshow">Pracownicy</string>
+    <string name="menu_home">Students</string>
+    <string name="menu_gallery">Teachers</string>
+    <string name="menu_slideshow">Employees</string>
     <string name="data_missing_error">Dane Nie Znalezione</string>
     <string name="load_data_button_error">Załaduj Dane</string>
     <string name="value">value</string>
     <string name="op">op</string>>
     <string name="dismiss">Odrzuć</string>
+    <string name="search">Wyszukaj</string>
+    <string name="load">Załaduj</string>
 
     <string name="toast_error_no_table">Wybierz Tabelę</string>
     <string name="toast_error_no_data">Wybrana Tabela Jest Pusta</string>
     <string name="toast_error_no_database">Nie Wybrano Danych</string>
     <string name="toast_error_no_database_existence">Niepoprawny Format Danych</string>
-    <string name="toast_message_database_existence">Obczytano Dane Poprawnie</string>
+    <string name="toast_message_database_existence">Odczytano Dane Poprawnie</string>
     <string name="toast_error_wrong_extension">Sekretariat Wspiera Tylko Pliki .xml &amp; .csv</string>
     <string name="toast_error_no_operand">Niepoprawny Operator</string>
+    <string name="toast_error_no_field_selected">Brak Wybranego Pola</string>
 
     <string name="help_line1">Najpierw wczytaj dane</string>
     <string name="help_line2a">Kliknij </string>
@@ -26,5 +29,4 @@
     <string name="help_line3a">Wybierz kolumnę, wpisz operator</string>
     <string name="help_line3b">=, &lt;&gt;, &lt;, &gt;, &gt;=, &lt;=</string>
     <string name="help_line4">Przewiń w górę, aby odświeżyć</string>
-    <string name="search">Wyszukaj</string>
 </resources>
