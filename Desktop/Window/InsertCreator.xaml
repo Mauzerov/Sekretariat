@@ -20,14 +20,14 @@
         
         <ScrollViewer Grid.Row="0" Grid.Column="0">
             <StackPanel Name="Right">
-                <inputs:HintInput HintText="Imie" x:Name="Name_DataInput"/>
-                <inputs:HintInput HintText="Nazwisko" x:Name="Surname_DataInput"/>
-                <inputs:HintInput HintText="Nazwisko Panieńskie" x:Name="OldSurname_DataInput"/>
-                <inputs:HintInput HintText="Imiona Rodziców" x:Name="ParentsNames_DataInput"/>
+                <inputs:HintInput HintText="Imie" x:Name="Imie_DataInput"/>
+                <inputs:HintInput HintText="Nazwisko" x:Name="Nazwisko_DataInput"/>
+                <inputs:HintInput HintText="Nazwisko Panieńskie" x:Name="NazwiskoPanienskie_DataInput"/>
+                <inputs:HintInput HintText="Imiona Rodziców" x:Name="ImionaRodzicow_DataInput"/>
                 <Label>Data Urodzenia</Label>
-                <DatePicker Name="BirthDate_DataInput" SelectedDate="{x:Static sys:DateTime.Now}"/>
-                <inputs:HintInput HintText="Pesel" x:Name="IdNumber_DataInput"/>
-                <StackPanel x:Name="GenderHolder_DataInput">
+                <DatePicker Name="DataUrodzenia_DataInput" SelectedDate="{x:Static sys:DateTime.Now}"/>
+                <inputs:HintInput HintText="Pesel" x:Name="Pesel_DataInput"/>
+                <StackPanel x:Name="PlecHolder_DataInput">
                     <Label>Płeć</Label>
                 </StackPanel>
             </StackPanel>

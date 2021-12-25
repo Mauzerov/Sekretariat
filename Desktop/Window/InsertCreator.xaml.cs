@@ -40,7 +40,7 @@ namespace Desktop.Window
                 };
                 if (((Gender) gender) == Gender.Inne)
                     btn.IsChecked = true;
-                GenderHolder_DataInput.Children.Add(btn);
+                PlecHolder_DataInput.Children.Add(btn);
             }
 
             var fields = type.GetFields(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
@@ -84,7 +84,8 @@ namespace Desktop.Window
                     {
                         element = new ListBox
                         {
-                            Name = field.Name + "_DataInput"
+                            Name = field.Name + "_DataInput",
+                            SelectionMode = SelectionMode.Multiple
                         };
                         foreach (var value in Enum.GetValues(field.FieldType))
                             (element as ListBox).Items.Add(
@@ -165,7 +166,7 @@ namespace Desktop.Window
                         var checkedValue = frameworkElement.Children.Cast<UIElement>()
                             .Where(ee => ee is RadioButton)
                             .Where(ee => ((RadioButton) ee).IsChecked == true);
-
+                        Debug.WriteLine(checkedValue.Count());
                         var uiElements = checkedValue as UIElement[] ?? checkedValue.ToArray();
                         if (uiElements.Any())
                             valueElement = (Gender) ((RadioButton) uiElements.ToList()[0]).Content;
@@ -194,6 +195,8 @@ namespace Desktop.Window
                                 .Aggregate("", (old, now) => old + now + ", ");
                             if (enums == "")
                                 enums = SchoolGroup.Zadne.ToString();
+                            else
+                                enums = enums.Substring(0, enums.Length - 2);
                             valueElement = (IComparable) Enum.Parse(typeof(SchoolGroup), enums);
                             break;
                         case ComboBox comboBox:
