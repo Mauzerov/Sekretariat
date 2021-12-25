@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Persons>
+<Students Klasa="3" Grupa="Angielski, Niemiecki, Inne" Imie="Kacper" Nazwisko="Nowak" NazwiskoPanienskie="NULL" ImionaRodzicow="Ewa Amadeusz" DataUrodzenia="16.06.2000 00:00:00" Pesel="78459349633" Plec="Mezczyzna" />
+<Students Klasa="2" Grupa="Rosyjski, Szachy, Matematyka" Imie="Maja" Nazwisko="Stefańska" NazwiskoPanienskie="NULL" ImionaRodzicow="Aleksandra Wiktor" DataUrodzenia="17.07.2001 00:00:00" Pesel="53478928934" Plec="Kobieta" />
+<Students Klasa="2" Grupa="Zadne" Imie="Dominika" Nazwisko="Sikora" NazwiskoPanienskie="NULL" ImionaRodzicow="Marianna Bartek" DataUrodzenia="20.07.2001 00:00:00" Pesel="53478928934" Plec="Kobieta" />
+<Students Klasa="1" Grupa="Niemiecki, Informatyka, Inne" Imie="Julia" Nazwisko="Głowacka" NazwiskoPanienskie="NULL" ImionaRodzicow="Zuzanna Kacper" DataUrodzenia="17.06.2002 00:00:00" Pesel="56237380934" Plec="Kobieta" />
+<Students Klasa="1" Grupa="Wloski, Wf, Informatyka, Inne" Imie="Karol" Nazwisko="Bąk" NazwiskoPanienskie="NULL" ImionaRodzicow="Maja Dominik" DataUrodzenia="11.07.2002 00:00:00" Pesel="54352335345" Plec="Mezczyzna" />
+<Students Klasa="3" Grupa="Rosyjski, Szachy, Informatyka, Inne" Imie="Wiktor" Nazwisko="Mazur" NazwiskoPanienskie="NULL" ImionaRodzicow="Wiktoria Iwo" DataUrodzenia="23.02.2000 00:00:00" Pesel="54352335345" Plec="Mezczyzna" />
+<Students Klasa="2" Grupa="Zadne" Imie="Kacper" Nazwisko="Grabowski" NazwiskoPanienskie="NULL" ImionaRodzicow="Julia Marcin" DataUrodzenia="14.03.2001 00:00:00" Pesel="13877138773" Plec="Mezczyzna" />
+<Students Klasa="2" Grupa="Angielski, Informatyka" Imie="Bartek" Nazwisko="Pietrzak" NazwiskoPanienskie="NULL" ImionaRodzicow="Zuzanna Jan" DataUrodzenia="17.01.2001 00:00:00" Pesel="13877138773" Plec="Mezczyzna" />
+<Teachers Klasa="NULL" Przedmioty="Wf" Klasy="2:32,  1:15" DataRozpoczecia="23.07.2002 00:00:00" Imie="Antoni" Nazwisko="Sawicki" NazwiskoPanienskie="NULL" ImionaRodzicow="Karolina Mikołaj" DataUrodzenia="24.07.1980 00:00:00" Pesel="98278398278" Plec="Mezczyzna" />
+<Teachers Klasa="3" Przedmioty="Matematyka" Klasy="1:5, 2:6" DataRozpoczecia="02.10.2000 00:00:00" Imie="Oliwia" Nazwisko="Kozłowska" NazwiskoPanienskie="Walczak" ImionaRodzicow="Zofia Jeremiasz" DataUrodzenia="19.02.1979 00:00:00" Pesel="22450322450" Plec="Kobieta" />
+<Teachers Klasa="2" Przedmioty="Niemiecki" Klasy="1:5, 2:6" DataRozpoczecia="16.07.2000 00:00:00" Imie="Aleksandra" Nazwisko="Wróbel" NazwiskoPanienskie="Klimek" ImionaRodzicow="Julita Michał" DataUrodzenia="27.04.1976 00:00:00" Pesel="72064720642" Plec="Kobieta" />
+<Teachers Klasa="1" Przedmioty="Angielski" Klasy="1:5, 2:6" DataRozpoczecia="22.10.1999 00:00:00" Imie="Magdalena" Nazwisko="Żukowska" NazwiskoPanienskie="Wróbel" ImionaRodzicow="Martyna Franciszek" DataUrodzenia="01.05.1980 00:00:00" Pesel="38087380872" Plec="Kobieta" />
+<Teachers Klasa="NULL" Przedmioty="Matematyka" Klasy="2:2, 1:5, 3:12" DataRozpoczecia="30.07.1989 00:00:00" Imie="Franciszek" Nazwisko="Lewandowski" NazwiskoPanienskie="NULL" ImionaRodzicow="Klaudia Patryk" DataUrodzenia="27.12.1968 00:00:00" Pesel="88942889422" Plec="Mezczyzna" />
+<Employees Etat="Pełny" Opis="Woźna" DataRozpoczecia="08.10.2009 00:00:00" Imie="Weronika" Nazwisko="Zając" NazwiskoPanienskie="Markiewicz" ImionaRodzicow="Amanda Filip" DataUrodzenia="21.06.1982 00:00:00" Pesel="13847138472" Plec="Kobieta" />
+<Employees Etat="Pół" Opis="Woźna" DataRozpoczecia="27.01.2010 00:00:00" Imie="Oliwia" Nazwisko="Lis" NazwiskoPanienskie="NULL" ImionaRodzicow="Maja Michał" DataUrodzenia="01.08.1984 00:00:00" Pesel="23213323213" Plec="Kobieta" />
+<Employees Etat="Pół" Opis="Informatyk" DataRozpoczecia="17.07.2010 00:00:00" Imie="Jakub" Nazwisko="Rogowski" NazwiskoPanienskie="NULL" ImionaRodzicow="Karolina Igor" DataUrodzenia="23.08.1990 00:00:00" Pesel="47483047483" Plec="Inne" />
+<Employees Etat="Pół" Opis="Elektryk" DataRozpoczecia="07.07.2010 00:00:00" Imie="Dawid" Nazwisko="Domański" NazwiskoPanienskie="NULL" ImionaRodzicow="Julia Mikołaj" DataUrodzenia="25.04.1985 00:00:00" Pesel="18541341854" Plec="Mezczyzna" />
+</Persons>

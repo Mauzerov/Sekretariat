@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -31,7 +32,8 @@ namespace Desktop.View
             {
                 if (Class.Classes.ContainsKey(ClassInput.Text))
                     return;
-                Class[ClassInput.Text] = number;
+                var text = ClassInput.Text;
+                Class[text] = number;
 
                 var row = new StackPanel
                 {
@@ -50,11 +52,13 @@ namespace Desktop.View
                 remove.Click += (o, args) =>
                 {
                     this.Children.Remove(row);
-                    this.Class.Classes.Remove(ClassInput.Text);
+                    Debug.WriteLine(text);
+                    Debug.WriteLine(Class.Classes.Count);
+                    this.Class.Classes.Remove(text);
                 };
                 row.Children.Add(new Label
                     {
-                        Content = $"{ClassInput.Text}:\t{number}"
+                        Content = $"{text}:\t{number}"
                     }
                 );
                 row.Children.Add(remove);
