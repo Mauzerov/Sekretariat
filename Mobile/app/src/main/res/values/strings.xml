@@ -13,7 +13,7 @@
     <string name="dismiss">Odrzuć</string>
 
     <string name="toast_error_no_table">Wybierz Tabelę</string>
-    <string name="toast_error_no_data">SWybrana Tabela Jest Pusta</string>
+    <string name="toast_error_no_data">Wybrana Tabela Jest Pusta</string>
     <string name="toast_error_no_database">Nie Wybrano Danych</string>
     <string name="toast_error_no_database_existence">Niepoprawny Format Danych</string>
     <string name="toast_message_database_existence">Obczytano Dane Poprawnie</string>
