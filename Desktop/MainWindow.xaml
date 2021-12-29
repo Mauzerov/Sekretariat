@@ -35,7 +35,7 @@
         <KeyBinding Key="S" Modifiers="Control" Command="Save"/>
         <KeyBinding Key="S" Modifiers="Control+Shift" Command="SaveAs"/>
         <KeyBinding Key="N" Modifiers="Control" Command="New"/>
-        <KeyBinding Key="R" Modifiers="Control+Shift" Command="New"/>
+        <KeyBinding Key="R" Modifiers="Control+Shift" Command="Rewind"/>
     </Window.InputBindings>
     
     <DockPanel>
